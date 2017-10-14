@@ -6,29 +6,16 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:44:27 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/07 20:36:33 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/14 18:33:34 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-void		data_del(void *content, size_t size)
-{
-	int		ret;
-	t_data	*d;
-
-	if (!content || !size)
-		return ;
-	d = (t_data*)content;
-	if (d->fd < 0 && (ret = close(d->fd)) < 0)
-		error_str(d->av, "close error");
-	ft_strdel(&d->av);
-	ft_memdel((void**)&d);
-}
-
 static int		option_error_handler(t_list **lst)
 {
 	int		i;
+	char	dash;
 	t_data	*d;
 	t_list	*l;
 
@@ -36,19 +23,25 @@ static int		option_error_handler(t_list **lst)
 	while (l)
 	{
 		i = -1;
+		dash = 0;
 		d = (t_data*)l->content;
 		if (d->token == OPTION)
 		{
 			while (d->av[++i])
-				if (!(ft_strchr(AVAILABLE_OPTIONS, (int)d->av[i])))
+			{
+				if (!(ft_strchr(AVAILABLE_OPTIONS, (int)d->av[i]))
+					|| (dash && d->av[i] == '-') || !ft_strcmp(d->av, "-"))
 					return (error_str(d->av, UNKNOWN_OPTION));
+				if ((ft_strcmp(d->av, "--")) && d->av[i] == '-')
+					dash++;
+			}
 		}
 		l = l->next;
 	}
 	return (1);
 }
 
-static void	prepare_files(t_list *elm)
+void			prepare_files(t_list *elm)
 {
 	int		ret;
 	t_data	*d;
@@ -64,6 +57,9 @@ static void	prepare_files(t_list *elm)
 			error_str(d->av, FSTAT_ERROR);
 		else if (!(d->stat.st_mode & S_IRUSR))
 			error_str(d->av, CANT_READ);
+		else if (!(d->file = mmap(NULL, (size_t)d->stat.st_size,
+									PROT_READ, MAP_PRIVATE, d->fd, 0)))
+			error_str(d->av, MMAP_ERROR);
 	}
 }
 
@@ -86,7 +82,30 @@ static t_data	*new_data(char *str, int *wait)
 	return (d);
 }
 
-t_list	*parsing(int ac, char **av)
+void			default_file(t_list **lst)
+{
+	t_list	*l;
+	t_data	*d;
+
+	d = NULL;
+	if (!lst || !(l = *lst))
+		return ;
+	while (l)
+	{
+		if (((t_data*)l->content)->token == PATH)
+			return ;
+		l = l->next;
+	}
+	if (!(d = (t_data*)malloc((sizeof(t_data)))))
+		return ;
+	ft_bzero(d, sizeof(t_data));
+	d->token = PATH;
+	d->av = ft_strdup("a.out");
+	ft_lstaddback(lst, ft_lstnew(d, sizeof(t_data)));
+	ft_memdel((void**)&d);
+}
+
+t_list			*parsing(char **av)
 {
 	t_list	*lst;
 	int		i;
@@ -97,8 +116,6 @@ t_list	*parsing(int ac, char **av)
 	lst = NULL;
 	wait = 1;
 	h = NULL;
-	if (!av || ac < 2)
-		return (NULL);
 	while (av[++i])
 	{
 		if (!(h = new_data(av[i], &wait)))
@@ -111,6 +128,7 @@ t_list	*parsing(int ac, char **av)
 	}
 	if (!(option_error_handler(&lst)))
 		ft_lstdel(&lst, &data_del);
+	default_file(&lst);
 	ft_lstiter(lst, &prepare_files);
 	return (lst);
 }

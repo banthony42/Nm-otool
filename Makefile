@@ -6,7 +6,7 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/10/07 21:09:26 by banthony         ###   ########.fr        #
+#    Updated: 2017/10/14 18:47:22 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,7 +18,7 @@ PATH_HEAD = ./include/
 
 HEADER_FILE = ft_nm.h	\
 
-SRC_FILE = 	main.c	parsing.c	\
+SRC_FILE = 	main.c	parsing.c	nm.c	misc.c	\
 
 SRC = $(SRC_FILE:%c=$(PATH_SRC)%c)
 
@@ -55,10 +55,8 @@ clean:
 	rm -f $(OBJ2)
 
 fclean: clean
-	rm Makefile~
-	rm ./include/*.h~
-	rm ./src/*.c~
 	rm -f $(NAME)
 	make fclean -C $(PATH_LIBFT)
+	rm Makefile~ ./*.c~ ./*.h~
 
 re: fclean all
