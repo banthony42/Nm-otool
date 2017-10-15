@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/15 15:26:23 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/15 21:56:51 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@
 # define MMAP_ERROR "mmap has failed."
 # define CANT_READ "Permission denied."
 # define UNKNOWN_OPTION "Unknown command line argument"
-
 # define AVAILABLE_OPTIONS "gnopruUx-"
-# define NB_OPTIONS 8
-# define SHIFT(N) (1 << N)
+# define OFFSET(OFFSET, BEGIN) ((char*)OFFSET - (char*)BEGIN)
 
 typedef enum	e_options
 {
