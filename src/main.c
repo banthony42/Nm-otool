@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/14 18:34:20 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/15 17:11:18 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,18 @@ int			main(int ac, char **av)
 		default_file(&entry);
 		ft_lstiter(entry, &prepare_files);
 	}
-	else if (!(entry = parsing(av)))
-		ft_putstr(NM_USG);
+	else if ((entry = parsing(av)))
+		concat_options(&entry);
 	else
 	{
-		ft_lstiter(entry, &print_elem);
-		ft_putendl("--------- CONCAT -------------");
-		concat_options(&entry);
-		ft_lstiter(entry, &print_elem);
-		ft_putendl("------------------------------");
-		ft_lstiter(entry, &ft_nm);
+		ft_putendl(NM_USG);
+		return (EXIT_FAILURE);
 	}
+	ft_lstiter(entry, &print_elem);
+	ft_putchar('\n');
+	ft_lstiter(entry, &ft_nm);
 /*			ATTENTION !!!
 **	Desactiver fsanitize pour tester les leaks
 system("leaks ft_nm");*/
-	return (0);
+	return (EXIT_SUCCESS);
 }

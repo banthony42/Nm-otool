@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/14 18:46:35 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/15 15:26:23 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@
 # include <stdlib.h>
 # include <mach-o/loader.h>
 # include <mach-o/nlist.h>
+# include <mach-o/fat.h>
+#include <ar.h>
 # include "libft.h"
+
+
+#include <stdio.h>
+
 
 /*
 **	Messages
