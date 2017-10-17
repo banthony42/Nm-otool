@@ -6,7 +6,7 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/10/15 16:18:34 by banthony         ###   ########.fr         
+     Updated: 2017/10/16 18:19:29 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
@@ -15,8 +15,32 @@ Sur un fichier sans droit, l'erreur pop sur open
 	-> No such file or directory.	  au lieu de
 	-> Permission denied.
 
--------------------------------------------------------------------------------
 
+Changer le type de data->file en unsigned char*
+Pour eviter les nombreux cast lors d'operations sur pointeur
+
+
+
+
+
+-------------------------------------------------------------------------------
+Structure Universal Binaries (Fat files):
+-----------------------------------
+|	- Fat Header				  |
+|								  |
+-----------------------------------
+-----------------------------------
+|	- Mach-O Header				  |
+|								  |
+-----------------------------------
+-----------------------------------
+|	- Load Commands				  |
+|								  |
+-----------------------------------
+-----------------------------------
+|	- Data						  |
+|								  |
+-----------------------------------
 
 Structure Mach-O Files:
 -----------------------------------

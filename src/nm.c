@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/13 18:56:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/15 23:17:38 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/17 16:26:38 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	arch_64_handler(void *file, char *name)
 {
+	struct mach_header_64 *hdr64;
+
 	if (!file)
 		return ;
 	if (name)
@@ -22,6 +24,9 @@ static void	arch_64_handler(void *file, char *name)
 		ft_putstr(":\n");
 	}
 	ft_putendlcol(YELLOW, "Arch_64");
+	hdr64 = (struct mach_header_64 *)file;
+	if (hdr64->filetype == MH_OBJECT)
+		ft_putendl("OBJECT");
 }
 
 static void	arch_32_handler(void *file, char *name)
@@ -67,43 +72,96 @@ static off_t	extract_ar_name(t_data *d, struct ar_hdr *h)
 
 static void		archive_handler(t_data *d)
 {
-	unsigned int	magic;
+	uint32_t	magic;
 	off_t			i;
 	struct ar_hdr	*h;
-	void			*ptr;
+	unsigned char	*ptr;
 
 	i = SARMAG;
-	ptr = d->file;
-	ptr = (void *)((char *)ptr + i); /*On passe le ARMAG*/
+	ptr = (unsigned char *)d->file;
+	ptr = ptr + i; /*On passe le ARMAG*/
 	while (OFFSET(ptr, d->file) < d->stat.st_size)	/*Tant que l'offset entre debut et ptr < size*/
 	{
 		h = (struct ar_hdr *)ptr;	/*Recuperation de la metadata header archive*/
 		if (i > SARMAG && h)
 			i = extract_ar_name(d, h);
-		if ((magic = *(unsigned int *)(void*)&h->ar_fmag[i]) == MH_MAGIC_64)	/*Magic juste apres la mdata*/
+		if ((magic = *(uint32_t *)(void*)&h->ar_fmag[i]) == MH_MAGIC_64)	/*Magic juste apres la mdata*/
 			arch_64_handler((void*)&h->ar_fmag[i], NULL);	/*Gestion Mach-O x64*/
 		else if (magic == MH_MAGIC)
 			arch_32_handler((void*)&h->ar_fmag[i], NULL);	/*Gestion Mach-O x32*/
 		i = (off_t)((sizeof(struct ar_hdr)) + (size_t)ft_atoi(h->ar_size));	/*calcul de l'offset*/
-		ptr = (void *)((char *)ptr + i);	/*Decalage du ptr avec l'offset*/
+		ptr = ptr + i;	/*Decalage du ptr avec l'offset*/
 	}
+}
+
+/*
+**	Exemple sur 0xbebafeca
+**
+**	(val << 8) & 0xFF00FF00
+**	  0xbafeca00
+**	& 0xFF00FF00
+**	------------
+**	  0xba00ca00
+**
+**	(val >> 8) & 0x00FF00FF
+**	  0x00bebafe
+**	& 0x00FF00FF
+**	------------
+**	  0x00be00fe
+**
+**	(val << 16) | (val >> 16)
+**
+**
+**
+**
+*/
+static uint32_t	swap_uint32(uint32_t val)
+{
+	val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
+	return (val << 16) | (val >> 16);
+}
+
+static void	fat_arch_32_handler(void *file, char *name)
+{
+	struct fat_header	*fh;
+
+	if (!(fh = (struct fat_header *)file))
+		return ;
+	if (name)
+		ft_putendl(name);
+	printf("%x - %x\n", fh->nfat_arch, fh->magic);
+	printf("%x - %x\n", swap_uint32(fh->nfat_arch), swap_uint32(fh->magic));
+	ft_putendlcol(RED, "Fat_Arch_32");
 }
 
 void		ft_nm(t_list *elem)
 {
-	unsigned int	magic;
-	t_data			*d;
+	uint32_t	magic;
+	t_data		*d;
 
 	if (!elem || !elem->content)
 		return ;
 	if ((d = (t_data*)elem->content)->token != PATH || !d->file)
 		return ;
-	if ((magic = *(unsigned int*)d->file) == MH_MAGIC_64)	/*Mach-O 64bit*/
+	if ((magic = *(uint32_t*)d->file) == MH_MAGIC_64)	/*Mach-O 64bit*/
 		arch_64_handler(d->file, d->av);
 	else if (magic == MH_MAGIC)	/*Mach-O 32bit*/
 		arch_32_handler(d->file, d->av);
+	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)
+		fat_arch_32_handler(d->file, d->av);
 	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))	/*Archive*/
 		archive_handler(d);
+	else
+		ft_putendl("NONE");
 	/*ARMAG/SARMAG - Correspond au magic_str et size_magic_str - voir ar.h - */
 }
+
+
+
+
+
+
+
+
+
 

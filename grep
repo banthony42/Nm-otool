@@ -1,0 +1,1357 @@
+/usr/bin/2to3:                        a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/2to3-:                       a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/2to3-2.7:                    a /System/Library/Frameworks/Python.framework/Versions/2.7/Resour script text executable, ASCII text
+/usr/bin/2to3-3.4:                    a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/2to32.6:                     a /System/Library/Frameworks/Python.framework/Versions/2.6/Resour script text executable, ASCII text
+/usr/bin/AssetCacheActivatorUtil:     Mach-O 64-bit executable x86_64
+/usr/bin/AssetCacheLocatorUtil:       Mach-O 64-bit executable x86_64
+/usr/bin/AssetCacheTetheratorUtil:    Mach-O 64-bit executable x86_64
+/usr/bin/BuildStrings:                Mach-O 64-bit executable x86_64
+/usr/bin/CpMac:                       Mach-O 64-bit executable x86_64
+/usr/bin/DeRez:                       Mach-O 64-bit executable x86_64
+/usr/bin/GetFileInfo:                 Mach-O 64-bit executable x86_64
+/usr/bin/IOAccelMemory:               Mach-O 64-bit executable x86_64
+/usr/bin/MergePef:                    Mach-O 64-bit executable x86_64
+/usr/bin/MvMac:                       Mach-O 64-bit executable x86_64
+/usr/bin/ResMerger:                   Mach-O 64-bit executable x86_64
+/usr/bin/Rez:                         Mach-O 64-bit executable x86_64
+/usr/bin/RezDet:                      Mach-O 64-bit executable x86_64
+/usr/bin/RezWack:                     Mach-O 64-bit executable x86_64
+/usr/bin/SetFile:                     Mach-O 64-bit executable x86_64
+/usr/bin/SplitForks:                  Mach-O 64-bit executable x86_64
+/usr/bin/UnRezWack:                   Mach-O 64-bit executable x86_64
+/usr/bin/a2p:                         Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/a2p (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/a2p (for architecture i386):	Mach-O executable i386
+/usr/bin/a2p5.16:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/a2p5.16 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/a2p5.16 (for architecture i386):	Mach-O executable i386
+/usr/bin/a2p5.18:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/a2p5.18 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/a2p5.18 (for architecture i386):	Mach-O executable i386
+/usr/bin/addftinfo:                   Mach-O 64-bit executable x86_64
+/usr/bin/afclip:                      Mach-O 64-bit executable x86_64
+/usr/bin/afconvert:                   Mach-O 64-bit executable x86_64
+/usr/bin/afhash:                      Mach-O 64-bit executable x86_64
+/usr/bin/afida:                       Mach-O 64-bit executable x86_64
+/usr/bin/afinfo:                      Mach-O 64-bit executable x86_64
+/usr/bin/afmtodit:                    a /usr/bin/perl -w script text executable, ASCII text
+/usr/bin/afplay:                      Mach-O 64-bit executable x86_64
+/usr/bin/afscexpand:                  Mach-O 64-bit executable x86_64
+/usr/bin/agentxtrap:                  Mach-O 64-bit executable x86_64
+/usr/bin/agvtool:                     Mach-O 64-bit executable x86_64
+/usr/bin/alias:                       POSIX shell script text executable, ASCII text
+/usr/bin/applesingle:                 Mach-O 64-bit executable x86_64
+/usr/bin/appletviewer:                Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/appletviewer (for architecture i386):	Mach-O executable i386
+/usr/bin/appletviewer (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/apply:                       Mach-O 64-bit executable x86_64
+/usr/bin/apropos:                     POSIX shell script text executable, ASCII text
+/usr/bin/apt:                         Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/apt (for architecture i386):	Mach-O executable i386
+/usr/bin/apt (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/ar:                          Mach-O 64-bit executable x86_64
+/usr/bin/arch:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/arch (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/arch (for architecture i386):	Mach-O executable i386
+/usr/bin/as:                          Mach-O 64-bit executable x86_64
+/usr/bin/asa:                         Mach-O 64-bit executable x86_64
+/usr/bin/asctl:                       Mach-O 64-bit executable x86_64
+/usr/bin/assetutil:                   Mach-O 64-bit executable x86_64
+/usr/bin/at:                          setuid Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/at (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/at (for architecture i386):	Mach-O executable i386
+/usr/bin/atos:                        Mach-O 64-bit executable x86_64
+/usr/bin/atq:                         setuid Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/atq (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/atq (for architecture i386):	Mach-O executable i386
+/usr/bin/atrm:                        setuid Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/atrm (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/atrm (for architecture i386):	Mach-O executable i386
+/usr/bin/atsutil:                     Mach-O 64-bit executable x86_64
+/usr/bin/audiodevice:                 Mach-O universal binary with 2 architectures: [ppc: Mach-O executable ppc] [i386: Mach-O executable i386]
+/usr/bin/audiodevice (for architecture ppc):	Mach-O executable ppc
+/usr/bin/audiodevice (for architecture i386):	Mach-O executable i386
+/usr/bin/automator:                   Mach-O 64-bit executable x86_64
+/usr/bin/auval:                       POSIX shell script text executable, ASCII text
+/usr/bin/auvaltool:                   Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/auvaltool (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/auvaltool (for architecture i386):	Mach-O executable i386
+/usr/bin/avbdiagnose:                 Mach-O 64-bit executable x86_64
+/usr/bin/avbutil:                     Mach-O 64-bit executable x86_64
+/usr/bin/avconvert:                   Mach-O 64-bit executable x86_64
+/usr/bin/avmetareadwrite:             Mach-O 64-bit executable x86_64
+/usr/bin/awk:                         Mach-O 64-bit executable x86_64
+/usr/bin/banner:                      Mach-O 64-bit executable x86_64
+/usr/bin/base64:                      Mach-O 64-bit executable x86_64
+/usr/bin/basename:                    Mach-O 64-bit executable x86_64
+/usr/bin/bashbug:                     POSIX shell script text executable, ASCII text
+/usr/bin/batch:                       setuid Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/batch (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/batch (for architecture i386):	Mach-O executable i386
+/usr/bin/bc:                          Mach-O 64-bit executable x86_64
+/usr/bin/bg:                          POSIX shell script text executable, ASCII text
+/usr/bin/biff:                        Mach-O 64-bit executable x86_64
+/usr/bin/binhex:                      Mach-O 64-bit executable x86_64
+/usr/bin/binhex.pl:                   a /usr/bin/perl script text executable, ASCII text
+/usr/bin/binhex5.18.pl:               a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/bioutil:                     Mach-O 64-bit executable x86_64
+/usr/bin/bison:                       Mach-O 64-bit executable x86_64
+/usr/bin/bitesize.d:                  a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/brctl:                       Mach-O 64-bit executable x86_64
+/usr/bin/bsdtar:                      Mach-O 64-bit executable x86_64
+/usr/bin/bspatch:                     Mach-O 64-bit executable x86_64
+/usr/bin/btmmdiagnose:                Bourne-Again shell script text executable, ASCII text
+/usr/bin/bunzip2:                     Mach-O 64-bit executable x86_64
+/usr/bin/bzcat:                       Mach-O 64-bit executable x86_64
+/usr/bin/bzcmp:                       POSIX shell script text executable, ASCII text
+/usr/bin/bzdiff:                      POSIX shell script text executable, ASCII text
+/usr/bin/bzegrep:                     Mach-O 64-bit executable x86_64
+/usr/bin/bzfgrep:                     Mach-O 64-bit executable x86_64
+/usr/bin/bzgrep:                      Mach-O 64-bit executable x86_64
+/usr/bin/bzip2:                       Mach-O 64-bit executable x86_64
+/usr/bin/bzip2recover:                Mach-O 64-bit executable x86_64
+/usr/bin/bzless:                      POSIX shell script text executable, ASCII text
+/usr/bin/bzmore:                      POSIX shell script text executable, ASCII text
+/usr/bin/c++:                         Mach-O 64-bit executable x86_64
+/usr/bin/c++filt:                     Mach-O 64-bit executable x86_64
+/usr/bin/c2ph:                        a /usr/bin/perl script text executable, ASCII text
+/usr/bin/c2ph5.16:                    a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/c2ph5.18:                    a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/c89:                         Mach-O 64-bit executable x86_64
+/usr/bin/c99:                         Mach-O 64-bit executable x86_64
+/usr/bin/c_rehash:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/caffeinate:                  Mach-O 64-bit executable x86_64
+/usr/bin/cal:                         Mach-O 64-bit executable x86_64
+/usr/bin/calendar:                    Mach-O 64-bit executable x86_64
+/usr/bin/cancel:                      Mach-O 64-bit executable x86_64
+/usr/bin/cap_mkdb:                    Mach-O 64-bit executable x86_64
+/usr/bin/captoinfo:                   Mach-O 64-bit executable x86_64
+/usr/bin/cc:                          Mach-O 64-bit executable x86_64
+/usr/bin/ccmake:                      Mach-O 64-bit executable x86_64
+/usr/bin/cd:                          POSIX shell script text executable, ASCII text
+/usr/bin/certtool:                    Mach-O 64-bit executable x86_64
+/usr/bin/checknr:                     Mach-O 64-bit executable x86_64
+/usr/bin/chflags:                     Mach-O 64-bit executable x86_64
+/usr/bin/chfn:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/chfn (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/chfn (for architecture i386):	Mach-O executable i386
+/usr/bin/chgrp:                       Mach-O 64-bit executable x86_64
+/usr/bin/chpass:                      Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/chpass (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/chpass (for architecture i386):	Mach-O executable i386
+/usr/bin/chsh:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/chsh (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/chsh (for architecture i386):	Mach-O executable i386
+/usr/bin/cksum:                       Mach-O 64-bit executable x86_64
+/usr/bin/clang:                       Mach-O 64-bit executable x86_64
+/usr/bin/clang++:                     Mach-O 64-bit executable x86_64
+/usr/bin/clear:                       Mach-O 64-bit executable x86_64
+/usr/bin/cmake:                       Mach-O 64-bit executable x86_64
+/usr/bin/cmakexbuild:                 Mach-O 64-bit executable x86_64
+/usr/bin/cmp:                         Mach-O 64-bit executable x86_64
+/usr/bin/cmpdylib:                    Mach-O 64-bit executable x86_64
+/usr/bin/codesign:                    Mach-O 64-bit executable x86_64
+/usr/bin/codesign_allocate:           Mach-O 64-bit executable x86_64
+/usr/bin/col:                         Mach-O 64-bit executable x86_64
+/usr/bin/colcrt:                      Mach-O 64-bit executable x86_64
+/usr/bin/colldef:                     Mach-O 64-bit executable x86_64
+/usr/bin/colrm:                       Mach-O 64-bit executable x86_64
+/usr/bin/column:                      Mach-O 64-bit executable x86_64
+/usr/bin/comm:                        Mach-O 64-bit executable x86_64
+/usr/bin/command:                     POSIX shell script text executable, ASCII text
+/usr/bin/compress:                    Mach-O 64-bit executable x86_64
+/usr/bin/compression_tool:            Mach-O 64-bit executable x86_64
+/usr/bin/config_data:                 a /usr/bin/perl script text executable, ASCII text
+/usr/bin/config_data5.16:             a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/config_data5.18:             a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/corebrightnessdiag:          Mach-O 64-bit executable x86_64
+/usr/bin/corelist:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/corelist5.16:                a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/corelist5.18:                a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/cpack:                       Mach-O 64-bit executable x86_64
+/usr/bin/cpan:                        a /usr/bin/perl script text executable, ASCII text
+/usr/bin/cpan2dist:                   a /usr/bin/perl script text executable, ASCII text
+/usr/bin/cpan2dist5.16:               a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/cpan2dist5.18:               a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/cpan5.16:                    a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/cpan5.18:                    a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/cpanp:                       a /usr/bin/perl script text executable, ASCII text
+/usr/bin/cpanp-run-perl:              a /usr/bin/perl script text executable, ASCII text
+/usr/bin/cpanp-run-perl5.16:          a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/cpanp-run-perl5.18:          a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/cpanp5.16:                   a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/cpanp5.18:                   a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/cpio:                        Mach-O 64-bit executable x86_64
+/usr/bin/cpp:                         Mach-O 64-bit executable x86_64
+/usr/bin/cpu_profiler.d:              POSIX shell script text executable, ASCII text
+/usr/bin/cpuwalk.d:                   a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/crc32:                       a /usr/bin/perl script text executable, ASCII text
+/usr/bin/crc325.16:                   a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/crc325.18:                   a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/creatbyproc.d:               a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/crlrefresh:                  Mach-O 64-bit executable x86_64
+/usr/bin/crontab:                     setuid Mach-O 64-bit executable x86_64
+/usr/bin/csdiagnose:                  a /usr/bin/env perl -w script text executable, ASCII text
+/usr/bin/csgather:                    Mach-O 64-bit executable x86_64
+/usr/bin/csplit:                      Mach-O 64-bit executable x86_64
+/usr/bin/csreq:                       Mach-O 64-bit executable x86_64
+/usr/bin/csrutil:                     Mach-O 64-bit executable x86_64
+/usr/bin/ctags:                       Mach-O 64-bit executable x86_64
+/usr/bin/ctest:                       Mach-O 64-bit executable x86_64
+/usr/bin/ctf_insert:                  Mach-O 64-bit executable x86_64
+/usr/bin/cu:                          Mach-O 64-bit executable x86_64
+/usr/bin/cups-config:                 POSIX shell script text executable, ASCII text
+/usr/bin/cupstestdsc:                 Mach-O 64-bit executable x86_64
+/usr/bin/cupstestppd:                 Mach-O 64-bit executable x86_64
+/usr/bin/curl:                        Mach-O 64-bit executable x86_64
+/usr/bin/curl-config:                 POSIX shell script text executable, ASCII text
+/usr/bin/cut:                         Mach-O 64-bit executable x86_64
+/usr/bin/cvaffinity:                  Mach-O 64-bit executable x86_64
+/usr/bin/cvcp:                        Mach-O 64-bit executable x86_64
+/usr/bin/cvmkdir:                     Mach-O 64-bit executable x86_64
+/usr/bin/cvmkfile:                    Mach-O 64-bit executable x86_64
+/usr/bin/dappprof:                    POSIX shell script text executable, ASCII text
+/usr/bin/dapptrace:                   POSIX shell script text executable, ASCII text
+/usr/bin/darwinup:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/darwinup (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/darwinup (for architecture i386):	Mach-O executable i386
+/usr/bin/db_archive:                  Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_archive (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_archive (for architecture i386):	Mach-O executable i386
+/usr/bin/db_checkpoint:               Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_checkpoint (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_checkpoint (for architecture i386):	Mach-O executable i386
+/usr/bin/db_codegen:                  Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_codegen (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_codegen (for architecture i386):	Mach-O executable i386
+/usr/bin/db_deadlock:                 Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_deadlock (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_deadlock (for architecture i386):	Mach-O executable i386
+/usr/bin/db_dump:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_dump (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_dump (for architecture i386):	Mach-O executable i386
+/usr/bin/db_hotbackup:                Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_hotbackup (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_hotbackup (for architecture i386):	Mach-O executable i386
+/usr/bin/db_load:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_load (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_load (for architecture i386):	Mach-O executable i386
+/usr/bin/db_printlog:                 Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_printlog (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_printlog (for architecture i386):	Mach-O executable i386
+/usr/bin/db_recover:                  Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_recover (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_recover (for architecture i386):	Mach-O executable i386
+/usr/bin/db_stat:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_stat (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_stat (for architecture i386):	Mach-O executable i386
+/usr/bin/db_upgrade:                  Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_upgrade (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_upgrade (for architecture i386):	Mach-O executable i386
+/usr/bin/db_verify:                   Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/db_verify (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/db_verify (for architecture i386):	Mach-O executable i386
+/usr/bin/dbicadmin:                   a /usr/bin/perl script text executable, ASCII text
+/usr/bin/dbicadmin5.16:               a /usr/bin/env perl5.16 script text executable, ASCII text
+/usr/bin/dbicadmin5.18:               a /usr/bin/env perl5.18 script text executable, ASCII text
+/usr/bin/dbilogstrip:                 a /usr/bin/perl script text executable, ASCII text
+/usr/bin/dbilogstrip5.16:             a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/dbilogstrip5.18:             a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/dbiprof:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/dbiprof5.16:                 a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/dbiprof5.18:                 a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/dbiproxy:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/dbiproxy5.16:                a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/dbiproxy5.18:                a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/dc:                          Mach-O 64-bit executable x86_64
+/usr/bin/debinhex.pl:                 a /usr/bin/perl script text executable, ASCII text
+/usr/bin/debinhex5.18.pl:             a /usr/bin/perl5.18 -w script text executable, Non-ISO extended-ASCII text
+/usr/bin/defaults:                    Mach-O 64-bit executable x86_64
+/usr/bin/desdp:                       Mach-O 64-bit executable x86_64
+/usr/bin/diff:                        Mach-O 64-bit executable x86_64
+/usr/bin/diff3:                       Mach-O 64-bit executable x86_64
+/usr/bin/diffstat:                    Mach-O 64-bit executable x86_64
+/usr/bin/dig:                         Mach-O 64-bit executable x86_64
+/usr/bin/dirname:                     Mach-O 64-bit executable x86_64
+/usr/bin/diskhits:                    POSIX shell script text executable, ASCII text
+/usr/bin/dispqlen.d:                  a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/ditto:                       Mach-O 64-bit executable x86_64
+/usr/bin/dns-sd:                      Mach-O 64-bit executable x86_64
+/usr/bin/dockutil:                    a /usr/bin/python script text executable, ASCII text
+/usr/bin/drutil:                      Mach-O 64-bit executable x86_64
+/usr/bin/dscacheutil:                 Mach-O 64-bit executable x86_64
+/usr/bin/dscl:                        Mach-O 64-bit executable x86_64
+/usr/bin/dserr:                       Mach-O 64-bit executable x86_64
+/usr/bin/dsexport:                    Mach-O 64-bit executable x86_64
+/usr/bin/dsimport:                    Mach-O 64-bit executable x86_64
+/usr/bin/dsmemberutil:                Mach-O 64-bit executable x86_64
+/usr/bin/dsymutil:                    Mach-O 64-bit executable x86_64
+/usr/bin/dtruss:                      POSIX shell script text executable, ASCII text
+/usr/bin/du:                          Mach-O 64-bit executable x86_64
+/usr/bin/dwarfdump:                   Mach-O 64-bit executable x86_64
+/usr/bin/easy_install:                a /usr/bin/python script text executable, ASCII text
+/usr/bin/easy_install-2.6:            a /System/Library/Frameworks/Python.framework/Versions/2.6/Resour script text executable, ASCII text
+/usr/bin/easy_install-2.7:            a /System/Library/Frameworks/Python.framework/Versions/2.7/Resour script text executable, ASCII text
+/usr/bin/easy_install-3.4:            a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/egrep:                       Mach-O 64-bit executable x86_64
+/usr/bin/emacs:                       Mach-O 64-bit executable x86_64
+/usr/bin/emacs-26.0.50:               Mach-O 64-bit executable x86_64
+/usr/bin/emacs-undumped:              Mach-O 64-bit executable x86_64
+/usr/bin/emacsclient:                 Mach-O 64-bit executable x86_64
+/usr/bin/enc2xs:                      a /usr/bin/perl script text executable, ASCII text
+/usr/bin/enc2xs5.16:                  a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/enc2xs5.18:                  a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/encode_keychange:            Mach-O 64-bit executable x86_64
+/usr/bin/env:                         Mach-O 64-bit executable x86_64
+/usr/bin/eqn:                         Mach-O 64-bit executable x86_64
+/usr/bin/erb:                         a /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ script text executable, ASCII text
+/usr/bin/errinfo:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/etags:                       Mach-O 64-bit executable x86_64
+/usr/bin/ex:                          Mach-O 64-bit executable x86_64
+/usr/bin/examshell:                   Bourne-Again shell script text executable, ASCII text
+/usr/bin/execsnoop:                   POSIX shell script text executable, ASCII text
+/usr/bin/expand:                      Mach-O 64-bit executable x86_64
+/usr/bin/expect:                      Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/expect (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/expect (for architecture i386):	Mach-O executable i386
+/usr/bin/extcheck:                    Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/extcheck (for architecture i386):	Mach-O executable i386
+/usr/bin/extcheck (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/eyapp:                       a /usr/bin/perl script text executable, ASCII text
+/usr/bin/eyapp5.16:                   a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/eyapp5.18:                   a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/false:                       Mach-O 64-bit executable x86_64
+/usr/bin/fc:                          POSIX shell script text executable, ASCII text
+/usr/bin/fddist:                      POSIX shell script text executable, ASCII text
+/usr/bin/fdesetup:                    Mach-O 64-bit executable x86_64
+/usr/bin/fg:                          POSIX shell script text executable, ASCII text
+/usr/bin/fgrep:                       Mach-O 64-bit executable x86_64
+/usr/bin/file:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/file (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/file (for architecture i386):	Mach-O executable i386
+/usr/bin/filebyproc.d:                a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/filtercalltree:              Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/filtercalltree (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/filtercalltree (for architecture i386):	Mach-O executable i386
+/usr/bin/find:                        Mach-O 64-bit executable x86_64
+/usr/bin/find2perl:                   a /usr/bin/perl script text executable, ASCII text
+/usr/bin/find2perl5.16:               a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/find2perl5.18:               a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/findrule:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/findrule5.16:                a /usr/bin/perl5.16 -w script text executable, ASCII text
+/usr/bin/findrule5.18:                a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/finger:                      Mach-O 64-bit executable x86_64
+/usr/bin/fixproc:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/flex:                        Mach-O 64-bit executable x86_64
+/usr/bin/flex++:                      Mach-O 64-bit executable x86_64
+/usr/bin/fmt:                         Mach-O 64-bit executable x86_64
+/usr/bin/fold:                        Mach-O 64-bit executable x86_64
+/usr/bin/fontrestore:                 Mach-O 64-bit executable x86_64
+/usr/bin/footprint:                   Mach-O 64-bit executable x86_64
+/usr/bin/format-sql:                  a /usr/bin/perl script text executable, ASCII text
+/usr/bin/format-sql5.16:              a /usr/bin/env perl5.16 script text executable, ASCII text
+/usr/bin/format-sql5.18:              a /usr/bin/env perl5.18 script text executable, ASCII text
+/usr/bin/from:                        Mach-O 64-bit executable x86_64
+/usr/bin/fs_usage:                    Mach-O 64-bit executable x86_64
+/usr/bin/ftp:                         Mach-O 64-bit executable x86_64
+/usr/bin/funzip:                      Mach-O 64-bit executable x86_64
+/usr/bin/fuser:                       a /usr/bin/perl -w script text executable, ASCII text
+/usr/bin/fwkdp:                       Mach-O 64-bit executable x86_64
+/usr/bin/fwkpfv:                      Mach-O 64-bit executable x86_64
+/usr/bin/g++:                         Mach-O 64-bit executable x86_64
+/usr/bin/gatherheaderdoc:             Mach-O 64-bit executable x86_64
+/usr/bin/gcc:                         Mach-O 64-bit executable x86_64
+/usr/bin/gcore:                       Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/gcore (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/gcore (for architecture i386):	Mach-O executable i386
+/usr/bin/gcov:                        Mach-O 64-bit executable x86_64
+/usr/bin/gdiffmk:                     POSIX shell script text executable, ASCII text
+/usr/bin/gem:                         a /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ script text executable, ASCII text
+/usr/bin/gen_bridge_metadata:         a /usr/bin/ruby script text executable, ASCII text
+/usr/bin/gencat:                      Mach-O 64-bit executable x86_64
+/usr/bin/genstrings:                  Mach-O 64-bit executable x86_64
+/usr/bin/getconf:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/getconf (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/getconf (for architecture i386):	Mach-O executable i386
+/usr/bin/getopt:                      Mach-O 64-bit executable x86_64
+/usr/bin/getopts:                     POSIX shell script text executable, ASCII text
+/usr/bin/git:                         Mach-O 64-bit executable x86_64
+/usr/bin/git-cvsserver:               Mach-O 64-bit executable x86_64
+/usr/bin/git-receive-pack:            Mach-O 64-bit executable x86_64
+/usr/bin/git-shell:                   Mach-O 64-bit executable x86_64
+/usr/bin/git-upload-archive:          Mach-O 64-bit executable x86_64
+/usr/bin/git-upload-pack:             Mach-O 64-bit executable x86_64
+/usr/bin/gm4:                         Mach-O 64-bit executable x86_64
+/usr/bin/gnuattach:                   POSIX shell script text executable, ASCII text
+/usr/bin/gnuclient:                   Mach-O 64-bit executable x86_64
+/usr/bin/gnudoit:                     POSIX shell script text executable, ASCII text
+/usr/bin/gnumake:                     Mach-O 64-bit executable x86_64
+/usr/bin/gnuserv:                     Mach-O 64-bit executable x86_64
+/usr/bin/gperf:                       Mach-O 64-bit executable x86_64
+/usr/bin/grep:                        Mach-O 64-bit executable x86_64
+/usr/bin/grn:                         Mach-O 64-bit executable x86_64
+/usr/bin/grodvi:                      Mach-O 64-bit executable x86_64
+/usr/bin/groff:                       Mach-O 64-bit executable x86_64
+/usr/bin/groffer:                     POSIX shell script text executable, ASCII text
+/usr/bin/grog:                        POSIX shell script text executable, ASCII text
+/usr/bin/grolbp:                      Mach-O 64-bit executable x86_64
+/usr/bin/grolj4:                      Mach-O 64-bit executable x86_64
+/usr/bin/grops:                       Mach-O 64-bit executable x86_64
+/usr/bin/grotty:                      Mach-O 64-bit executable x86_64
+/usr/bin/groups:                      Mach-O 64-bit executable x86_64
+/usr/bin/gunzip:                      Mach-O 64-bit executable x86_64
+/usr/bin/gzcat:                       Mach-O 64-bit executable x86_64
+/usr/bin/gzexe:                       POSIX shell script text executable, ASCII text
+/usr/bin/gzip:                        Mach-O 64-bit executable x86_64
+/usr/bin/h2ph:                        a /usr/bin/perl script text executable, ASCII text
+/usr/bin/h2ph5.16:                    a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/h2ph5.18:                    a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/h2xs:                        a /usr/bin/perl script text executable, ASCII text
+/usr/bin/h2xs5.16:                    a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/h2xs5.18:                    a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/hash:                        POSIX shell script text executable, ASCII text
+/usr/bin/hdid:                        Mach-O 64-bit executable x86_64
+/usr/bin/hdiutil:                     Mach-O 64-bit executable x86_64
+/usr/bin/hdxml2manxml:                Mach-O 64-bit executable x86_64
+/usr/bin/head:                        Mach-O 64-bit executable x86_64
+/usr/bin/headerdoc2html:              Mach-O 64-bit executable x86_64
+/usr/bin/heap:                        Mach-O 64-bit executable x86_64
+/usr/bin/heap32:                      Mach-O executable i386
+/usr/bin/hexdump:                     Mach-O 64-bit executable x86_64
+/usr/bin/hidutil:                     Mach-O 64-bit executable x86_64
+/usr/bin/hiutil:                      Mach-O 64-bit executable x86_64
+/usr/bin/host:                        Mach-O 64-bit executable x86_64
+/usr/bin/hostinfo:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/hostinfo (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/hostinfo (for architecture i386):	Mach-O executable i386
+/usr/bin/hotspot.d:                   a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/hpftodit:                    Mach-O 64-bit executable x86_64
+/usr/bin/hpmdiagnose:                 Mach-O 64-bit executable x86_64
+/usr/bin/htmltree:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/htmltree5.16:                a /usr/bin/perl5.16  script text executable, ASCII text
+/usr/bin/htmltree5.18:                a /usr/bin/perl5.18  script text executable, ASCII text
+/usr/bin/htop:                        Mach-O 64-bit executable x86_64
+/usr/bin/httpdstat.d:                 a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/ibtool:                      Mach-O 64-bit executable x86_64
+/usr/bin/iconutil:                    Mach-O 64-bit executable x86_64
+/usr/bin/iconv:                       Mach-O 64-bit executable x86_64
+/usr/bin/ictool:                      Mach-O 64-bit executable x86_64
+/usr/bin/id:                          Mach-O 64-bit executable x86_64
+/usr/bin/idle:                        a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/idle2.6:                     a /System/Library/Frameworks/Python.framework/Versions/2.6/Resour script text executable, ASCII text
+/usr/bin/idle2.7:                     a /System/Library/Frameworks/Python.framework/Versions/2.7/Resour script text executable, ASCII text
+/usr/bin/idle3:                       a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/idle3.4:                     a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/idlj:                        Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/idlj (for architecture i386):	Mach-O executable i386
+/usr/bin/idlj (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/imptrace:                    Bourne-Again shell script text executable, UTF-8 Unicode text
+/usr/bin/indent:                      Mach-O 64-bit executable x86_64
+/usr/bin/indxbib:                     Mach-O 64-bit executable x86_64
+/usr/bin/info:                        Mach-O 64-bit executable x86_64
+/usr/bin/infocmp:                     Mach-O 64-bit executable x86_64
+/usr/bin/infokey:                     Mach-O 64-bit executable x86_64
+/usr/bin/infotocap:                   Mach-O 64-bit executable x86_64
+/usr/bin/install:                     Mach-O 64-bit executable x86_64
+/usr/bin/install-info:                Mach-O 64-bit executable x86_64
+/usr/bin/install_name_tool:           Mach-O 64-bit executable x86_64
+/usr/bin/instmodsh:                   a /usr/bin/perl script text executable, ASCII text
+/usr/bin/instmodsh5.16:               a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/instmodsh5.18:               a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/instruments:                 Mach-O 64-bit executable x86_64
+/usr/bin/iofile.d:                    a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/iofileb.d:                   a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/iopattern:                   Bourne-Again shell script text executable, ASCII text
+/usr/bin/iopending:                   POSIX shell script text executable, ASCII text
+/usr/bin/iosnoop:                     POSIX shell script text executable, ASCII text
+/usr/bin/iotop:                       POSIX shell script text executable, ASCII text
+/usr/bin/ip2cc:                       a /usr/bin/perl script text executable, ASCII text
+/usr/bin/ip2cc5.16:                   a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/ip2cc5.18:                   a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/ipcount:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/ipcount5.16:                 a /usr/bin/perl5.16 -w script text executable, ASCII text
+/usr/bin/ipcount5.18:                 a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/ipcrm:                       Mach-O 64-bit executable x86_64
+/usr/bin/ipcs:                        Mach-O 64-bit executable x86_64
+/usr/bin/ippfind:                     Mach-O 64-bit executable x86_64
+/usr/bin/ipptool:                     Mach-O 64-bit executable x86_64
+/usr/bin/iprofiler:                   Mach-O 64-bit executable x86_64
+/usr/bin/iptab:                       a /usr/bin/perl script text executable, ASCII text
+/usr/bin/iptab5.16:                   a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/iptab5.18:                   a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/irb:                         a /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ script text executable, ASCII text
+/usr/bin/iscsictl:                    Mach-O 64-bit executable x86_64
+/usr/bin/jar:                         Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jar (for architecture i386):	Mach-O executable i386
+/usr/bin/jar (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jarsigner:                   Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jarsigner (for architecture i386):	Mach-O executable i386
+/usr/bin/jarsigner (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/java:                        Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/java (for architecture i386):	Mach-O executable i386
+/usr/bin/java (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/javac:                       Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/javac (for architecture i386):	Mach-O executable i386
+/usr/bin/javac (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/javadoc:                     Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/javadoc (for architecture i386):	Mach-O executable i386
+/usr/bin/javadoc (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/javah:                       Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/javah (for architecture i386):	Mach-O executable i386
+/usr/bin/javah (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/javap:                       Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/javap (for architecture i386):	Mach-O executable i386
+/usr/bin/javap (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/javapackager:                Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/javapackager (for architecture i386):	Mach-O executable i386
+/usr/bin/javapackager (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/javaws:                      Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/javaws (for architecture i386):	Mach-O executable i386
+/usr/bin/javaws (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jcmd:                        Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jcmd (for architecture i386):	Mach-O executable i386
+/usr/bin/jcmd (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jconsole:                    Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jconsole (for architecture i386):	Mach-O executable i386
+/usr/bin/jconsole (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jcontrol:                    Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jcontrol (for architecture i386):	Mach-O executable i386
+/usr/bin/jcontrol (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jdb:                         Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jdb (for architecture i386):	Mach-O executable i386
+/usr/bin/jdb (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jdeps:                       Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jdeps (for architecture i386):	Mach-O executable i386
+/usr/bin/jdeps (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jhat:                        Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jhat (for architecture i386):	Mach-O executable i386
+/usr/bin/jhat (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jhsdb:                       Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jhsdb (for architecture i386):	Mach-O executable i386
+/usr/bin/jhsdb (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jimage:                      Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jimage (for architecture i386):	Mach-O executable i386
+/usr/bin/jimage (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jinfo:                       Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jinfo (for architecture i386):	Mach-O executable i386
+/usr/bin/jinfo (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jjs:                         Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jjs (for architecture i386):	Mach-O executable i386
+/usr/bin/jjs (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jmap:                        Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jmap (for architecture i386):	Mach-O executable i386
+/usr/bin/jmap (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jmc:                         Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jmc (for architecture i386):	Mach-O executable i386
+/usr/bin/jmc (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jobs:                        POSIX shell script text executable, ASCII text
+/usr/bin/join:                        Mach-O 64-bit executable x86_64
+/usr/bin/jot:                         Mach-O 64-bit executable x86_64
+/usr/bin/jps:                         Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jps (for architecture i386):	Mach-O executable i386
+/usr/bin/jps (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jrunscript:                  Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jrunscript (for architecture i386):	Mach-O executable i386
+/usr/bin/jrunscript (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jsadebugd:                   Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jsadebugd (for architecture i386):	Mach-O executable i386
+/usr/bin/jsadebugd (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jshell:                      Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jshell (for architecture i386):	Mach-O executable i386
+/usr/bin/jshell (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/json_pp:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/json_pp5.16:                 a /usr/bin/perl5.16 script text executable, UTF-8 Unicode text
+/usr/bin/json_pp5.18:                 a /usr/bin/perl5.18 script text executable, UTF-8 Unicode text
+/usr/bin/jstack:                      Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jstack (for architecture i386):	Mach-O executable i386
+/usr/bin/jstack (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jstat:                       Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jstat (for architecture i386):	Mach-O executable i386
+/usr/bin/jstat (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jstatd:                      Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jstatd (for architecture i386):	Mach-O executable i386
+/usr/bin/jstatd (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/jvisualvm:                   Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/jvisualvm (for architecture i386):	Mach-O executable i386
+/usr/bin/jvisualvm (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/kcc:                         Mach-O 64-bit executable x86_64
+/usr/bin/kdestroy:                    Mach-O 64-bit executable x86_64
+/usr/bin/kextutil:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/kextutil (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/kextutil (for architecture i386):	Mach-O executable i386
+/usr/bin/keytool:                     Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/keytool (for architecture i386):	Mach-O executable i386
+/usr/bin/keytool (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/kgetcred:                    Mach-O 64-bit executable x86_64
+/usr/bin/kill.d:                      a /usr/sbin/dtrace -qs script text executable, ASCII text
+/usr/bin/killall:                     Mach-O 64-bit executable x86_64
+/usr/bin/kinit:                       Mach-O 64-bit executable x86_64
+/usr/bin/klist:                       Mach-O 64-bit executable x86_64
+/usr/bin/kpasswd:                     Mach-O 64-bit executable x86_64
+/usr/bin/krb5-config:                 POSIX shell script text executable, ISO-8859 text
+/usr/bin/kswitch:                     Mach-O 64-bit executable x86_64
+/usr/bin/lam:                         Mach-O 64-bit executable x86_64
+/usr/bin/last:                        Mach-O 64-bit executable x86_64
+/usr/bin/lastcomm:                    Mach-O 64-bit executable x86_64
+/usr/bin/lastwords:                   Korn shell script text executable, ASCII text
+/usr/bin/latency:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/latency (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/latency (for architecture i386):	Mach-O executable i386
+/usr/bin/layerutil:                   Mach-O 64-bit executable x86_64
+/usr/bin/ld:                          Mach-O 64-bit executable x86_64
+/usr/bin/ldapadd:                     Mach-O 64-bit executable x86_64
+/usr/bin/ldapcompare:                 Mach-O 64-bit executable x86_64
+/usr/bin/ldapdelete:                  Mach-O 64-bit executable x86_64
+/usr/bin/ldapexop:                    Mach-O 64-bit executable x86_64
+/usr/bin/ldapmodify:                  Mach-O 64-bit executable x86_64
+/usr/bin/ldapmodrdn:                  Mach-O 64-bit executable x86_64
+/usr/bin/ldappasswd:                  Mach-O 64-bit executable x86_64
+/usr/bin/ldapsearch:                  Mach-O 64-bit executable x86_64
+/usr/bin/ldapurl:                     Mach-O 64-bit executable x86_64
+/usr/bin/ldapwhoami:                  Mach-O 64-bit executable x86_64
+/usr/bin/leaks:                       Mach-O 64-bit executable x86_64
+/usr/bin/leaks32:                     Mach-O executable i386
+/usr/bin/leave:                       Mach-O 64-bit executable x86_64
+/usr/bin/less:                        Mach-O 64-bit executable x86_64
+/usr/bin/lessecho:                    Mach-O 64-bit executable x86_64
+/usr/bin/lex:                         Mach-O 64-bit executable x86_64
+/usr/bin/libnetcfg:                   a /usr/bin/perl script text executable, ASCII text
+/usr/bin/libnetcfg5.16:               a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/libnetcfg5.18:               a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/libtool:                     Mach-O 64-bit executable x86_64
+/usr/bin/lipo:                        Mach-O 64-bit executable x86_64
+/usr/bin/lkbib:                       Mach-O 64-bit executable x86_64
+/usr/bin/lldb:                        Mach-O 64-bit executable x86_64
+/usr/bin/llvm-g++:                    Mach-O 64-bit executable x86_64
+/usr/bin/llvm-gcc:                    Mach-O 64-bit executable x86_64
+/usr/bin/loads.d:                     a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/locale:                      Mach-O 64-bit executable x86_64
+/usr/bin/localedef:                   a /usr/bin/perl -w script text executable, ASCII text, with very long lines
+/usr/bin/locate:                      Mach-O 64-bit executable x86_64
+/usr/bin/lockstat:                    Mach-O 64-bit executable x86_64
+/usr/bin/log:                         Mach-O 64-bit executable x86_64
+/usr/bin/logger:                      Mach-O 64-bit executable x86_64
+/usr/bin/login:                       setuid Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/login (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/login (for architecture i386):	Mach-O executable i386
+/usr/bin/logname:                     Mach-O 64-bit executable x86_64
+/usr/bin/look:                        Mach-O 64-bit executable x86_64
+/usr/bin/lookbib:                     Mach-O 64-bit executable x86_64
+/usr/bin/lorder:                      Mach-O 64-bit executable x86_64
+/usr/bin/lp:                          Mach-O 64-bit executable x86_64
+/usr/bin/lpoptions:                   Mach-O 64-bit executable x86_64
+/usr/bin/lpq:                         Mach-O 64-bit executable x86_64
+/usr/bin/lpr:                         Mach-O 64-bit executable x86_64
+/usr/bin/lprm:                        Mach-O 64-bit executable x86_64
+/usr/bin/lpstat:                      Mach-O 64-bit executable x86_64
+/usr/bin/lsappinfo:                   Mach-O 64-bit executable x86_64
+/usr/bin/lsbom:                       Mach-O 64-bit executable x86_64
+/usr/bin/lskq:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/lskq (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/lskq (for architecture i386):	Mach-O executable i386
+/usr/bin/lsm:                         Mach-O 64-bit executable x86_64
+/usr/bin/lsmp:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/lsmp (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/lsmp (for architecture i386):	Mach-O executable i386
+/usr/bin/lsvfs:                       Mach-O 64-bit executable x86_64
+/usr/bin/lwp-download:                a /usr/bin/perl script text executable, ASCII text
+/usr/bin/lwp-download5.16:            a /usr/bin/perl5.16 -w script text executable, ASCII text
+/usr/bin/lwp-download5.18:            a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/lwp-dump:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/lwp-dump5.16:                a /usr/bin/perl5.16 -w script text executable, ASCII text
+/usr/bin/lwp-dump5.18:                a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/lwp-mirror:                  a /usr/bin/perl script text executable, ASCII text
+/usr/bin/lwp-mirror5.16:              a /usr/bin/perl5.16 -w script text executable, ASCII text
+/usr/bin/lwp-mirror5.18:              a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/lwp-request:                 a /usr/bin/perl script text executable, ASCII text
+/usr/bin/lwp-request5.16:             a /usr/bin/perl5.16 -w script text executable, ASCII text
+/usr/bin/lwp-request5.18:             a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/m4:                          Mach-O 64-bit executable x86_64
+/usr/bin/macbinary:                   Mach-O 64-bit executable x86_64
+/usr/bin/macerror:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/macerror5.16:                a /usr/bin/perl5.16 -w script text executable, ASCII text
+/usr/bin/macerror5.18:                a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/machine:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/machine (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/machine (for architecture i386):	Mach-O executable i386
+/usr/bin/macreport:                   cannot open: Permission denied
+/usr/bin/mail:                        Mach-O 64-bit executable x86_64
+/usr/bin/mailq:                       Mach-O 64-bit executable x86_64
+/usr/bin/mailx:                       Mach-O 64-bit executable x86_64
+/usr/bin/make:                        Mach-O 64-bit executable x86_64
+/usr/bin/makeinfo:                    Mach-O 64-bit executable x86_64
+/usr/bin/malloc_history:              Mach-O 64-bit executable x86_64
+/usr/bin/malloc_history32:            Mach-O executable i386
+/usr/bin/man:                         Mach-O 64-bit executable x86_64
+/usr/bin/manpath:                     Mach-O 64-bit executable x86_64
+/usr/bin/mcxquery:                    Mach-O 64-bit executable x86_64
+/usr/bin/mcxrefresh:                  Mach-O 64-bit executable x86_64
+/usr/bin/mddiagnose:                  Mach-O 64-bit executable x86_64
+/usr/bin/mdfind:                      Mach-O 64-bit executable x86_64
+/usr/bin/mdimport:                    Mach-O 64-bit executable x86_64
+/usr/bin/mdimport32:                  Mach-O executable i386
+/usr/bin/mdls:                        Mach-O 64-bit executable x86_64
+/usr/bin/mdutil:                      Mach-O 64-bit executable x86_64
+/usr/bin/memory_pressure:             Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/memory_pressure (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/memory_pressure (for architecture i386):	Mach-O executable i386
+/usr/bin/mesg:                        Mach-O 64-bit executable x86_64
+/usr/bin/mib2c:                       a /usr/bin/perl script text executable, ASCII text, with very long lines
+/usr/bin/mib2c-update:                POSIX shell script text executable, ASCII text
+/usr/bin/mig:                         Mach-O 64-bit executable x86_64
+/usr/bin/mkbom:                       Mach-O 64-bit executable x86_64
+/usr/bin/mkdep:                       Mach-O 64-bit executable x86_64
+/usr/bin/mkfifo:                      Mach-O 64-bit executable x86_64
+/usr/bin/mklocale:                    Mach-O 64-bit executable x86_64
+/usr/bin/mktemp:                      Mach-O 64-bit executable x86_64
+/usr/bin/mmroff:                      a /usr/bin/perl script text executable, ASCII text
+/usr/bin/mnthome:                     Mach-O 64-bit executable x86_64
+/usr/bin/moo-outdated:                a /usr/bin/perl script text executable, ASCII text
+/usr/bin/moo-outdated5.18:            a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/moose-outdated:              a /usr/bin/perl script text executable, ASCII text
+/usr/bin/moose-outdated5.16:          a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/moose-outdated5.18:          a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/more:                        Mach-O 64-bit executable x86_64
+/usr/bin/mp2bug:                      a /usr/bin/perl script text executable, ASCII text
+/usr/bin/msgs:                        Mach-O 64-bit executable x86_64
+/usr/bin/nano:                        Mach-O 64-bit executable x86_64
+/usr/bin/nasm:                        Mach-O 64-bit executable x86_64
+/usr/bin/native2ascii:                Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/native2ascii (for architecture i386):	Mach-O executable i386
+/usr/bin/native2ascii (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/nbdst:                       Mach-O 64-bit executable x86_64
+/usr/bin/nc:                          Mach-O 64-bit executable x86_64
+/usr/bin/ncal:                        Mach-O 64-bit executable x86_64
+/usr/bin/ncctl:                       Mach-O 64-bit executable x86_64
+/usr/bin/ncdestroy:                   Mach-O 64-bit executable x86_64
+/usr/bin/ncinit:                      Mach-O 64-bit executable x86_64
+/usr/bin/nclist:                      Mach-O 64-bit executable x86_64
+/usr/bin/ncurses5.4-config:           POSIX shell script text executable, ASCII text
+/usr/bin/ndisasm:                     Mach-O 64-bit executable x86_64
+/usr/bin/neqn:                        POSIX shell script text executable, ASCII text
+/usr/bin/net-server:                  a /usr/bin/perl script text executable, ASCII text
+/usr/bin/net-server5.16:              a /usr/bin/env perl5.16 script text executable, ASCII text
+/usr/bin/net-server5.18:              a /usr/bin/env perl5.18 script text executable, ASCII text
+/usr/bin/net-snmp-cert:               a /usr/bin/perl script text executable, UTF-8 Unicode text, with very long lines
+/usr/bin/net-snmp-config:             , init=0x454c, stat=0x4d5f, dev=0x4249, bas=0x4c5f
+/usr/bin/net-snmp-create-v3-user:     POSIX shell script text executable, ASCII text
+/usr/bin/nettop:                      Mach-O 64-bit executable x86_64
+/usr/bin/newaliases:                  Mach-O 64-bit executable x86_64
+/usr/bin/newgrp:                      setuid Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/newgrp (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/newgrp (for architecture i386):	Mach-O executable i386
+/usr/bin/newproc.d:                   a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/nfsstat:                     Mach-O 64-bit executable x86_64
+/usr/bin/nice:                        Mach-O 64-bit executable x86_64
+/usr/bin/nl:                          Mach-O 64-bit executable x86_64
+/usr/bin/nm:                          Mach-O 64-bit executable x86_64
+/usr/bin/nmedit:                      Mach-O 64-bit executable x86_64
+/usr/bin/nohup:                       Mach-O 64-bit executable x86_64
+/usr/bin/norminette:                  a /usr/bin/env ruby script text executable, ASCII text
+/usr/bin/notifyutil:                  Mach-O 64-bit executable x86_64
+/usr/bin/nroff:                       POSIX shell script text executable, ASCII text
+/usr/bin/nscurl:                      Mach-O 64-bit executable x86_64
+/usr/bin/nslookup:                    Mach-O 64-bit executable x86_64
+/usr/bin/nsupdate:                    Mach-O 64-bit executable x86_64
+/usr/bin/ntp-keygen:                  Mach-O 64-bit executable x86_64
+/usr/bin/ntpq:                        Mach-O 64-bit executable x86_64
+/usr/bin/objdump:                     Mach-O 64-bit executable x86_64
+/usr/bin/od:                          Mach-O 64-bit executable x86_64
+/usr/bin/odutil:                      Mach-O 64-bit executable x86_64
+/usr/bin/open:                        Mach-O 64-bit executable x86_64
+/usr/bin/opendiff:                    Mach-O 64-bit executable x86_64
+/usr/bin/opensnoop:                   POSIX shell script text executable, ASCII text
+/usr/bin/openssl:                     Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/openssl (for architecture i386):	Mach-O executable i386
+/usr/bin/openssl (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/orbd:                        Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/orbd (for architecture i386):	Mach-O executable i386
+/usr/bin/orbd (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/osacompile:                  Mach-O 64-bit executable x86_64
+/usr/bin/osadecompile:                Mach-O 64-bit executable x86_64
+/usr/bin/osalang:                     Mach-O 64-bit executable x86_64
+/usr/bin/osascript:                   Mach-O 64-bit executable x86_64
+/usr/bin/otool:                       Mach-O 64-bit executable x86_64
+/usr/bin/pack200:                     Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/pack200 (for architecture i386):	Mach-O executable i386
+/usr/bin/pack200 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/package-stash-conflicts:     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/package-stash-conflicts5.16: a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/package-stash-conflicts5.18: a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pagesize:                    POSIX shell script text executable, ASCII text
+/usr/bin/pagestuff:                   Mach-O 64-bit executable x86_64
+/usr/bin/par.pl:                      a /usr/bin/perl script text executable, ASCII text
+/usr/bin/par5.16.pl:                  a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/par5.18.pl:                  a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/parl:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/parl (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/parl (for architecture i386):	Mach-O executable i386
+/usr/bin/parl5.16:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/parl5.16 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/parl5.16 (for architecture i386):	Mach-O executable i386
+/usr/bin/parl5.18:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386]
+/usr/bin/parl5.18 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/parl5.18 (for architecture i386):	Mach-O executable i386
+/usr/bin/parldyn:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/parldyn (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/parldyn (for architecture i386):	Mach-O executable i386
+/usr/bin/parldyn5.16:                 Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/parldyn5.16 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/parldyn5.16 (for architecture i386):	Mach-O executable i386
+/usr/bin/parldyn5.18:                 Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/parldyn5.18 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/parldyn5.18 (for architecture i386):	Mach-O executable i386
+/usr/bin/passwd:                      Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/passwd (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/passwd (for architecture i386):	Mach-O executable i386
+/usr/bin/paste:                       Mach-O 64-bit executable x86_64
+/usr/bin/patch:                       Mach-O 64-bit executable x86_64
+/usr/bin/pathchk:                     Mach-O 64-bit executable x86_64
+/usr/bin/pathopens.d:                 a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/pbcopy:                      Mach-O 64-bit executable x86_64
+/usr/bin/pbpaste:                     Mach-O 64-bit executable x86_64
+/usr/bin/pcap-config:                 POSIX shell script text executable, ASCII text
+/usr/bin/pcsctest:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/pcsctest (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/pcsctest (for architecture i386):	Mach-O executable i386
+/usr/bin/perl:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/perl (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/perl (for architecture i386):	Mach-O executable i386
+/usr/bin/perl5.16:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/perl5.16 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/perl5.16 (for architecture i386):	Mach-O executable i386
+/usr/bin/perl5.18:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/perl5.18 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/perl5.18 (for architecture i386):	Mach-O executable i386
+/usr/bin/perlbug:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/perlbug5.16:                 a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/perlbug5.18:                 a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/perldoc:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/perldoc5.16:                 a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/perldoc5.18:                 a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/perlivp:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/perlivp5.16:                 a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/perlivp5.18:                 a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/perlthanks:                  a /usr/bin/perl script text executable, ASCII text
+/usr/bin/perlthanks5.16:              a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/perlthanks5.18:              a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pfbtops:                     Mach-O 64-bit executable x86_64
+/usr/bin/pgrep:                       Mach-O 64-bit executable x86_64
+/usr/bin/phar:                        a /usr/bin/php script executable (binary data)
+/usr/bin/phar.phar:                   a /usr/bin/php script executable (binary data)
+/usr/bin/php:                         Mach-O 64-bit executable x86_64
+/usr/bin/php-config:                  POSIX shell script text executable, ASCII text, with very long lines
+/usr/bin/phpize:                      POSIX shell script text executable, ASCII text
+/usr/bin/pic:                         Mach-O 64-bit executable x86_64
+/usr/bin/pico:                        Mach-O 64-bit executable x86_64
+/usr/bin/piconv:                      a /usr/bin/perl script text executable, ASCII text
+/usr/bin/piconv5.16:                  a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/piconv5.18:                  a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pidpersec.d:                 a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/pip3:                        a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/pip3.4:                      a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/pkgbuild:                    Mach-O 64-bit executable x86_64
+/usr/bin/pkill:                       Mach-O 64-bit executable x86_64
+/usr/bin/pl:                          Mach-O 64-bit executable x86_64
+/usr/bin/pl2pm:                       a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pl2pm5.16:                   a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/pl2pm5.18:                   a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/plockstat:                   Mach-O 64-bit executable x86_64
+/usr/bin/pluginkit:                   Mach-O 64-bit executable x86_64
+/usr/bin/plutil:                      Mach-O 64-bit executable x86_64
+/usr/bin/pmset:                       Mach-O 64-bit executable x86_64
+/usr/bin/pod2html:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pod2html5.16:                a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/pod2html5.18:                a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pod2latex:                   a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pod2latex5.16:               a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/pod2latex5.18:               a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pod2man:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pod2man5.16:                 a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/pod2man5.18:                 a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pod2readme:                  a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pod2readme5.16:              a /usr/bin/perl5.16  script text executable, ASCII text, with CRLF, LF line terminators
+/usr/bin/pod2readme5.18:              a /usr/bin/perl5.18  script text executable, ASCII text, with CRLF, LF line terminators
+/usr/bin/pod2text:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pod2text5.16:                a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/pod2text5.18:                a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pod2usage:                   a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pod2usage5.16:               a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/pod2usage5.18:               a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/podchecker:                  a /usr/bin/perl script text executable, ASCII text
+/usr/bin/podchecker5.16:              a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/podchecker5.18:              a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/podselect:                   a /usr/bin/perl script text executable, ASCII text
+/usr/bin/podselect5.16:               a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/podselect5.18:               a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/policytool:                  Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/policytool (for architecture i386):	Mach-O executable i386
+/usr/bin/policytool (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/post-grohtml:                Mach-O 64-bit executable x86_64
+/usr/bin/power_report.sh:             Bourne-Again shell script text executable, ASCII text
+/usr/bin/powermetrics:                Mach-O 64-bit executable x86_64
+/usr/bin/pp:                          a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pp5.16:                      a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/pp5.18:                      a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/ppdc:                        Mach-O 64-bit executable x86_64
+/usr/bin/ppdhtml:                     Mach-O 64-bit executable x86_64
+/usr/bin/ppdi:                        Mach-O 64-bit executable x86_64
+/usr/bin/ppdmerge:                    Mach-O 64-bit executable x86_64
+/usr/bin/ppdpo:                       Mach-O 64-bit executable x86_64
+/usr/bin/pr:                          Mach-O 64-bit executable x86_64
+/usr/bin/pre-grohtml:                 Mach-O 64-bit executable x86_64
+/usr/bin/priclass.d:                  a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/pridist.d:                   a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/printenv:                    Mach-O 64-bit executable x86_64
+/usr/bin/printf:                      Mach-O 64-bit executable x86_64
+/usr/bin/procsystime:                 POSIX shell script text executable, ASCII text
+/usr/bin/productbuild:                Mach-O 64-bit executable x86_64
+/usr/bin/productsign:                 Mach-O 64-bit executable x86_64
+/usr/bin/profiles:                    Mach-O 64-bit executable x86_64
+/usr/bin/prove:                       a /usr/bin/perl script text executable, ASCII text
+/usr/bin/prove5.16:                   a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/prove5.18:                   a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/psed:                        a /usr/bin/perl script text executable, ASCII text
+/usr/bin/psed5.16:                    a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/psed5.18:                    a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pstopdf:                     Mach-O 64-bit executable x86_64
+/usr/bin/pstruct:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pstruct5.16:                 a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/pstruct5.18:                 a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/ptar:                        a /usr/bin/perl script text executable, ASCII text
+/usr/bin/ptar5.16:                    a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/ptar5.18:                    a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/ptardiff:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/ptardiff5.16:                a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/ptardiff5.18:                a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/ptargrep:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/ptargrep5.16:                a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/ptargrep5.18:                a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pubsub:                      Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/pubsub (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/pubsub (for architecture i386):	Mach-O executable i386
+/usr/bin/pwhich:                      a /usr/bin/perl script text executable, ASCII text
+/usr/bin/pwhich5.16:                  a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/pwhich5.18:                  a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/pwpolicy:                    Mach-O 64-bit executable x86_64
+/usr/bin/pydoc:                       a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/pydoc2.6:                    a /System/Library/Frameworks/Python.framework/Versions/2.6/Resour script text executable, ASCII text
+/usr/bin/pydoc2.7:                    a /System/Library/Frameworks/Python.framework/Versions/2.7/Resour script text executable, ASCII text
+/usr/bin/pydoc3:                      a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/pydoc3.4:                    a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/python:                      Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/python (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/python (for architecture i386):	Mach-O executable i386
+/usr/bin/python-config:               a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/python2.6:                   Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/python2.6 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/python2.6 (for architecture i386):	Mach-O executable i386
+/usr/bin/python2.6-config:            a /System/Library/Frameworks/Python.framework/Versions/2.6/Resour script text executable, ASCII text
+/usr/bin/python2.7:                   Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/python2.7 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/python2.7 (for architecture i386):	Mach-O executable i386
+/usr/bin/python2.7-config:            a /System/Library/Frameworks/Python.framework/Versions/2.7/Resour script text executable, ASCII text
+/usr/bin/python3:                     Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/python3 (for architecture i386):	Mach-O executable i386
+/usr/bin/python3 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/python3-32:                  Mach-O universal binary with 1 architecture: [i386: Mach-O executable i386]
+/usr/bin/python3-32 (for architecture i386):	Mach-O executable i386
+/usr/bin/python3-config:              a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/python3.4:                   Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/python3.4 (for architecture i386):	Mach-O executable i386
+/usr/bin/python3.4 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/python3.4-32:                Mach-O universal binary with 1 architecture: [i386: Mach-O executable i386]
+/usr/bin/python3.4-32 (for architecture i386):	Mach-O executable i386
+/usr/bin/python3.4-config:            a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/python3.4m:                  Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/python3.4m (for architecture i386):	Mach-O executable i386
+/usr/bin/python3.4m (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/python3.4m-config:           a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/pythonw:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/pythonw (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/pythonw (for architecture i386):	Mach-O executable i386
+/usr/bin/pythonw2.6:                  Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/pythonw2.6 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/pythonw2.6 (for architecture i386):	Mach-O executable i386
+/usr/bin/pythonw2.7:                  Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/pythonw2.7 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/pythonw2.7 (for architecture i386):	Mach-O executable i386
+/usr/bin/pyvenv:                      a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/pyvenv-3.4:                  a /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4 script text executable, ASCII text
+/usr/bin/qc2movie:                    Mach-O executable i386
+/usr/bin/qlmanage:                    Mach-O 64-bit executable x86_64
+/usr/bin/qtdefaults:                  Mach-O executable i386
+/usr/bin/qtmodernizer:                Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/qtmodernizer (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/qtmodernizer (for architecture i386):	Mach-O executable i386
+/usr/bin/quota:                       setuid Mach-O 64-bit executable x86_64
+/usr/bin/rails:                       a /usr/bin/ruby script text executable, ASCII text
+/usr/bin/rake:                        a /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ script text executable, ASCII text
+/usr/bin/ranlib:                      Mach-O 64-bit executable x86_64
+/usr/bin/rbx:                         POSIX shell script text executable, ASCII text
+/usr/bin/rdoc:                        a /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ script text executable, ASCII text
+/usr/bin/read:                        POSIX shell script text executable, ASCII text
+/usr/bin/readlink:                    Mach-O 64-bit executable x86_64
+/usr/bin/rebase:                      Mach-O 64-bit executable x86_64
+/usr/bin/redo_prebinding:             Mach-O 64-bit executable x86_64
+/usr/bin/refer:                       Mach-O 64-bit executable x86_64
+/usr/bin/renice:                      Mach-O 64-bit executable x86_64
+/usr/bin/reset:                       Mach-O 64-bit executable x86_64
+/usr/bin/resolveLinks:                Mach-O 64-bit executable x86_64
+/usr/bin/rev:                         Mach-O 64-bit executable x86_64
+/usr/bin/ri:                          a /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ script text executable, ASCII text
+/usr/bin/rmic:                        Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/rmic (for architecture i386):	Mach-O executable i386
+/usr/bin/rmic (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/rmid:                        Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/rmid (for architecture i386):	Mach-O executable i386
+/usr/bin/rmid (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/rmiregistry:                 Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/rmiregistry (for architecture i386):	Mach-O executable i386
+/usr/bin/rmiregistry (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/rnano:                       Mach-O 64-bit executable x86_64
+/usr/bin/rpcgen:                      Mach-O 64-bit executable x86_64
+/usr/bin/rs:                          Mach-O 64-bit executable x86_64
+/usr/bin/rsync:                       Mach-O 64-bit executable x86_64
+/usr/bin/ruby:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/ruby (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/ruby (for architecture i386):	Mach-O executable i386
+/usr/bin/runocc.d:                    a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/rvictl:                      Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/rvictl (for architecture i386):	Mach-O executable i386
+/usr/bin/rvictl (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/rview:                       Mach-O 64-bit executable x86_64
+/usr/bin/rvim:                        Mach-O 64-bit executable x86_64
+/usr/bin/rwbypid.d:                   a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/rwbytype.d:                  a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/rwsnoop:                     POSIX shell script text executable, ASCII text
+/usr/bin/s2p:                         a /usr/bin/perl script text executable, ASCII text
+/usr/bin/s2p5.16:                     a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/s2p5.18:                     a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/safaridriver:                Mach-O 64-bit executable x86_64
+/usr/bin/sample:                      Mach-O 64-bit executable x86_64
+/usr/bin/sampleproc:                  Bourne-Again shell script text executable, ASCII text
+/usr/bin/sandbox-exec:                Mach-O 64-bit executable x86_64
+/usr/bin/say:                         Mach-O 64-bit executable x86_64
+/usr/bin/sc_usage:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/sc_usage (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/sc_usage (for architecture i386):	Mach-O executable i386
+/usr/bin/scandeps.pl:                 a /usr/bin/perl script text executable, ASCII text
+/usr/bin/scandeps5.16.pl:             a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/scandeps5.18.pl:             a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/schemagen:                   Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/schemagen (for architecture i386):	Mach-O executable i386
+/usr/bin/schemagen (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/scp:                         Mach-O 64-bit executable x86_64
+/usr/bin/screen:                      Mach-O 64-bit executable x86_64
+/usr/bin/script:                      Mach-O 64-bit executable x86_64
+/usr/bin/sdef:                        Mach-O 64-bit executable x86_64
+/usr/bin/sdiff:                       Mach-O 64-bit executable x86_64
+/usr/bin/sdp:                         Mach-O 64-bit executable x86_64
+/usr/bin/sdx:                         POSIX shell script executable (binary data)
+/usr/bin/security:                    Mach-O 64-bit executable x86_64
+/usr/bin/sed:                         Mach-O 64-bit executable x86_64
+/usr/bin/seeksize.d:                  a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/segedit:                     Mach-O 64-bit executable x86_64
+/usr/bin/seq:                         Mach-O 64-bit executable x86_64
+/usr/bin/serialver:                   Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/serialver (for architecture i386):	Mach-O executable i386
+/usr/bin/serialver (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/servertool:                  Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/servertool (for architecture i386):	Mach-O executable i386
+/usr/bin/servertool (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/setregion:                   Mach-O 64-bit executable x86_64
+/usr/bin/setregproptool:              cannot open: Permission denied
+/usr/bin/setuids.d:                   a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/sfltool:                     Mach-O 64-bit executable x86_64
+/usr/bin/sftp:                        Mach-O 64-bit executable x86_64
+/usr/bin/shar:                        POSIX shell script text executable, ASCII text
+/usr/bin/shasum:                      a /usr/bin/perl script text executable, ASCII text
+/usr/bin/shasum5.16:                  a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/shasum5.18:                  a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/shlock:                      Mach-O 64-bit executable x86_64
+/usr/bin/showmount:                   Mach-O 64-bit executable x86_64
+/usr/bin/sigdist.d:                   a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/sips:                        Mach-O 64-bit executable x86_64
+/usr/bin/size:                        Mach-O 64-bit executable x86_64
+/usr/bin/slogin:                      Mach-O 64-bit executable x86_64
+/usr/bin/smbutil:                     Mach-O 64-bit executable x86_64
+/usr/bin/smc:                         cannot open: Permission denied
+/usr/bin/smtpd.py:                    a /usr/bin/python -R script text executable, ASCII text
+/usr/bin/smtpd2.6.py:                 a /System/Library/Frameworks/Python.framework/Versions/2.6/Resour script text executable, ASCII text
+/usr/bin/smtpd2.7.py:                 a /System/Library/Frameworks/Python.framework/Versions/2.7/Resour script text executable, ASCII text
+/usr/bin/snfsdefrag:                  Mach-O 64-bit executable x86_64
+/usr/bin/snmp-bridge-mib:             a /usr/bin/perl script text executable, ASCII text
+/usr/bin/snmpbulkget:                 Mach-O 64-bit executable x86_64
+/usr/bin/snmpbulkwalk:                Mach-O 64-bit executable x86_64
+/usr/bin/snmpconf:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/snmpdelta:                   Mach-O 64-bit executable x86_64
+/usr/bin/snmpdf:                      Mach-O 64-bit executable x86_64
+/usr/bin/snmpget:                     Mach-O 64-bit executable x86_64
+/usr/bin/snmpgetnext:                 Mach-O 64-bit executable x86_64
+/usr/bin/snmpinform:                  Mach-O 64-bit executable x86_64
+/usr/bin/snmpnetstat:                 Mach-O 64-bit executable x86_64
+/usr/bin/snmpset:                     Mach-O 64-bit executable x86_64
+/usr/bin/snmpstatus:                  Mach-O 64-bit executable x86_64
+/usr/bin/snmptable:                   Mach-O 64-bit executable x86_64
+/usr/bin/snmptest:                    Mach-O 64-bit executable x86_64
+/usr/bin/snmptranslate:               Mach-O 64-bit executable x86_64
+/usr/bin/snmptrap:                    Mach-O 64-bit executable x86_64
+/usr/bin/snmpusm:                     Mach-O 64-bit executable x86_64
+/usr/bin/snmpvacm:                    Mach-O 64-bit executable x86_64
+/usr/bin/snmpwalk:                    Mach-O 64-bit executable x86_64
+/usr/bin/sntp:                        Mach-O 64-bit executable x86_64
+/usr/bin/soelim:                      Mach-O 64-bit executable x86_64
+/usr/bin/sort:                        Mach-O 64-bit executable x86_64
+/usr/bin/spfd:                        a /usr/bin/perl script text executable, ASCII text
+/usr/bin/spfd5.16:                    a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/spfd5.18:                    a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/spfquery:                    a /usr/bin/perl script text executable, ASCII text
+/usr/bin/spfquery5.16:                a /usr/bin/perl5.16  script text executable, ASCII text
+/usr/bin/spfquery5.18:                a /usr/bin/perl5.18  script text executable, ASCII text
+/usr/bin/splain:                      a /usr/bin/perl script text executable, ASCII text
+/usr/bin/splain5.16:                  a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/splain5.18:                  a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/split:                       Mach-O 64-bit executable x86_64
+/usr/bin/sqlite3:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [x86_64h: Mach-O 64-bit executable x86_64h]
+/usr/bin/sqlite3 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/sqlite3 (for architecture x86_64h):	Mach-O 64-bit executable x86_64h
+/usr/bin/ssh:                         Mach-O 64-bit executable x86_64
+/usr/bin/ssh-add:                     Mach-O 64-bit executable x86_64
+/usr/bin/ssh-agent:                   Mach-O 64-bit executable x86_64
+/usr/bin/ssh-copy-id:                 POSIX shell script text executable, ASCII text
+/usr/bin/ssh-keygen:                  Mach-O 64-bit executable x86_64
+/usr/bin/ssh-keyscan:                 Mach-O 64-bit executable x86_64
+/usr/bin/stat:                        Mach-O 64-bit executable x86_64
+/usr/bin/stringdups:                  Mach-O 64-bit executable x86_64
+/usr/bin/stringdups32:                Mach-O executable i386
+/usr/bin/strings:                     Mach-O 64-bit executable x86_64
+/usr/bin/strip:                       Mach-O 64-bit executable x86_64
+/usr/bin/stty.pl:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/stty5.16.pl:                 a /usr/bin/perl5.16  script text executable, ASCII text
+/usr/bin/stty5.18.pl:                 a /usr/bin/perl5.18  script text executable, ASCII text
+/usr/bin/su:                          setuid Mach-O 64-bit executable x86_64
+/usr/bin/sudo:                        setuid cannot open: Permission denied
+/usr/bin/sum:                         Mach-O 64-bit executable x86_64
+/usr/bin/svn:                         Mach-O 64-bit executable x86_64
+/usr/bin/svnadmin:                    Mach-O 64-bit executable x86_64
+/usr/bin/svndumpfilter:               Mach-O 64-bit executable x86_64
+/usr/bin/svnlook:                     Mach-O 64-bit executable x86_64
+/usr/bin/svnserve:                    Mach-O 64-bit executable x86_64
+/usr/bin/svnsync:                     Mach-O 64-bit executable x86_64
+/usr/bin/svnversion:                  Mach-O 64-bit executable x86_64
+/usr/bin/sw_vers:                     Mach-O 64-bit executable x86_64
+/usr/bin/swift:                       Mach-O 64-bit executable x86_64
+/usr/bin/swiftc:                      Mach-O 64-bit executable x86_64
+/usr/bin/symbols:                     Mach-O 64-bit executable x86_64
+/usr/bin/symbolscache:                Mach-O 64-bit executable x86_64
+/usr/bin/syscallbypid.d:              a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/syscallbyproc.d:             a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/syscallbysysc.d:             a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/sysdiagnose:                 Mach-O 64-bit executable x86_64
+/usr/bin/syslog:                      Mach-O 64-bit executable x86_64
+/usr/bin/systriage:                   a /usr/bin/python -O script text executable, UTF-8 Unicode text
+/usr/bin/tab2space:                   Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/tab2space (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/tab2space (for architecture i386):	Mach-O executable i386
+/usr/bin/tabs:                        Mach-O 64-bit executable x86_64
+/usr/bin/tail:                        Mach-O 64-bit executable x86_64
+/usr/bin/tailspin:                    Mach-O 64-bit executable x86_64
+/usr/bin/talk:                        Mach-O 64-bit executable x86_64
+/usr/bin/tar:                         Mach-O 64-bit executable x86_64
+/usr/bin/taskinfo:                    Mach-O 64-bit executable x86_64
+/usr/bin/tbl:                         Mach-O 64-bit executable x86_64
+/usr/bin/tbtdiagnose:                 Mach-O 64-bit executable x86_64
+/usr/bin/tccutil:                     Mach-O 64-bit executable x86_64
+/usr/bin/tclsh:                       Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/tclsh (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/tclsh (for architecture i386):	Mach-O executable i386
+/usr/bin/tclsh8.4:                    Mach-O executable i386
+/usr/bin/tclsh8.5:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/tclsh8.5 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/tclsh8.5 (for architecture i386):	Mach-O executable i386
+/usr/bin/tee:                         Mach-O 64-bit executable x86_64
+/usr/bin/telnet:                      Mach-O 64-bit executable x86_64
+/usr/bin/testrb:                      a /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ script text executable, ASCII text
+/usr/bin/tethered-caching:            POSIX shell script text executable, ASCII text
+/usr/bin/texi2dvi:                    POSIX shell script text executable, ASCII text
+/usr/bin/texi2pdf:                    POSIX shell script text executable, ASCII text
+/usr/bin/texindex:                    Mach-O 64-bit executable x86_64
+/usr/bin/textutil:                    Mach-O 64-bit executable x86_64
+/usr/bin/tfmtodit:                    Mach-O 64-bit executable x86_64
+/usr/bin/tftp:                        Mach-O 64-bit executable x86_64
+/usr/bin/thermal:                     Mach-O 64-bit executable x86_64
+/usr/bin/tic:                         Mach-O 64-bit executable x86_64
+/usr/bin/tidy:                        Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/tidy (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/tidy (for architecture i386):	Mach-O executable i386
+/usr/bin/tiff2icns:                   Mach-O 64-bit executable x86_64
+/usr/bin/tiffutil:                    Mach-O 64-bit executable x86_64
+/usr/bin/tig:                         Mach-O 64-bit executable x86_64
+/usr/bin/time:                        Mach-O 64-bit executable x86_64
+/usr/bin/timer_analyser.d:            POSIX shell script text executable, ASCII text
+/usr/bin/timerfires:                  POSIX shell script text executable, ASCII text
+/usr/bin/tkcon:                       POSIX shell script text executable, ASCII text
+/usr/bin/tkmib:                       a /usr/bin/perl script text executable, ASCII text
+/usr/bin/tkpp:                        a /usr/bin/perl script text executable, ASCII text
+/usr/bin/tkpp5.16:                    a /usr/bin/perl5.16 script text executable, UTF-8 Unicode text
+/usr/bin/tkpp5.18:                    a /usr/bin/perl5.18 script text executable, UTF-8 Unicode text
+/usr/bin/tmdiagnose:                  Mach-O 64-bit executable x86_64
+/usr/bin/tmutil:                      Mach-O 64-bit executable x86_64
+/usr/bin/tnameserv:                   Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/tnameserv (for architecture i386):	Mach-O executable i386
+/usr/bin/tnameserv (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/toe:                         Mach-O 64-bit executable x86_64
+/usr/bin/top:                         setuid Mach-O 64-bit executable x86_64
+/usr/bin/tops:                        Mach-O 64-bit executable x86_64
+/usr/bin/topsyscall:                  Bourne-Again shell script text executable, ASCII text
+/usr/bin/topsysproc:                  POSIX shell script text executable, ASCII text
+/usr/bin/touch:                       Mach-O 64-bit executable x86_64
+/usr/bin/tput:                        Mach-O 64-bit executable x86_64
+/usr/bin/tr:                          Mach-O 64-bit executable x86_64
+/usr/bin/trace:                       Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/trace (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/trace (for architecture i386):	Mach-O executable i386
+/usr/bin/traptoemail:                 a /usr/bin/perl script text executable, ASCII text
+/usr/bin/treereg:                     a /usr/bin/perl script text executable, ASCII text
+/usr/bin/treereg5.16:                 a /usr/bin/perl5.16 -w script text executable, ASCII text
+/usr/bin/treereg5.18:                 a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/trimforce:                   Mach-O 64-bit executable x86_64
+/usr/bin/troff:                       Mach-O 64-bit executable x86_64
+/usr/bin/true:                        Mach-O 64-bit executable x86_64
+/usr/bin/tset:                        Mach-O 64-bit executable x86_64
+/usr/bin/tsort:                       Mach-O 64-bit executable x86_64
+/usr/bin/tty:                         Mach-O 64-bit executable x86_64
+/usr/bin/type:                        POSIX shell script text executable, ASCII text
+/usr/bin/ul:                          Mach-O 64-bit executable x86_64
+/usr/bin/ulimit:                      POSIX shell script text executable, ASCII text
+/usr/bin/umask:                       POSIX shell script text executable, ASCII text
+/usr/bin/unalias:                     POSIX shell script text executable, ASCII text
+/usr/bin/uname:                       Mach-O 64-bit executable x86_64
+/usr/bin/uncompress:                  Mach-O 64-bit executable x86_64
+/usr/bin/unexpand:                    Mach-O 64-bit executable x86_64
+/usr/bin/unifdef:                     Mach-O 64-bit executable x86_64
+/usr/bin/unifdefall:                  Mach-O 64-bit executable x86_64
+/usr/bin/uniq:                        Mach-O 64-bit executable x86_64
+/usr/bin/units:                       Mach-O 64-bit executable x86_64
+/usr/bin/unpack200:                   Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/unpack200 (for architecture i386):	Mach-O executable i386
+/usr/bin/unpack200 (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/unvis:                       Mach-O 64-bit executable x86_64
+/usr/bin/unzip:                       Mach-O 64-bit executable x86_64
+/usr/bin/unzipsfx:                    Mach-O 64-bit executable x86_64
+/usr/bin/update_dyld_shared_cache:    Mach-O 64-bit executable x86_64
+/usr/bin/uptime:                      Mach-O 64-bit executable x86_64
+/usr/bin/usbkdp:                      Mach-O 64-bit executable x86_64
+/usr/bin/users:                       Mach-O 64-bit executable x86_64
+/usr/bin/uucp:                        Mach-O 64-bit executable x86_64
+/usr/bin/uudecode:                    Mach-O 64-bit executable x86_64
+/usr/bin/uuencode:                    Mach-O 64-bit executable x86_64
+/usr/bin/uuidgen:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [x86_64h: Mach-O 64-bit executable x86_64h]
+/usr/bin/uuidgen (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/uuidgen (for architecture x86_64h):	Mach-O 64-bit executable x86_64h
+/usr/bin/uulog:                       Mach-O 64-bit executable x86_64
+/usr/bin/uuname:                      Mach-O 64-bit executable x86_64
+/usr/bin/uupick:                      Mach-O 64-bit executable x86_64
+/usr/bin/uustat:                      Mach-O 64-bit executable x86_64
+/usr/bin/uuto:                        POSIX shell script text executable, ASCII text
+/usr/bin/uux:                         Mach-O 64-bit executable x86_64
+/usr/bin/vi:                          Mach-O 64-bit executable x86_64
+/usr/bin/view:                        Mach-O 64-bit executable x86_64
+/usr/bin/vim:                         Mach-O 64-bit executable x86_64
+/usr/bin/vimdiff:                     Mach-O 64-bit executable x86_64
+/usr/bin/vimtutor:                    POSIX shell script text executable, ASCII text
+/usr/bin/vis:                         Mach-O 64-bit executable x86_64
+/usr/bin/vm_stat:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/vm_stat (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/vm_stat (for architecture i386):	Mach-O executable i386
+/usr/bin/vmmap:                       Mach-O 64-bit executable x86_64
+/usr/bin/vmmap32:                     Mach-O executable i386
+/usr/bin/w:                           Mach-O 64-bit executable x86_64
+/usr/bin/wait:                        POSIX shell script text executable, ASCII text
+/usr/bin/wall:                        setgid Mach-O 64-bit executable x86_64
+/usr/bin/wc:                          Mach-O 64-bit executable x86_64
+/usr/bin/wdutil:                      Mach-O 64-bit executable x86_64
+/usr/bin/weblatency.d:                a /usr/sbin/dtrace -s script text executable, ASCII text
+/usr/bin/what:                        Mach-O 64-bit executable x86_64
+/usr/bin/whatis:                      POSIX shell script text executable, ASCII text
+/usr/bin/whereis:                     Mach-O 64-bit executable x86_64
+/usr/bin/which:                       Mach-O 64-bit executable x86_64
+/usr/bin/who:                         Mach-O 64-bit executable x86_64
+/usr/bin/whoami:                      Mach-O 64-bit executable x86_64
+/usr/bin/whois:                       Mach-O 64-bit executable x86_64
+/usr/bin/wish:                        POSIX shell script text executable, ASCII text
+/usr/bin/wish8.4:                     POSIX shell script text executable, ASCII text
+/usr/bin/wish8.5:                     POSIX shell script text executable, ASCII text
+/usr/bin/write:                       setgid Mach-O 64-bit executable x86_64
+/usr/bin/wsgen:                       Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/wsgen (for architecture i386):	Mach-O executable i386
+/usr/bin/wsgen (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/wsimport:                    Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/wsimport (for architecture i386):	Mach-O executable i386
+/usr/bin/wsimport (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/xar:                         Mach-O 64-bit executable x86_64
+/usr/bin/xargs:                       Mach-O 64-bit executable x86_64
+/usr/bin/xattr:                       a /usr/bin/python script text executable, ASCII text
+/usr/bin/xattr-2.6:                   a /System/Library/Frameworks/Python.framework/Versions/2.6/Resour script text executable, ASCII text
+/usr/bin/xattr-2.7:                   a /System/Library/Frameworks/Python.framework/Versions/2.7/Resour script text executable, ASCII text
+/usr/bin/xcode-select:                Mach-O 64-bit executable x86_64
+/usr/bin/xcodebuild:                  Mach-O 64-bit executable x86_64
+/usr/bin/xcrun:                       Mach-O 64-bit executable x86_64
+/usr/bin/xcscontrol:                  Mach-O 64-bit executable x86_64
+/usr/bin/xcsdiagnose:                 Mach-O 64-bit executable x86_64
+/usr/bin/xed:                         Mach-O 64-bit executable x86_64
+/usr/bin/xgettext.pl:                 a /usr/bin/perl script text executable, ASCII text
+/usr/bin/xgettext5.16.pl:             a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/xgettext5.18.pl:             a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/xip:                         Mach-O 64-bit executable x86_64
+/usr/bin/xjc:                         Mach-O universal binary with 2 architectures: [i386: Mach-O executable i386] [x86_64: Mach-O 64-bit executable x86_64]
+/usr/bin/xjc (for architecture i386):	Mach-O executable i386
+/usr/bin/xjc (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/xml2-config:                 POSIX shell script text executable, ASCII text
+/usr/bin/xml2man:                     Mach-O 64-bit executable x86_64
+/usr/bin/xmlcatalog:                  Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/xmlcatalog (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/xmlcatalog (for architecture i386):	Mach-O executable i386
+/usr/bin/xmllint:                     Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/xmllint (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/xmllint (for architecture i386):	Mach-O executable i386
+/usr/bin/xpath:                       a /usr/bin/perl script text executable, ASCII text
+/usr/bin/xpath5.16:                   a /usr/bin/perl5.16 -w script text executable, ASCII text
+/usr/bin/xpath5.18:                   a /usr/bin/perl5.18 -w script text executable, ASCII text
+/usr/bin/xslt-config:                 POSIX shell script text executable, ASCII text
+/usr/bin/xsltproc:                    Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/xsltproc (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/xsltproc (for architecture i386):	Mach-O executable i386
+/usr/bin/xsubpp:                      a /usr/bin/perl script text executable, ASCII text
+/usr/bin/xsubpp5.16:                  a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/xsubpp5.18:                  a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/xxd:                         Mach-O 64-bit executable x86_64
+/usr/bin/yacc:                        Mach-O 64-bit executable x86_64
+/usr/bin/yes:                         Mach-O 64-bit executable x86_64
+/usr/bin/ypcat:                       Mach-O 64-bit executable x86_64
+/usr/bin/ypmatch:                     Mach-O 64-bit executable x86_64
+/usr/bin/ypwhich:                     Mach-O 64-bit executable x86_64
+/usr/bin/zcat:                        Mach-O 64-bit executable x86_64
+/usr/bin/zcmp:                        POSIX shell script text executable, ASCII text
+/usr/bin/zdiff:                       POSIX shell script text executable, ASCII text
+/usr/bin/zegrep:                      Mach-O 64-bit executable x86_64
+/usr/bin/zfgrep:                      Mach-O 64-bit executable x86_64
+/usr/bin/zforce:                      POSIX shell script text executable, ASCII text
+/usr/bin/zgrep:                       Mach-O 64-bit executable x86_64
+/usr/bin/zip:                         Mach-O 64-bit executable x86_64
+/usr/bin/zipcloak:                    Mach-O 64-bit executable x86_64
+/usr/bin/zipdetails:                  a /usr/bin/perl script text executable, ASCII text
+/usr/bin/zipdetails5.16:              a /usr/bin/perl5.16 script text executable, ASCII text
+/usr/bin/zipdetails5.18:              a /usr/bin/perl5.18 script text executable, ASCII text
+/usr/bin/zipgrep:                     POSIX shell script text executable, ASCII text
+/usr/bin/zipinfo:                     Mach-O 64-bit executable x86_64
+/usr/bin/zipnote:                     Mach-O 64-bit executable x86_64
+/usr/bin/zipsplit:                    Mach-O 64-bit executable x86_64
+/usr/bin/zless:                       POSIX shell script text executable, ASCII text
+/usr/bin/zmore:                       POSIX shell script text executable, ASCII text
+/usr/bin/znew:                        POSIX shell script text executable, ASCII text
+/usr/bin/zprint:                      Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/zprint (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/zprint (for architecture i386):	Mach-O executable i386

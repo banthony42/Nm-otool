@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:44:27 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/15 14:24:45 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/16 18:42:34 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void			prepare_files(t_list *elm)
 		else if ((d->file = mmap(NULL, (size_t)d->stat.st_size,
 									PROT_READ, MAP_PRIVATE, d->fd, 0)) == MAP_FAILED)
 			error_str(d->av, MMAP_ERROR);
+		if (d->file == MAP_FAILED)
+			d->file = NULL;
 	}
 }
 
