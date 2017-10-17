@@ -69,6 +69,7 @@ void			default_file(t_list **lst);
 /*
 **	Nm
 */
+uint32_t	swap_uint32(uint32_t val);
 void			ft_nm(t_list *elem);
 
 #endif

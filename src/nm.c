@@ -94,43 +94,27 @@ static void		archive_handler(t_data *d)
 	}
 }
 
-/*
-**	Exemple sur 0xbebafeca
-**
-**	(val << 8) & 0xFF00FF00
-**	  0xbafeca00
-**	& 0xFF00FF00
-**	------------
-**	  0xba00ca00
-**
-**	(val >> 8) & 0x00FF00FF
-**	  0x00bebafe
-**	& 0x00FF00FF
-**	------------
-**	  0x00be00fe
-**
-**	(val << 16) | (val >> 16)
-**
-**
-**
-**
-*/
-static uint32_t	swap_uint32(uint32_t val)
-{
-	val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
-	return (val << 16) | (val >> 16);
-}
-
 static void	fat_arch_32_handler(void *file, char *name)
 {
+	unsigned int i, x;
 	struct fat_header	*fh;
+ 	struct fat_arch *frh;
 
+	i = 0;
 	if (!(fh = (struct fat_header *)file))
 		return ;
 	if (name)
 		ft_putendl(name);
-	printf("%x - %x\n", fh->nfat_arch, fh->magic);
-	printf("%x - %x\n", swap_uint32(fh->nfat_arch), swap_uint32(fh->magic));
+	x = swap_uint32(fh->nfat_arch);
+	printf("nfat_arch:%x - magic:%x\n", x, swap_uint32(fh->magic));
+	frh = (void*)((char*)file + sizeof(struct fat_header));
+	while (i < x)
+	{
+		ft_putendl("\nArchitecture:");
+		printf("cputype:%d\ncpusub:%d\noffset:%d\nsize:%d\n", swap_uint32((uint32_t)frh->cputype), swap_uint32((uint32_t)frh->cpusubtype), swap_uint32(frh->offset), swap_uint32(frh->size));
+		frh = frh + 1;
+		i++;
+	}
 	ft_putendlcol(RED, "Fat_Arch_32");
 }
 
@@ -155,13 +139,3 @@ void		ft_nm(t_list *elem)
 		ft_putendl("NONE");
 	/*ARMAG/SARMAG - Correspond au magic_str et size_magic_str - voir ar.h - */
 }
-
-
-
-
-
-
-
-
-
-

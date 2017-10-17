@@ -12,6 +12,34 @@
 
 #include "ft_nm.h"
 
+/*
+**	Exemple sur 0xbebafeca
+**
+**	(val << 8) & 0xFF00FF00
+**	  0xbafeca00
+**	& 0xFF00FF00
+**	------------
+**	  0xba00ca00
+**
+**	(val >> 8) & 0x00FF00FF
+**	  0x00bebafe
+**	& 0x00FF00FF
+**	------------
+**	  0x00be00fe
+**
+**	=> 0xbabecafe
+**	(val << 16) | (val >> 16)
+**		0xcafe0000
+**	| 0x0000babe
+**		-----------
+**		0xcafebabe
+*/
+uint32_t	swap_uint32(uint32_t val)
+{
+	val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
+	return (val << 16) | (val >> 16);
+}
+
 void			data_del(void *content, size_t size)
 {
 	t_data	*d;
