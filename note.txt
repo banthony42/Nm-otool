@@ -6,7 +6,7 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/10/16 18:19:29 by banthony         ###   ########.fr         
+     Updated: 2017/10/18 16:10:59 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
@@ -18,6 +18,28 @@ Sur un fichier sans droit, l'erreur pop sur open
 
 Changer le type de data->file en unsigned char*
 Pour eviter les nombreux cast lors d'operations sur pointeur
+
+
+Pour recuperer le cpusubtype, il faut utiliser un masque:
+(frh->cpusubtype & ~CPU_SUBTYPE_MASK)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

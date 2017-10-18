@@ -6,7 +6,7 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/10/14 18:47:22 by banthony         ###   ########.fr        #
+#    Updated: 2017/10/18 16:53:54 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,7 +18,7 @@ PATH_HEAD = ./include/
 
 HEADER_FILE = ft_nm.h	\
 
-SRC_FILE = 	main.c	parsing.c	nm.c	misc.c	\
+SRC_FILE = 	main.c	parsing.c	nm.c	misc.c	ar.c	fat.c\
 
 SRC = $(SRC_FILE:%c=$(PATH_SRC)%c)
 

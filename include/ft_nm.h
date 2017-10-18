@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/16 20:05:25 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/18 18:11:59 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,30 @@ void			default_file(t_list **lst);
 /*
 **	Nm
 */
-uint32_t	swap_uint32(uint32_t val);
+uint32_t		swap_uint32(uint32_t val);
+uint64_t		swap_uint64(uint64_t val);
+void			archive_handler(t_data *d);
+void			fat_arch_32_handler(uint32_t magic, unsigned char *file);
+void			fat_arch_64_handler(uint32_t magic, unsigned char *file);
+void			arch_32_handler(uint32_t magic, void *file);
+void			arch_64_handler(uint32_t magic, void *file);
 void			ft_nm(t_list *elem);
 
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
