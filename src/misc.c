@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/18 19:49:15 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/18 21:06:49 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void		print_elem(t_list *elem)
 	ft_putstr("\tfd ");
 	ft_putnbr(h->fd);
 	ft_putstr("\topt ");
-	ft_print_memory(h->opt, 8);
+	ft_print_memory(h->opt, NB_OPTIONS);
 }
 
 int			error_str(char *str, char *error)

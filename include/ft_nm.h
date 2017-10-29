@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/18 18:11:59 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/29 19:34:49 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,20 @@
 /*
 **	Messages
 */
-# define NM_USG "ft_nm [-gnopruUx--] [file...]\n"
+# define NM_USG "ft_nm [-gnopruUxj--] [file...]\n"
 # define FILE_NOT_FOUND "No such file or directory."
+# define ERR_FILE "The file was not recognized as a valid object file"
 # define FSTAT_ERROR "fstat error."
 # define MMAP_ERROR "mmap has failed."
 # define CANT_READ "Permission denied."
 # define UNKNOWN_OPTION "Unknown command line argument"
-# define AVAILABLE_OPTIONS "gnopruUx-"
+# define AVAILABLE_OPTIONS "gnopruUxj-"
+# define NB_OPTIONS ft_strlen(AVAILABLE_OPTIONS) - 1
 # define OFFSET(OFFSET, BEGIN) ((char*)OFFSET - (char*)BEGIN)
 
 typedef enum	e_options
 {
-	G, N, O, P, R, U1, U2, X, OPTION, PATH,
+	OPTION, PATH,
 }				t_options;
 
 typedef struct	s_data
@@ -53,11 +55,13 @@ typedef struct	s_data
 	int			align;
 	struct stat	stat;
 	size_t		token;
-	char		opt[8];
+	char		opt[16];
 }				t_data;
 
+
+
 /*
-**	Parsing
+**	Parsing Nm
 */
 int				error_str(char *str, char *error);
 void			print_elem(t_list *elem);
@@ -71,11 +75,16 @@ void			default_file(t_list **lst);
 */
 uint32_t		swap_uint32(uint32_t val);
 uint64_t		swap_uint64(uint64_t val);
+int				file_access(void *file, size_t read, off_t file_size);
 void			archive_handler(t_data *d);
-void			fat_arch_32_handler(uint32_t magic, unsigned char *file);
-void			fat_arch_64_handler(uint32_t magic, unsigned char *file);
-void			arch_32_handler(uint32_t magic, void *file);
-void			arch_64_handler(uint32_t magic, void *file);
+int				fat_arch_32_cigam(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
+int				fat_arch_32_magic(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
+int				fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
+int				fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
+int				fat_arch_32_handler(uint32_t magic, unsigned char *file, off_t size);
+int				fat_arch_64_handler(uint32_t magic, char *path, unsigned char *file, off_t size);
+int				arch_32_handler(uint32_t magic, void *file, off_t size);
+int				arch_64_handler(uint32_t magic, void *file, off_t size);
 void			ft_nm(t_list *elem);
 
 #endif

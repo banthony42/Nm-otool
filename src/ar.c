@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/18 16:52:06 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/28 18:30:13 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ void		archive_handler(t_data *d)
 {
 	uint32_t	magic;
 	off_t			i;
+	int				error;
 	struct ar_hdr	*h;
 	unsigned char	*ptr;
 
 	i = SARMAG;
+	error = -1;
 	ptr = (unsigned char *)d->file;
 	ptr = ptr + i; /*On passe le ARMAG*/
 	while (OFFSET(ptr, d->file) < d->stat.st_size)	/*Tant que l'offset entre debut et ptr < size*/
@@ -58,10 +60,22 @@ void		archive_handler(t_data *d)
 			i = extract_ar_name(d, h);
 		magic = *(uint32_t *)(void*)&h->ar_fmag[i];
 		if (magic == MH_MAGIC_64 || magic == MH_CIGAM_64)	/*Magic juste apres la mdata*/
-			arch_64_handler(magic, (void*)&h->ar_fmag[i]);	/*Gestion Mach-O x64*/
+			error = arch_64_handler(magic, (void*)&h->ar_fmag[i], d->stat.st_size);	/*Gestion Mach-O x64*/
 		else if (magic == MH_MAGIC || magic == MH_CIGAM)
-			arch_32_handler(magic, (void*)&h->ar_fmag[i]);	/*Gestion Mach-O x32*/
+			error = arch_32_handler(magic, (void*)&h->ar_fmag[i], d->stat.st_size);	/*Gestion Mach-O x32*/
+		if (error <= 0)
+			error_str(d->av, ERR_FILE);
 		i = (off_t)((sizeof(struct ar_hdr)) + (size_t)ft_atoi(h->ar_size));	/*calcul de l'offset*/
 		ptr = ptr + i;	/*Decalage du ptr avec l'offset*/
 	}
 }
+
+
+
+
+
+
+
+
+
+

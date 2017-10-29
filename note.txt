@@ -6,7 +6,7 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/10/18 16:10:59 by banthony         ###   ########.fr         
+     Updated: 2017/10/18 21:19:04 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
@@ -24,32 +24,28 @@ Pour recuperer le cpusubtype, il faut utiliser un masque:
 (frh->cpusubtype & ~CPU_SUBTYPE_MASK)
 
 
+Variable a recuperer (nm):
+		 symbol table
+		 		symbol name
+				value of the symbol name
+				symbol type of the value
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$> nm ./test/a.out
+0000000100000000 T __mh_execute_header
+0000000100000f50 T _main
+                 U _write
+                 U dyld_stub_binder
+---------------.---.--------------------
+		|		 |			|
+		|		 |			|
+	Value		Type	  Symbol Name
 
 
 -------------------------------------------------------------------------------
 Structure Universal Binaries (Fat files):
 -----------------------------------
 |	- Fat Header				  |
-|								  |
+|	- Fat Arch					  |
 -----------------------------------
 -----------------------------------
 |	- Mach-O Header				  |
