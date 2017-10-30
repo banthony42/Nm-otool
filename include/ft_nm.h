@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/29 19:34:49 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/30 17:07:15 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ void			default_file(t_list **lst);
 */
 uint32_t		swap_uint32(uint32_t val);
 uint64_t		swap_uint64(uint64_t val);
-int				file_access(void *file, size_t read, off_t file_size);
-void			archive_handler(t_data *d);
+int				file_access(void *file, off_t read, off_t file_size);
+int				archive_handler(t_data *d);
 int				fat_arch_32_cigam(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
 int				fat_arch_32_magic(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
-int				fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
-int				fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
+int				fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
+int				fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
 int				fat_arch_32_handler(uint32_t magic, unsigned char *file, off_t size);
-int				fat_arch_64_handler(uint32_t magic, char *path, unsigned char *file, off_t size);
+int				fat_arch_64_handler(uint32_t magic, unsigned char *file, off_t size);
 int				arch_32_handler(uint32_t magic, void *file, off_t size);
 int				arch_64_handler(uint32_t magic, void *file, off_t size);
 void			ft_nm(t_list *elem);

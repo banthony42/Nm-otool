@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/13 18:56:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/29 19:34:34 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/30 18:09:13 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,15 @@ void	ft_nm(t_list *elem)
 	else if (magic == MH_MAGIC || magic == MH_CIGAM)	/*Mach-O 32bit*/
 		error = arch_32_handler(magic, d->file, d->stat.st_size);
 	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))	/*Archive*/
-		archive_handler(d);
-	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)	/*Universal Binary*/
+		error  = archive_handler(d);
+	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)	/*FAT BINARY 32*/
 		error = fat_arch_32_handler(magic, (unsigned char*)d->file, d->stat.st_size);
 /*	else if (magic == FAT_MAGIC_64 || magic == FAT_CIGAM_64)
-		error = fat_arch_64_handler(magic, d->av, (unsigned char*)d->file, d->stat.st_size);*/
+	error = fat_arch_64_handler(magic, (unsigned char*)d->file, d->stat.st_size);
+
+	Decrit comme un format en WorkInProgress dans fat.h
+	Aucun universal binary utilisant fat_arch_64 trouve pour l'instant
+*/
 	if (error <= 0)
 		error_str(d->av, ERR_FILE);
 	/*error < 0: Erreur sur magic_number ; error == 0: Erreur lors de la lecture fichier*/

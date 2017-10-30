@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fat.c                                              :+:      :+:    :+:   */
+/*   fat_32.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/18 16:51:23 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/29 19:34:29 by banthony         ###   ########.fr       */
+/*   Created: 2017/10/29 21:48:31 by banthony          #+#    #+#             */
+/*   Updated: 2017/10/30 17:07:03 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int	file_access(void *file, size_t read, off_t file_size)
+int	file_access(void *file, off_t read, off_t file_size)
 {
 	unsigned char *ptr;
 
@@ -98,37 +98,3 @@ int	fat_arch_32_magic(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *f
 	}
 	return (1);
 }
-
-/*
-int	fat_arch_64_handler(uint32_t magic, char *path, unsigned char *file, off_t size)
-{
-	int				error;
-	uint32_t		*mgc;
-	uint32_t		i;
-	uint32_t		nfat_arch;
-	struct fat_arch	*frh;
-
-	i = 0;
-	error = -1;
-	if (!file)
-		return (0);
-	nfat_arch = *(uint32_t*)(void*)(file + sizeof(uint32_t));
-	frh = (void*)(file + sizeof(struct fat_header));
-	if (magic == FAT_CIGAM_64)
-		nfat_arch = swap_uint32(nfat_arch);
-	while (i < nfat_arch)
-	{
-		mgc = (uint32_t*)(void*)(file + frh[i].offset);
-		if (magic == FAT_CIGAM_64)
-			mgc = (uint32_t*)(void*)(file + swap_uint64(frh[i].offset));
-		if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)
-			error = arch_64_handler(*mgc, (void*)mgc, size);
-		else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)
-			error = arch_32_handler(*mgc, (void*)mgc, size);
-		if (error <= 0)
-			error_str(path, ERR_FILE);
-		i++;
-	}
-	return (1);
-}
-*/
