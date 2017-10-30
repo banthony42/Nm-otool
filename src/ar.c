@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/30 19:15:26 by banthony         ###   ########.fr       */
+/*   Updated: 2017/10/30 23:20:48 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ static int	magic_handler(off_t *i, t_data *d, struct ar_hdr *h)
 		error = arch_64_handler(magic, (void*)&h->ar_fmag[*i],(off_t)ft_atoi(h->ar_size));	/*Gestion Mach-O x64*/
 	else if (magic == MH_MAGIC || magic == MH_CIGAM)
 		error = arch_32_handler(magic, (void*)&h->ar_fmag[*i], (off_t)ft_atoi(h->ar_size));	/*Gestion Mach-O x32*/
+	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)	/*FAT BINARY 32*/
+		error = fat_arch_32_handler(magic, (void*)&h->ar_fmag[*i], (off_t)ft_atoi(h->ar_size));
+	else if (!(ft_strncmp(ARMAG, (char*)&h->ar_fmag[*i], SARMAG)))	/*Archive*/
+		return (IGNORE_FILE);
+	else
+		ft_putendlcol(YELLOW, "AR: UNKNOW MAGIC NUMBER");
 	return (error);
 }
 
