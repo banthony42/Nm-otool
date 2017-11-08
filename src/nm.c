@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/13 18:56:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/30 23:20:11 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/08 20:12:50 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,3 @@ void	ft_nm(t_list *elem)
 	/*error < 0: Erreur sur magic_number ; error == 0: Erreur lors de la lecture fichier*/
 	/*ARMAG/SARMAG - Correspond au magic_str et size_magic_str - voir ar.h - */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

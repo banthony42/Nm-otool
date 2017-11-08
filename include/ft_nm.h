@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/30 23:19:59 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/08 20:28:40 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define NM_USG "ft_nm [-gnopruUxj--] [file...]\n"
 # define FILE_NOT_FOUND "No such file or directory."
 # define ERR_FILE "The file was not recognized as a valid object file"
+# define ERR_MAGIC "The magic number was not recognized"
 # define FSTAT_ERROR "fstat error."
 # define MMAP_ERROR "mmap has failed."
 # define CANT_READ "Permission denied."
@@ -50,15 +51,23 @@ typedef enum	e_options
 	OPTION, PATH,
 }				t_options;
 
+typedef	struct	s_smb
+{
+	char		*value;
+	char		*type;
+	char		*name;
+}				t_smb;
+
 typedef struct	s_data
 {
 	char		*av;
 	void		*file;
 	int			fd;
-	int			align;
+	int			padding;
 	struct stat	stat;
 	size_t		token;
 	char		opt[16];
+	t_list		*data;
 }				t_data;
 
 

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/30 23:20:48 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/08 20:25:36 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	magic_handler(off_t *i, t_data *d, struct ar_hdr *h)
 	else if (!(ft_strncmp(ARMAG, (char*)&h->ar_fmag[*i], SARMAG)))	/*Archive*/
 		return (IGNORE_FILE);
 	else
-		ft_putendlcol(YELLOW, "AR: UNKNOW MAGIC NUMBER");
+		ft_putendlcol(YELLOW, ERR_MAGIC);
 	return (error);
 }
 
@@ -86,20 +86,3 @@ int		archive_handler(t_data *d)
 	}
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
