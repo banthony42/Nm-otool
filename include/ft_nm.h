@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/09 17:13:35 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:32:55 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <mach-o/nlist.h>
 # include <mach-o/fat.h>
 #include <ar.h>
+#include <ranlib.h>
 # include "libft.h"
 
 
@@ -44,7 +45,9 @@
 # define NB_OPTIONS ft_strlen(AVAILABLE_OPTIONS) - 1
 
 # define OFFSET(OFFSET, BEGIN) ((char*)OFFSET - (char*)BEGIN)
-# define IGNORE_FILE 42
+# define ARCHIVE_CONCAT 42
+# define ARCHIVE_CONCAT_MSG "ft_nm: archive inside an other archive, is not managed"
+# define RANLIB	-42
 
 typedef enum	e_options
 {
@@ -53,6 +56,7 @@ typedef enum	e_options
 
 typedef	struct	s_smb
 {
+	char		*head;
 	char		*value;
 	char		*type;
 	char		*name;

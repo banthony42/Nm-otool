@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/13 18:56:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/08 20:12:50 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:12:49 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,23 @@ void	ft_nm(t_list *elem)
 		return ;
 	if ((d = (t_data*)elem->content)->token != PATH || !d->file)
 		return ;
-	if ((magic = *(uint32_t*)d->file) == MH_MAGIC_64 || magic == MH_CIGAM_64)	/*Mach-O 64bit*/
-		error  = arch_64_handler(magic, d->file, d->stat.st_size);
-	else if (magic == MH_MAGIC || magic == MH_CIGAM)	/*Mach-O 32bit*/
+	if ((magic = *(uint32_t*)d->file) == MH_MAGIC_64 || magic == MH_CIGAM_64)
+		error = arch_64_handler(magic, d->file, d->stat.st_size);
+	else if (magic == MH_MAGIC || magic == MH_CIGAM)
 		error = arch_32_handler(magic, d->file, d->stat.st_size);
-	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))	/*Archive*/
-		error  = archive_handler(d);
-	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)	/*FAT BINARY 32*/
-		error = fat_arch_32_handler(magic, (unsigned char*)d->file, d->stat.st_size);
+	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))
+		error = archive_handler(d);
+	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)
+		error = fat_arch_32_handler(magic, (unsigned char*)d->file,
+									d->stat.st_size);
 	else
 		ft_putendlcol(YELLOW, "NM: UNKNOW MAGIC");
-/*	else if (magic == FAT_MAGIC_64 || magic == FAT_CIGAM_64)
-	error = fat_arch_64_handler(magic, (unsigned char*)d->file, d->stat.st_size);
-
-	Decrit comme un format en WorkInProgress dans fat.h
-	Aucun universal binary utilisant fat_arch_64 trouve pour l'instant
-*/
 	if (error <= 0)
 		error_str(d->av, ERR_FILE);
-	/*error < 0: Erreur sur magic_number ; error == 0: Erreur lors de la lecture fichier*/
-	/*ARMAG/SARMAG - Correspond au magic_str et size_magic_str - voir ar.h - */
 }
+
+/*
+**	error < 0: Erreur sur magic_number ;
+**	error == 0: Erreur lors de la lecture fichier
+**	ARMAG/SARMAG - Correspond au magic_str et size_magic_str - voir ar.h
+*/
