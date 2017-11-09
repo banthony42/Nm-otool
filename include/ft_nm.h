@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/08 20:28:40 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/09 17:13:35 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,20 @@ int				file_access(void *file, off_t read, off_t file_size);
 int				archive_handler(t_data *d);
 int				fat_arch_32_cigam(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
 int				fat_arch_32_magic(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
-int				fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
-int				fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
 int				fat_arch_32_handler(uint32_t magic, unsigned char *file, off_t size);
-int				fat_arch_64_handler(uint32_t magic, unsigned char *file, off_t size);
 int				arch_32_handler(uint32_t magic, void *file, off_t size);
 int				arch_64_handler(uint32_t magic, void *file, off_t size);
 void			ft_nm(t_list *elem);
 
+
+/*
+**	struct fat_arch_64 pas toujours present sur les mac
+*/
+/*
+int				fat_arch_64_handler(uint32_t magic, unsigned char *file, off_t size);
+int				fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
+int				fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
+*/
 #endif
 
 
