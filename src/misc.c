@@ -6,12 +6,73 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/18 21:06:49 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/10 20:18:48 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
+uint32_t	swap_uint32(uint32_t val)
+{
+	val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
+	return (val << 16) | (val >> 16);
+}
+
+uint64_t	swap_uint64(uint64_t val)
+{
+	uint64_t v1;
+	uint64_t v2;
+
+	val = ((val << 8) & 0xFF00FF00FF00FF00) | ((val >> 8) & 0xFF00FF00FF00FF);
+	v1 = val << 32;
+	v1 = ((v1 << 16) | ((v1 >> 16) & 0xFFFF00000000));
+	v2 = val >> 32;
+	v2 = (((v2 << 16) & 0xFFFF0000) | (v2 >> 16));
+	return (v1 | v2);
+}
+
+void			data_del(void *content, size_t size)
+{
+	t_data	*d;
+
+	if (!content || !size)
+		return ;
+	d = (t_data*)content;
+	if (d->fd > 0 && (close(d->fd) < 0))
+		error_str(d->av, "close error.");
+	if (d->file && munmap(d->file, (size_t)d->stat.st_size) < 0)
+		error_str(d->av, "munmap error.");
+	ft_strdel(&d->av);
+	ft_memdel((void**)&d);
+}
+
+void		print_elem(t_list *elem)
+{
+	t_data	*h;
+
+	h = (t_data*)elem->content;
+	if (h->token == OPTION)
+		ft_putstr("OPTION\t");
+	if (h->token == PATH)
+		ft_putstr("FILE\t");
+	ft_putstr(h->av);
+	ft_putstr("\tfd ");
+	ft_putnbr(h->fd);
+	ft_putstr("\topt ");
+	ft_print_memory(h->opt, NB_OPTIONS);
+}
+
+int			error_str(char *str, char *error)
+{
+	ft_putstr("ft_nm: ");
+	ft_putstr(str);
+	ft_putstr(": ");
+	ft_putendl(error);
+	return (0);
+}
+
+
+/*Swap x32 - Gestion des MH_CIGAM & FAT_CIGAM*/
 /*
 **	Exemple sur 0xbebafeca
 **
@@ -34,12 +95,6 @@
 **		-----------
 **		0xcafebabe
 */
-/*Swap x32 - Gestion des MH_CIGAM & FAT_CIGAM*/
-uint32_t	swap_uint32(uint32_t val)
-{
-	val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
-	return (val << 16) | (val >> 16);
-}
 
 /*Swap x64 - Gestion des FAT_CIGAM_64*/
 /*
@@ -95,55 +150,3 @@ v2:	| 0x0000 0000 cafe babe
 
 	  :'D
 */
-uint64_t	swap_uint64(uint64_t val)
-{
-	uint64_t v1;
-	uint64_t v2;
-
-	val = ((val << 8) & 0xFF00FF00FF00FF00) | ((val >> 8) & 0xFF00FF00FF00FF);
-	v1 = val << 32;
-	v1 = ((v1 << 16) | ((v1 >> 16) & 0xFFFF00000000));
-	v2 = val >> 32;
-	v2 = (((v2 << 16) & 0xFFFF0000) | (v2 >> 16));
-	return (v1 | v2);
-}
-
-void			data_del(void *content, size_t size)
-{
-	t_data	*d;
-
-	if (!content || !size)
-		return ;
-	d = (t_data*)content;
-	if (d->fd > 0 && (close(d->fd) < 0))
-		error_str(d->av, "close error.");
-	if (d->file && munmap(d->file, (size_t)d->stat.st_size) < 0)
-		error_str(d->av, "munmap error.");
-	ft_strdel(&d->av);
-	ft_memdel((void**)&d);
-}
-
-void		print_elem(t_list *elem)
-{
-	t_data	*h;
-
-	h = (t_data*)elem->content;
-	if (h->token == OPTION)
-		ft_putstr("OPTION\t");
-	if (h->token == PATH)
-		ft_putstr("FILE\t");
-	ft_putstr(h->av);
-	ft_putstr("\tfd ");
-	ft_putnbr(h->fd);
-	ft_putstr("\topt ");
-	ft_print_memory(h->opt, NB_OPTIONS);
-}
-
-int			error_str(char *str, char *error)
-{
-	ft_putstr("ft_nm: ");
-	ft_putstr(str);
-	ft_putstr(": ");
-	ft_putendl(error);
-	return (0);
-}

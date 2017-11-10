@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/09 18:32:55 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/10 21:12:41 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 # define ARCHIVE_CONCAT 42
 # define ARCHIVE_CONCAT_MSG "ft_nm: archive inside an other archive, is not managed"
 # define RANLIB	-42
+# define PADD_ZERO	"0000000000000000"
+# define PADD_SPACE	"                "
 
 typedef enum	e_options
 {
@@ -56,7 +58,6 @@ typedef enum	e_options
 
 typedef	struct	s_smb
 {
-	char		*head;
 	char		*value;
 	char		*type;
 	char		*name;
@@ -71,7 +72,7 @@ typedef struct	s_data
 	struct stat	stat;
 	size_t		token;
 	char		opt[16];
-	t_list		*data;
+	t_list		*sym;
 }				t_data;
 
 
@@ -93,13 +94,14 @@ uint32_t		swap_uint32(uint32_t val);
 uint64_t		swap_uint64(uint64_t val);
 int				file_access(void *file, off_t read, off_t file_size);
 int				archive_handler(t_data *d);
-int				fat_arch_32_cigam(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
-int				fat_arch_32_magic(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size);
-int				fat_arch_32_handler(uint32_t magic, unsigned char *file, off_t size);
-int				arch_32_handler(uint32_t magic, void *file, off_t size);
-int				arch_64_handler(uint32_t magic, void *file, off_t size);
+int				fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
+int				fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
+int				fat_arch_32_handler(uint32_t magic, t_data *d, unsigned char *file, off_t size);
+int				arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size);
+int				arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size);
 void			ft_nm(t_list *elem);
 
+char			*itoa_base_uint64(uint64_t value, int base);
 
 /*
 **	struct fat_arch_64 pas toujours present sur les mac

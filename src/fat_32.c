@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/09 17:47:49 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/10 17:26:58 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,40 +24,40 @@ int	file_access(void *file, off_t read, off_t file_size)
 	return (0);
 }
 
-int	fat_arch_32_handler(uint32_t magic, unsigned char *file, off_t size)
+int	fat_arch_32_handler(uint32_t magic, t_data *d, unsigned char *file, off_t size)
 {
 	int				error;
 	uint32_t		i;
 	uint32_t		nfat_arch;
-	struct fat_arch	*frh;
 
 	if (!file_access(file, sizeof(struct fat_header) + sizeof(struct fat_arch), size))
 		return (0);
 	i = 0;
 	error = -1;
 	nfat_arch = *(uint32_t*)(void*)(file + sizeof(uint32_t));	/*Recup du nb de struct fat_arch*/
-	frh = (void*)(file + sizeof(struct fat_header));	/*Recup du pointeur vers la premiere struct fat_header*/
 	if (magic == FAT_CIGAM)
 	{
 		nfat_arch = swap_uint32(nfat_arch);	/*Si BIG_ENDIAN il faut swap*/
-		error = fat_arch_32_cigam(nfat_arch, frh, file, size);
+		error = fat_arch_32_cigam(nfat_arch, d, file, size);
 	}
 	if (magic == FAT_MAGIC)
-		error = fat_arch_32_magic(nfat_arch, frh, file, size);
+		error = fat_arch_32_magic(nfat_arch, d, file, size);
 	if (error <= 0)
 		return (error);
 	return (1);
 }
 
-int	fat_arch_32_cigam(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size)
+int	fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size)
 {
 	int				error;
 	uint32_t		*mgc;
 	uint32_t		i;
 	uint32_t		offset;
+	struct fat_arch	*frh;
 
 	i = 0;
 	error = -1;
+	frh = (void*)(file + sizeof(struct fat_header));	/*Recup du pointeur vers la premiere struct fat_header*/
 	while (i < nfat_arch)
 	{
 		offset = swap_uint32(frh[i].offset);
@@ -65,9 +65,9 @@ int	fat_arch_32_cigam(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *f
 			return (-1);
 		mgc = (uint32_t*)(void*)(file + offset);
 		if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)
-			error = arch_64_handler(*mgc, (void*)mgc, size);
+			error = arch_64_handler(*mgc, d, (void*)mgc, size);
 		else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)
-			error = arch_32_handler(*mgc, (void*)mgc, size);
+			error = arch_32_handler(*mgc, d, (void*)mgc, size);
 		if (error <= 0)
 			return (error);
 		i++;
@@ -75,23 +75,25 @@ int	fat_arch_32_cigam(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *f
 	return (1);
 }
 
-int	fat_arch_32_magic(uint32_t nfat_arch, struct fat_arch *frh, unsigned char *file, off_t size)
+int	fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size)
 {
 	int				error;
 	uint32_t		*mgc;
 	uint32_t		i;
+	struct fat_arch	*frh;
 
 	i = 0;
 	error = -1;
+	frh = (void*)(file + sizeof(struct fat_header));	/*Recup du pointeur vers la premiere struct fat_header*/
 	while (i < nfat_arch)
 	{
 		if (!file_access(file, frh[i].offset, size))
 			return (-1);
 		mgc = (uint32_t*)(void*)(file + frh[i].offset);	/*Recup du magic Mach-O*/
 		if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)	/*Mach-O 64bit*/
-			error = arch_64_handler(*mgc, (void*)mgc, size);
+			error = arch_64_handler(*mgc, d, (void*)mgc, size);
 		else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)	/*Mach-O 32bit*/
-			error = arch_32_handler(*mgc, (void*)mgc, size);
+			error = arch_32_handler(*mgc, d, (void*)mgc, size);
 		if (error <= 0)
 			return (error);
 		i++;
