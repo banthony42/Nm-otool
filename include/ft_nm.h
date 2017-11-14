@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/10 21:12:41 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/14 19:45:56 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ typedef enum	e_options
 typedef	struct	s_smb
 {
 	char		*value;
-	char		*type;
+	uint8_t		type;
+	char		padding[7];
 	char		*name;
 }				t_smb;
 
@@ -93,15 +94,18 @@ void			default_file(t_list **lst);
 uint32_t		swap_uint32(uint32_t val);
 uint64_t		swap_uint64(uint64_t val);
 int				file_access(void *file, off_t read, off_t file_size);
+char			*itoa_base_uint64(uint64_t value, int base);
+
+void			ft_nm(t_list *elem);
 int				archive_handler(t_data *d);
 int				fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
 int				fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
 int				fat_arch_32_handler(uint32_t magic, t_data *d, unsigned char *file, off_t size);
 int				arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size);
 int				arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size);
-void			ft_nm(t_list *elem);
 
-char			*itoa_base_uint64(uint64_t value, int base);
+int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
+int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
 
 /*
 **	struct fat_arch_64 pas toujours present sur les mac

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/10 20:18:48 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/14 19:17:39 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ uint64_t	swap_uint64(uint64_t val)
 	return (v1 | v2);
 }
 
+static void			smb_del(void *content, size_t size)
+{
+	t_smb *tmp;
+
+	if (!content || !size)
+		return ;
+	tmp = (t_smb *)content;
+	ft_strdel(&tmp->name);
+	ft_strdel(&tmp->value);
+	ft_memdel((void **)&tmp);
+}
+
 void			data_del(void *content, size_t size)
 {
 	t_data	*d;
@@ -43,6 +55,7 @@ void			data_del(void *content, size_t size)
 	if (d->file && munmap(d->file, (size_t)d->stat.st_size) < 0)
 		error_str(d->av, "munmap error.");
 	ft_strdel(&d->av);
+	ft_lstdel(&d->sym, smb_del);
 	ft_memdel((void**)&d);
 }
 

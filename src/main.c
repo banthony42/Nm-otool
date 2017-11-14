@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/28 17:29:07 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/14 19:45:49 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,39 @@ static void	concat_options(t_list **lst)
 	data_del(d, sizeof(t_data));
 }
 
+static void		print(t_list *elem)
+{
+	t_smb	*tmp;
+
+	tmp = (t_smb*)elem->content;
+	if (!tmp->value || !ft_strcmp(tmp->value, PADD_ZERO))
+		ft_putstr(PADD_SPACE);
+	else
+		ft_putstr(tmp->value);
+	ft_putchar(' ');
+	if (tmp->type == N_UNDF)
+		ft_putstr("U ");
+	else if (tmp->type == N_ABS)
+		ft_putstr("A ");
+	else if (tmp->type == N_SECT)
+		ft_putstr("T ");
+	else if (tmp->type == N_PBUD)
+		ft_putstr("* ");
+	else if (tmp->type == N_INDR)
+		ft_putstr("I ");
+	else
+		ft_putstr("? ");
+	ft_putendl(tmp->name);
+}
+
+static void		display(t_list *elem)
+{
+	t_data *d;
+
+	d = (t_data*)elem->content;
+	ft_lstiter(d->sym, print);
+}
+
 int			main(int ac, char **av)
 {
 	t_list *entry;
@@ -82,8 +115,9 @@ int			main(int ac, char **av)
 		ft_putendl(NM_USG);
 		return (EXIT_FAILURE);
 	}
-//	ft_lstiter(entry, &print_elem);ft_putchar('\n');
-	ft_lstiter(entry, &ft_nm);
+	ft_lstiter(entry, &ft_nm);		/*Recup des data*/
+	ft_lstiter(entry, &display);	/*Affichage des data*/
+	ft_lstdel(&entry, data_del);	/*Liberation de la memoire*/
 /*			ATTENTION !!!
 **	Desactiver fsanitize pour tester les leaks
 system("leaks ft_nm");*/

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:44:27 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/16 18:42:34 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/14 18:27:35 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static t_data	*new_data(char *str, int *wait)
 	if (!(d = (t_data*)malloc(sizeof(t_data))))
 		return (NULL);
 	ft_bzero(d, sizeof(t_data));
-	d->av = ft_strdup(str);
+	if (!(d->av = ft_strdup(str)))
+		return (NULL);
 	d->token = PATH;
 	if (str[0] == '-' && *wait)
 		d->token = OPTION;
