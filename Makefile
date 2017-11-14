@@ -6,11 +6,13 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/11/10 20:19:16 by banthony         ###   ########.fr        #
+#    Updated: 2017/11/14 15:08:03 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = ft_nm
+
+NAME_SANIT = ft_nms
 
 PATH_SRC = ./src/
 
@@ -37,9 +39,13 @@ HEAD_DIR = -I ./include -I $(PATH_LIBFT)
 
 LIB = -L $(PATH_LIBFT) -lft
 
+LIB_SANIT = -L $(PATH_LIBFT) -lft_sanit
+
 FLAGS = -Wall -Wextra -Werror -g3 -Weverything
 
 all: $(NAME)
+
+sanit: $(NAME_SANIT)
 
 $(NAME): $(SRC) $(INCLUDE)
 	make -C $(PATH_LIBFT)
@@ -47,18 +53,18 @@ $(NAME): $(SRC) $(INCLUDE)
 	mv $(OBJ) $(PATH_SRC)
 	gcc -o $(NAME) $(OBJ2) $(HEAD_DIR) $(LIB) $(FLAGS)
 
-sanit: $(SRC) $(INCLUDE)
+$(NAME_SANIT): $(SRC) $(INCLUDE)
 	make -C $(PATH_LIBFT) sanit
 	gcc $(FLAGS) $(HEAD_DIR) -c $(SRC) -fsanitize=address
 	mv $(OBJ) $(PATH_SRC)
-	gcc -o $(NAME) $(OBJ2) $(HEAD_DIR) $(LIB) $(FLAGS) -fsanitize=address
+	gcc -o $(NAME_SANIT) $(OBJ2) $(HEAD_DIR) $(LIB_SANIT) $(FLAGS) -fsanitize=address
 
 clean:
 	make clean -C $(PATH_LIBFT)
 	rm -f $(OBJ2)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_SANIT)
 	make fclean -C $(PATH_LIBFT)
 	rm Makefile~ ./*.c~ ./*.h~
 
