@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 17:24:36 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/14 19:28:31 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/15 15:45:46 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ static t_list	*create_symbol_list(t_data *d, struct nlist_64 *symtable, uint32_t
 {
 	t_smb *tmp;
 
-	if (!(tmp = (t_smb*)ft_memalloc(sizeof(t_smb))))
+	if (!(tmp = (t_smb*)ft_memalloc(sizeof(t_smb))))	/*Nouveau maillon*/
 		return(NULL);
-	if (!(tmp->name = ft_strdup(strtable + symtable[i].n_un.n_strx)))	/*Recup symbol name*/
+	if (!(tmp->name = ft_strdup(strtable + symtable[i].n_un.n_strx)))	/*Recup symbol name dans maillon*/
 		return (NULL);
-	if (!(tmp->value = itoa_base_uint64(symtable[i].n_value, 16)))		/*Recup symbol value*/
+	if (!(tmp->value = itoa_base_uint64(symtable[i].n_value, 16)))		/*Recup symbol value dans maillon*/
 		return (NULL);
-	tmp->type = symtable[i].n_type & N_TYPE;
+	tmp->type = symtable[i].n_type & N_TYPE;	/*Recup du type dans maillon*/
 	if (!d->sym)
 	{
-		if (!(d->sym = ft_lstnew((void*)tmp, sizeof(t_smb))))
+		if (!(d->sym = ft_lstnew((void*)tmp, sizeof(t_smb))))	/*Creation liste (premier maillon)*/
 			return (NULL);
 	}
 	else
-		ft_lstaddback(&d->sym, ft_lstnew((void*)tmp, sizeof(t_smb)));	/*A modifier suivant les options*/
+		ft_lstaddback(&d->sym, ft_lstnew((void*)tmp, sizeof(t_smb)));	/*Insertion dans la liste avec ou sans tri*/
 	ft_memdel((void**)&tmp);
 	return (d->sym);
 }
@@ -67,6 +67,8 @@ static int		symtab_handler_64(struct symtab_command *sym, t_data *d, unsigned ch
 	{
 		if (!(create_symbol_list(d, symtable, i,strtable)))
 			return (0);
+		ft_lstiter(d->sym, nm_output);
+ 		ft_lstdel(&d->sym, smb_del);
 		i++;
 	}
 	return (1);

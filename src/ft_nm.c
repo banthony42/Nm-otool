@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm.c                                               :+:      :+:    :+:   */
+/*   ft_nm.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/13 18:56:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/14 19:45:39 by banthony         ###   ########.fr       */
+/*   Created: 2017/11/15 19:39:57 by banthony          #+#    #+#             */
+/*   Updated: 2017/11/15 19:39:58 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,25 @@ void	ft_nm(t_list *elem)
 	t_data		*d;
 	int			error;
 
-	error = -1;
+	error = -2;
 	if (!elem || !elem->content)
 		return ;
 	if ((d = (t_data*)elem->content)->token != PATH || !d->file)
 		return ;
+	if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))
+		error = archive_handler(d);
+	else if (d->data_len > 2)
+		ft_nm_info(d->av, NULL);
 	if ((magic = *(uint32_t*)d->file) == MH_MAGIC_64 || magic == MH_CIGAM_64)
 		error = arch_64_handler(magic, d, d->file, d->stat.st_size);
 	else if (magic == MH_MAGIC || magic == MH_CIGAM)
 		error = arch_32_handler(magic, d, d->file, d->stat.st_size);
-	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))
-		error = archive_handler(d);
 	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)
 		error = fat_arch_32_handler(magic, d, (unsigned char*)d->file, d->stat.st_size);
-	else
+	if (error == -2)
 		ft_putendlcol(YELLOW, "NM: UNKNOW MAGIC");
 	if (error <= 0)
-		error_str(d->av, ERR_FILE);
+		ft_nm_info(d->av, ERR_FILE);
 }
 
 /*

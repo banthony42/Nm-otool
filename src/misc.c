@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/14 19:17:39 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/15 18:45:03 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ uint64_t	swap_uint64(uint64_t val)
 	return (v1 | v2);
 }
 
-static void			smb_del(void *content, size_t size)
+void			smb_del(void *content, size_t size)
 {
 	t_smb *tmp;
 
@@ -51,9 +51,9 @@ void			data_del(void *content, size_t size)
 		return ;
 	d = (t_data*)content;
 	if (d->fd > 0 && (close(d->fd) < 0))
-		error_str(d->av, "close error.");
+		ft_nm_info(d->av, "close error.");
 	if (d->file && munmap(d->file, (size_t)d->stat.st_size) < 0)
-		error_str(d->av, "munmap error.");
+		ft_nm_info(d->av, "munmap error.");
 	ft_strdel(&d->av);
 	ft_lstdel(&d->sym, smb_del);
 	ft_memdel((void**)&d);
@@ -71,16 +71,25 @@ void		print_elem(t_list *elem)
 	ft_putstr(h->av);
 	ft_putstr("\tfd ");
 	ft_putnbr(h->fd);
+	ft_putstr("\tdlen: ");
+	ft_putnbr(h->data_len);
+	ft_putchar('\t');
 	ft_putstr("\topt ");
 	ft_print_memory(h->opt, NB_OPTIONS);
 }
 
-int			error_str(char *str, char *error)
+/*
+**	Affiche le nom du programme suivi de deux char*
+**	Exemple d'utilisation: (message d'erreur) ft_nm_info(path, ERROR_PATH)
+**	pour notifier sur une erreur de nom de fichier
+*/
+int			ft_nm_info(char *str, char *info)
 {
 	ft_putstr("ft_nm: ");
 	ft_putstr(str);
-	ft_putstr(": ");
-	ft_putendl(error);
+	if (str)
+		ft_putstr(": ");
+	ft_putendl(info);
 	return (0);
 }
 

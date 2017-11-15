@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/14 19:45:49 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/15 19:20:28 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,21 @@ static void	concat_options(t_list **lst)
 	}
 	ft_lstadd(lst, ft_lstnew(d, sizeof(t_data)));
 	data_del(d, sizeof(t_data));
+	l = *lst;
+	while (*lst)
+	{
+		((t_data*)(*lst)->content)->data_len = (unsigned int)ft_lstlen(l);
+		*lst = (*lst)->next;
+	}
+	*lst = l;
 }
 
-static void		print(t_list *elem)
+void		nm_output(t_list *elem)
 {
 	t_smb	*tmp;
 
-	tmp = (t_smb*)elem->content;
+	if (!(tmp = (t_smb*)elem->content))
+		return ;
 	if (!tmp->value || !ft_strcmp(tmp->value, PADD_ZERO))
 		ft_putstr(PADD_SPACE);
 	else
@@ -93,8 +101,12 @@ static void		display(t_list *elem)
 {
 	t_data *d;
 
-	d = (t_data*)elem->content;
-	ft_lstiter(d->sym, print);
+	if (!(d = (t_data*)elem->content))
+		return ;
+	if (!d->lst_browser)	/*Comportement par defaut, si le ptr_func vaut NULL*/
+		ft_lstiter(d->sym, nm_output);
+	else
+		d->lst_browser(d->sym, nm_output);	/*Sens du parcours, Voir option nm -r*/
 }
 
 int			main(int ac, char **av)
@@ -115,11 +127,18 @@ int			main(int ac, char **av)
 		ft_putendl(NM_USG);
 		return (EXIT_FAILURE);
 	}
+	//BEGIN PARSING VIEWER
+	ft_putstr(GREEN);
+	ft_lstiter(entry, print_elem);
+	ft_putstr(WHITE);
+	ft_putstr("\n\n");
+	//END PARSING VIEWER
 	ft_lstiter(entry, &ft_nm);		/*Recup des data*/
 	ft_lstiter(entry, &display);	/*Affichage des data*/
 	ft_lstdel(&entry, data_del);	/*Liberation de la memoire*/
 /*			ATTENTION !!!
 **	Desactiver fsanitize pour tester les leaks
-system("leaks ft_nm");*/
+*/
+//	system("leaks ft_nm");
 	return (EXIT_SUCCESS);
 }

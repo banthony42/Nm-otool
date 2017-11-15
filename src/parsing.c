@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:44:27 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/14 18:27:35 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/15 18:40:22 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		option_error_handler(t_list **lst)
 			{
 				if (!(ft_strchr(AVAILABLE_OPTIONS, (int)d->av[i]))
 					|| (dash && d->av[i] == '-') || !ft_strcmp(d->av, "-"))
-					return (error_str(d->av, UNKNOWN_OPTION));
+					return (ft_nm_info(d->av, UNKNOWN_OPTION));
 				if ((ft_strcmp(d->av, "--")) && d->av[i] == '-')
 					dash++;
 			}
@@ -48,18 +48,19 @@ void			prepare_files(t_list *elm)
 
 	if (!elm)
 		return ;
-	d = (t_data*)elm->content;
+	if (!(d = (t_data*)elm->content))
+		return ;
 	if (d->token == PATH)
 	{
 		if ((d->fd = open(d->av, O_RDONLY)) < 0)
-			error_str(d->av, FILE_NOT_FOUND);
+			ft_nm_info(d->av, FILE_NOT_FOUND);
 		else if ((ret = fstat(d->fd, &d->stat)) < 0)
-			error_str(d->av, FSTAT_ERROR);
+			ft_nm_info(d->av, FSTAT_ERROR);
 		else if (!(d->stat.st_mode & S_IRUSR))
-			error_str(d->av, CANT_READ);
+			ft_nm_info(d->av, CANT_READ);
 		else if ((d->file = mmap(NULL, (size_t)d->stat.st_size,
 									PROT_READ, MAP_PRIVATE, d->fd, 0)) == MAP_FAILED)
-			error_str(d->av, MMAP_ERROR);
+			ft_nm_info(d->av, MMAP_ERROR);
 		if (d->file == MAP_FAILED)
 			d->file = NULL;
 	}

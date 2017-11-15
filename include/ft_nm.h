@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/14 19:45:56 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/15 19:08:02 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,33 @@ typedef struct	s_data
 	char		*av;
 	void		*file;
 	int			fd;
-	int			padding;
+	unsigned int	data_len;
 	struct stat	stat;
 	size_t		token;
 	char		opt[16];
+	void		(*lstadd_somewhere)(t_list **begin, t_list *new);
+	void		(*lst_browser)(t_list *lst, void (*f)(t_list *elem));
 	t_list		*sym;
 }				t_data;
 
+
+/*
+**	Fonction pour lstadd_somewhere, valeur par defaut: ft_lstaddback
+*/
+void			lstadd_alpha(t_list **begin, t_list *new);		/*Tri alphabetiquement a l'insertion*/
+void			lstadd_numeric(t_list **begin, t_list *new);	/*Tri numeriquement a l'insertion*/
+
+/*
+**	Fonction pour lst_browser, valeur par defaut: ft_lstiter
+*/
+void			lstiter_reverse(t_list *lst, void (*f)(t_list *elem));	/*Idem a ft_lstiter, mais fin vers debut*/
 
 
 /*
 **	Parsing Nm
 */
-int				error_str(char *str, char *error);
+int				ft_nm_info(char *str, char *info);
 void			print_elem(t_list *elem);
-void			data_del(void *content, size_t size);
 t_list			*parsing(char **av);
 void			prepare_files(t_list *elm);
 void			default_file(t_list **lst);
@@ -97,6 +109,10 @@ int				file_access(void *file, off_t read, off_t file_size);
 char			*itoa_base_uint64(uint64_t value, int base);
 
 void			ft_nm(t_list *elem);
+void			nm_output(t_list *elem);
+void			data_del(void *content, size_t size);
+void			smb_del(void *content, size_t size);
+
 int				archive_handler(t_data *d);
 int				fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
 int				fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
