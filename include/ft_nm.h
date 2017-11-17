@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/15 19:08:02 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/17 20:55:25 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,30 +66,30 @@ typedef	struct	s_smb
 
 typedef struct	s_data
 {
-	char		*av;
-	void		*file;
-	int			fd;
+	char			*av;
+	void			*file;
+	int				fd;
 	unsigned int	data_len;
-	struct stat	stat;
-	size_t		token;
-	char		opt[16];
-	void		(*lstadd_somewhere)(t_list **begin, t_list *new);
-	void		(*lst_browser)(t_list *lst, void (*f)(t_list *elem));
-	t_list		*sym;
-}				t_data;
+	struct stat		stat;
+	size_t			token;
+	char			opt[16];
+	void			(*lstadd_somewhere)(t_list **begin, t_list *new);
+	void			(*lst_browser)(t_list *lst, void (*f)(t_list *elem));
+	t_list			*sym;
+}					t_data;
 
 
 /*
-**	Fonction pour lstadd_somewhere, valeur par defaut: ft_lstaddback
+**	Fonction pour lstadd_somewhere, valeur par defaut: lstadd_alpha
 */
-void			lstadd_alpha(t_list **begin, t_list *new);		/*Tri alphabetiquement a l'insertion*/
-void			lstadd_numeric(t_list **begin, t_list *new);	/*Tri numeriquement a l'insertion*/
+void			lstadd_alpha(t_list **begin, t_list *new);		/*Tri alphabetiquement a l'insertion (nm)*/
+void			lstadd_numeric(t_list **begin, t_list *new);	/*Tri numeriquement a l'insertion (nm -n)*/
+//void			lstadd_back(t_list **begin, t_list **new);		/*Ajout dans l'ordre de la symtable (nm -p)*/
 
 /*
 **	Fonction pour lst_browser, valeur par defaut: ft_lstiter
 */
-void			lstiter_reverse(t_list *lst, void (*f)(t_list *elem));	/*Idem a ft_lstiter, mais fin vers debut*/
-
+void			lstiter_reverse(t_list *lst, void (*f)(t_list *elem));	/*(nm -r)*/
 
 /*
 **	Parsing Nm
@@ -103,6 +103,7 @@ void			default_file(t_list **lst);
 /*
 **	Nm
 */
+int				is_opt(void *data, char opt);
 uint32_t		swap_uint32(uint32_t val);
 uint64_t		swap_uint64(uint64_t val);
 int				file_access(void *file, off_t read, off_t file_size);

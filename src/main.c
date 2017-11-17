@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/15 19:20:28 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/17 20:50:30 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,11 @@ static void	concat_options(t_list **lst)
 	ft_lstadd(lst, ft_lstnew(d, sizeof(t_data)));
 	data_del(d, sizeof(t_data));
 	l = *lst;
-	while (*lst)
+	while (l)
 	{
-		((t_data*)(*lst)->content)->data_len = (unsigned int)ft_lstlen(l);
-		*lst = (*lst)->next;
+		((t_data*)(l)->content)->data_len = (unsigned int)ft_lstlen(*lst);
+		l = (l)->next;
 	}
-	*lst = l;
 }
 
 void		nm_output(t_list *elem)
@@ -97,16 +96,33 @@ void		nm_output(t_list *elem)
 	ft_putendl(tmp->name);
 }
 
-static void		display(t_list *elem)
+static void	option_analyse(t_list **entry)
 {
-	t_data *d;
+	t_data	*one;
+	t_data	*d;
+	t_list	*l;
 
-	if (!(d = (t_data*)elem->content))
+	if (!(one = (t_data*)(*entry)->content))
 		return ;
-	if (!d->lst_browser)	/*Comportement par defaut, si le ptr_func vaut NULL*/
-		ft_lstiter(d->sym, nm_output);
-	else
-		d->lst_browser(d->sym, nm_output);	/*Sens du parcours, Voir option nm -r*/
+	one->lst_browser = &(ft_lstiter);
+	one->lstadd_somewhere = &(lstadd_alpha);
+	if (is_opt(one, 'r') && !(is_opt(one, 'p')))
+		one->lst_browser = &(lstiter_reverse);
+	else if (is_opt(one, 'n'))
+		;
+	else if (is_opt(one, 'p'))
+		one->lstadd_somewhere = &(ft_lstaddback);
+	l = *entry;
+	while ((*entry))
+	{
+		if ((d = (t_data*)(*entry)->content))
+		{
+			d->lst_browser = one->lst_browser;
+			d->lstadd_somewhere = one->lstadd_somewhere;
+		}
+		(*entry) = (*entry)->next;
+	}
+	*entry = l;
 }
 
 int			main(int ac, char **av)
@@ -127,18 +143,23 @@ int			main(int ac, char **av)
 		ft_putendl(NM_USG);
 		return (EXIT_FAILURE);
 	}
-	//BEGIN PARSING VIEWER
-	ft_putstr(GREEN);
-	ft_lstiter(entry, print_elem);
-	ft_putstr(WHITE);
-	ft_putstr("\n\n");
-	//END PARSING VIEWER
+	option_analyse(&entry);
 	ft_lstiter(entry, &ft_nm);		/*Recup des data*/
-	ft_lstiter(entry, &display);	/*Affichage des data*/
 	ft_lstdel(&entry, data_del);	/*Liberation de la memoire*/
-/*			ATTENTION !!!
-**	Desactiver fsanitize pour tester les leaks
-*/
 //	system("leaks ft_nm");
 	return (EXIT_SUCCESS);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

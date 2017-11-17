@@ -6,11 +6,29 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/15 18:45:03 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:31:17 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+int			is_opt(void *data, char opt)
+{
+	t_data	*d;
+	char	*table;
+
+	if (!data)
+		return (-1);
+	d = (t_data *)data;
+	table = ft_strdup(d->opt);
+	if (ft_strchr(table, (int)opt))
+	{
+		ft_strdel(&table);
+		return (1);
+	}
+	ft_strdel(&table);
+	return (0);
+}
 
 uint32_t	swap_uint32(uint32_t val)
 {

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 17:24:36 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/15 15:45:46 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/17 20:56:13 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
 
 static t_list	*create_symbol_list(t_data *d, struct nlist_64 *symtable, uint32_t i, char *strtable)
 {
-	t_smb *tmp;
+	t_smb	*tmp;
 
 	if (!(tmp = (t_smb*)ft_memalloc(sizeof(t_smb))))	/*Nouveau maillon*/
 		return(NULL);
@@ -42,7 +42,7 @@ static t_list	*create_symbol_list(t_data *d, struct nlist_64 *symtable, uint32_t
 			return (NULL);
 	}
 	else
-		ft_lstaddback(&d->sym, ft_lstnew((void*)tmp, sizeof(t_smb)));	/*Insertion dans la liste avec ou sans tri*/
+		d->lstadd_somewhere(&d->sym, ft_lstnew((void*)tmp, sizeof(t_smb)));	/*Ajoute maillon avec ou sans tri*/
 	ft_memdel((void**)&tmp);
 	return (d->sym);
 }
@@ -67,8 +67,6 @@ static int		symtab_handler_64(struct symtab_command *sym, t_data *d, unsigned ch
 	{
 		if (!(create_symbol_list(d, symtable, i,strtable)))
 			return (0);
-		ft_lstiter(d->sym, nm_output);
- 		ft_lstdel(&d->sym, smb_del);
 		i++;
 	}
 	return (1);
@@ -94,5 +92,7 @@ int		arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
 		lc = (void *)((unsigned char*)lc + lc->cmdsize);
 		i++;
 	}
+	d->lst_browser(d->sym, nm_output);	/*Affichage de la list fraichement creer*/
+	ft_lstdel(&d->sym, smb_del);
 	return (error);
 }
