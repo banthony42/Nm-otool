@@ -6,7 +6,7 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/11/17 18:32:58 by banthony         ###   ########.fr        #
+#    Updated: 2017/11/24 19:17:41 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,8 +20,8 @@ PATH_HEAD = ./include/
 
 HEADER_FILE = ft_nm.h	\
 
-SRC_FILE = 	main.c				parsing.c	ft_nm.c	misc.c	ar.c	fat_32.c	\
-			itoa_base_uint64.c	machO_64.c	list_manage.c						\
+SRC_FILE = 	main.c				parsing.c	ft_nm.c	misc.c	ar.c	fat_32.c			\
+			itoa_base_uint64.c	machO_64.c	list_manage.c			symtype_handler.c	\
 
 #fat_64.c	\
 

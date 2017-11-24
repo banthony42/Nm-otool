@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/17 20:50:30 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/24 19:17:17 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,25 +74,15 @@ void		nm_output(t_list *elem)
 {
 	t_smb	*tmp;
 
-	if (!(tmp = (t_smb*)elem->content))
+	if (!(tmp = (t_smb*)elem->content) || tmp->type == (uint8_t)'?')
 		return ;
-	if (!tmp->value || !ft_strcmp(tmp->value, PADD_ZERO))
+	if (tmp->type == (uint8_t)'U')
 		ft_putstr(PADD_SPACE);
 	else
 		ft_putstr(tmp->value);
 	ft_putchar(' ');
-	if (tmp->type == N_UNDF)
-		ft_putstr("U ");
-	else if (tmp->type == N_ABS)
-		ft_putstr("A ");
-	else if (tmp->type == N_SECT)
-		ft_putstr("T ");
-	else if (tmp->type == N_PBUD)
-		ft_putstr("* ");
-	else if (tmp->type == N_INDR)
-		ft_putstr("I ");
-	else
-		ft_putstr("? ");
+	ft_putchar((char)tmp->type);
+	ft_putchar(' ');
 	ft_putendl(tmp->name);
 }
 
@@ -109,7 +99,7 @@ static void	option_analyse(t_list **entry)
 	if (is_opt(one, 'r') && !(is_opt(one, 'p')))
 		one->lst_browser = &(lstiter_reverse);
 	else if (is_opt(one, 'n'))
-		;
+		one->lstadd_somewhere = &(lstadd_numeric);
 	else if (is_opt(one, 'p'))
 		one->lstadd_somewhere = &(ft_lstaddback);
 	l = *entry;

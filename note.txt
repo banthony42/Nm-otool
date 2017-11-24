@@ -6,7 +6,7 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/11/15 16:46:26 by banthony         ###   ########.fr         
+     Updated: 2017/11/24 16:31:28 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
@@ -41,6 +41,8 @@ $> nm ./test/a.out
 	Value		Type	  Symbol Name
 
 
+	Memoriser l'offset de la premiere structure section, pour les types ?
+
 	Pour les CIGAM, se faire une fonction swap_if_cigam(magic, data) ?
 
 	Les options de tri, agissent uniquement sur les liste de symboles (t_list)
@@ -72,10 +74,39 @@ $> nm ./test/a.out
 
 
 
+Pour N_SECT, ptr_first_section + (sizeof(section) * n_sect) ne marche pas, car il y a des struct segment au milieu
 
 
+Arrangement en memoire des LC_SEGMENT et sections
 
-
+-----------------------------------
+|	- LC_SEGMENT_64				  |
+|	- n_sect = 3				  |
+----------------------------------- s = sizeof(LC_SEGMENT_64)
+-----------------------------------
+|	- section_64				  |
+|								  |
+----------------------------------- s += sizeof(section_64)
+-----------------------------------
+|	- section_64				  |
+|								  |
+----------------------------------- s += sizeof(section_64)
+-----------------------------------
+|	- section_64				  |
+|								  |
+----------------------------------- s += sizeof(section_64)
+-----------------------------------
+|	- LC_SEGMENT_64				  |
+|	- n_sect = 2				  |
+----------------------------------- s = sizeof(LC_SEGMENT_64)
+-----------------------------------
+|	- section_64				  |
+|								  |
+----------------------------------- s += sizeof(section_64)
+-----------------------------------
+|	- section_64				  |
+|								  |
+----------------------------------- s += sizeof(section_64)
 
 
 -------------------------------------------------------------------------------

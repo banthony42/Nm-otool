@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:44:27 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/15 18:40:22 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/24 19:20:54 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			prepare_files(t_list *elm)
 		else if (!(d->stat.st_mode & S_IRUSR))
 			ft_nm_info(d->av, CANT_READ);
 		else if ((d->file = mmap(NULL, (size_t)d->stat.st_size,
-									PROT_READ, MAP_PRIVATE, d->fd, 0)) == MAP_FAILED)
+						PROT_READ, MAP_PRIVATE, d->fd, 0)) == MAP_FAILED)
 			ft_nm_info(d->av, MMAP_ERROR);
 		if (d->file == MAP_FAILED)
 			d->file = NULL;

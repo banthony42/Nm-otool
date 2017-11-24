@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   machO_64.c                                         :+:      :+:    :+:   */
+/*   macho_64.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/14 17:24:36 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/17 20:56:13 by banthony         ###   ########.fr       */
+/*   Created: 2017/11/24 19:36:17 by banthony          #+#    #+#             */
+/*   Updated: 2017/11/24 19:36:18 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int		arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
+int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file,
+							off_t size)
 {
 	int error;
 
@@ -25,30 +26,31 @@ int		arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
 	return (1);
 }
 
-static t_list	*create_symbol_list(t_data *d, struct nlist_64 *symtable, uint32_t i, char *strtable)
+static t_list	*create_symbol_list(t_data *d, struct nlist_64 symtable,
+												char *strtable)
 {
 	t_smb	*tmp;
 
-	if (!(tmp = (t_smb*)ft_memalloc(sizeof(t_smb))))	/*Nouveau maillon*/
-		return(NULL);
-	if (!(tmp->name = ft_strdup(strtable + symtable[i].n_un.n_strx)))	/*Recup symbol name dans maillon*/
+	if (!(tmp = (t_smb*)ft_memalloc(sizeof(t_smb))))
 		return (NULL);
-	if (!(tmp->value = itoa_base_uint64(symtable[i].n_value, 16)))		/*Recup symbol value dans maillon*/
+	if (!(tmp->name = ft_strdup(strtable + symtable.n_un.n_strx)))
 		return (NULL);
-	tmp->type = symtable[i].n_type & N_TYPE;	/*Recup du type dans maillon*/
-	if (!d->sym)
+	if (!(tmp->value = itoa_base_uint64(symtable.n_value, 16)))
+		return (NULL);
+	tmp->type = get_symboltype64(d, symtable);
+	if (tmp->name[0] != '\0')
 	{
-		if (!(d->sym = ft_lstnew((void*)tmp, sizeof(t_smb))))	/*Creation liste (premier maillon)*/
-			return (NULL);
+		if (!d->sym)
+			d->sym = ft_lstnew((void*)tmp, sizeof(t_smb));
+		else
+			d->lstadd_somewhere(&d->sym, ft_lstnew((void*)tmp, sizeof(t_smb)));
 	}
-	else
-		d->lstadd_somewhere(&d->sym, ft_lstnew((void*)tmp, sizeof(t_smb)));	/*Ajoute maillon avec ou sans tri*/
 	ft_memdel((void**)&tmp);
 	return (d->sym);
 }
 
-/*Dupliquer pour cigam_64 ?*/
-static int		symtab_handler_64(struct symtab_command *sym, t_data *d, unsigned char *file, off_t size)
+static int		symtab_handler_64(struct symtab_command *sym, t_data *d,
+										unsigned char *file, off_t size)
 {
 	uint32_t		i;
 	char			*strtable;
@@ -65,18 +67,20 @@ static int		symtab_handler_64(struct symtab_command *sym, t_data *d, unsigned ch
 		return (0);
 	while (i < sym->nsyms)
 	{
-		if (!(create_symbol_list(d, symtable, i,strtable)))
+		if (!(create_symbol_list(d, symtable[i], strtable)))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int		arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
+int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file,
+									off_t size)
 {
-	int error;
-	uint32_t i;
-	struct load_command		*lc;
+	int							error;
+	uint32_t					i;
+	struct load_command			*lc;
+	struct segment_command_64	*sgmt64;
 
 	i = 0;
 	error = 1;
@@ -85,6 +89,12 @@ int		arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
 	{
 		if ((unsigned char *)(lc + 1) > (file + size))
 			return (0);
+		if (lc->cmd == LC_SEGMENT_64 && !d->first_sectoff)
+		{
+			sgmt64 = (struct segment_command_64 *)(void*)lc;
+			if (!ft_strcmp(SEG_PAGEZERO, sgmt64->segname))
+				d->first_sectoff = (void*)(sgmt64 + 1);
+		}
 		if (lc->cmd == LC_SYMTAB)
 			error = symtab_handler_64((void *)lc, d, file, size);
 		if (error <= 0)
@@ -92,7 +102,7 @@ int		arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
 		lc = (void *)((unsigned char*)lc + lc->cmdsize);
 		i++;
 	}
-	d->lst_browser(d->sym, nm_output);	/*Affichage de la list fraichement creer*/
+	d->lst_browser(d->sym, nm_output);
 	ft_lstdel(&d->sym, smb_del);
 	return (error);
 }

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/17 20:55:25 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/23 18:15:38 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,25 @@ typedef enum	e_options
 
 typedef	struct	s_smb
 {
-	char		*value;
-	uint8_t		type;
-	char		padding[7];
-	char		*name;
+	char		*value;				/*valeur du symbol*/
+	uint8_t		type;				/*Type du symbol*/
+	char		padding[7];			/*variable d'alignement de la structure*/
+	char		*name;				/*Nom du symbol*/
 }				t_smb;
 
 typedef struct	s_data
 {
-	char			*av;
-	void			*file;
-	int				fd;
-	unsigned int	data_len;
-	struct stat		stat;
-	size_t			token;
-	char			opt[16];
-	void			(*lstadd_somewhere)(t_list **begin, t_list *new);
-	void			(*lst_browser)(t_list *lst, void (*f)(t_list *elem));
-	t_list			*sym;
+	char			*av;													/*Entree utilisateur*/
+	void			*file;													/*fichier mappe en memoire*/
+	void			*first_sectoff;											/*ptr vers premiere segment*/
+	int				fd;														/*fd du fichier*/
+	unsigned int	data_len;												/*taille de la liste*/
+	struct stat		stat;													/*stat du fichier*/
+	size_t			token;													/*option ou fichier*/
+	char			opt[16];												/*si option, lesquelles*/
+	void			(*lstadd_somewhere)(t_list **begin, t_list *new);		/*voir ci dessous*/
+	void			(*lst_browser)(t_list *lst, void (*f)(t_list *elem));	/*voir ci dessous*/
+	t_list			*sym;													/*Liste des symbol du fichier*/
 }					t_data;
 
 
@@ -84,7 +85,7 @@ typedef struct	s_data
 */
 void			lstadd_alpha(t_list **begin, t_list *new);		/*Tri alphabetiquement a l'insertion (nm)*/
 void			lstadd_numeric(t_list **begin, t_list *new);	/*Tri numeriquement a l'insertion (nm -n)*/
-//void			lstadd_back(t_list **begin, t_list **new);		/*Ajout dans l'ordre de la symtable (nm -p)*/
+/*void			ft_lstaddback(t_list **begin, t_list **new);*/	/*Ajout dans l'ordre de la symtable (nm -p)*/
 
 /*
 **	Fonction pour lst_browser, valeur par defaut: ft_lstiter
@@ -95,7 +96,7 @@ void			lstiter_reverse(t_list *lst, void (*f)(t_list *elem));	/*(nm -r)*/
 **	Parsing Nm
 */
 int				ft_nm_info(char *str, char *info);
-void			print_elem(t_list *elem);
+void			print_elem(t_list *elem);	/*Temporaire, affichage de la liste t_data*/
 t_list			*parsing(char **av);
 void			prepare_files(t_list *elm);
 void			default_file(t_list **lst);
@@ -103,9 +104,9 @@ void			default_file(t_list **lst);
 /*
 **	Nm
 */
-int				is_opt(void *data, char opt);
 uint32_t		swap_uint32(uint32_t val);
 uint64_t		swap_uint64(uint64_t val);
+int				is_opt(void *data, char opt);
 int				file_access(void *file, off_t read, off_t file_size);
 char			*itoa_base_uint64(uint64_t value, int base);
 
@@ -113,6 +114,7 @@ void			ft_nm(t_list *elem);
 void			nm_output(t_list *elem);
 void			data_del(void *content, size_t size);
 void			smb_del(void *content, size_t size);
+uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable);
 
 int				archive_handler(t_data *d);
 int				fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);

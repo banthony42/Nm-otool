@@ -6,11 +6,27 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/17 15:31:17 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/24 19:33:20 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+/*
+**	Affiche le nom du programme suivi de deux char*
+**	Exemple d'utilisation: (message d'erreur) ft_nm_info(path, ERROR_PATH)
+**	pour notifier sur une erreur de nom de fichier
+*/
+
+int			ft_nm_info(char *str, char *info)
+{
+	ft_putstr("ft_nm: ");
+	ft_putstr(str);
+	if (str)
+		ft_putstr(": ");
+	ft_putendl(info);
+	return (0);
+}
 
 int			is_opt(void *data, char opt)
 {
@@ -49,19 +65,7 @@ uint64_t	swap_uint64(uint64_t val)
 	return (v1 | v2);
 }
 
-void			smb_del(void *content, size_t size)
-{
-	t_smb *tmp;
-
-	if (!content || !size)
-		return ;
-	tmp = (t_smb *)content;
-	ft_strdel(&tmp->name);
-	ft_strdel(&tmp->value);
-	ft_memdel((void **)&tmp);
-}
-
-void			data_del(void *content, size_t size)
+void		data_del(void *content, size_t size)
 {
 	t_data	*d;
 
@@ -77,9 +81,13 @@ void			data_del(void *content, size_t size)
 	ft_memdel((void**)&d);
 }
 
+/*
+**Fonction temporaire
+*/
+
 void		print_elem(t_list *elem)
 {
-	t_data	*h;
+	t_data*h;
 
 	h = (t_data*)elem->content;
 	if (h->token == OPTION)
@@ -95,22 +103,6 @@ void		print_elem(t_list *elem)
 	ft_putstr("\topt ");
 	ft_print_memory(h->opt, NB_OPTIONS);
 }
-
-/*
-**	Affiche le nom du programme suivi de deux char*
-**	Exemple d'utilisation: (message d'erreur) ft_nm_info(path, ERROR_PATH)
-**	pour notifier sur une erreur de nom de fichier
-*/
-int			ft_nm_info(char *str, char *info)
-{
-	ft_putstr("ft_nm: ");
-	ft_putstr(str);
-	if (str)
-		ft_putstr(": ");
-	ft_putendl(info);
-	return (0);
-}
-
 
 /*Swap x32 - Gestion des MH_CIGAM & FAT_CIGAM*/
 /*
@@ -173,7 +165,6 @@ v1:	  0xbeca fe2a 0000 0000
 
 x2: 0x0000 0000 babe cafe	-- x >> 32
 r4:	0x0000 0000 0000 babe	-- x2 >> 16
-
 
 	  0x0000 babe cafe 0000	-- x2 << 16
 	& 0x0000 0000 FFFF 0000	-- MASK
