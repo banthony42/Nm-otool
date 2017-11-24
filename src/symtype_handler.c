@@ -6,9 +6,11 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/24 19:27:02 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/24 19:53:25 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_nm.h"
 
 /*
 **	U  (undefined),  A  (absolute),  T  (text section symbol),
