@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:36:17 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/24 19:36:18 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/25 18:24:22 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file,
 	printf("ncmds swapped:%d\n", ncmds);
 	if (ncmds && file && size && d)
 		;
-	if (error <= 0)
+	if (error)
 		return (error);
-	return (1);
+	return (0);
 }
 
 static t_list	*create_symbol_list(t_data *d, struct nlist_64 symtable,
@@ -37,7 +37,8 @@ static t_list	*create_symbol_list(t_data *d, struct nlist_64 symtable,
 		return (NULL);
 	if (!(tmp->value = itoa_base_uint64(symtable.n_value, 16)))
 		return (NULL);
-	tmp->type = get_symboltype64(d, symtable);
+	if (!(tmp->type = get_symboltype64(d, symtable)))
+		return (NULL);
 	if (tmp->name[0] != '\0')
 	{
 		if (!d->sym)
@@ -58,20 +59,20 @@ static int		symtab_handler_64(struct symtab_command *sym, t_data *d,
 
 	i = 0;
 	if ((unsigned char *)(sym + 1) > (file + size))
-		return (0);
+		return (1);
 	strtable = (void *)(file + sym->stroff);
 	symtable = (void *)(file + sym->symoff);
 	if ((unsigned char *)(strtable + sym->strsize) > (file + size))
-		return (0);
+		return (1);
 	if ((unsigned char *)(symtable + 1) > (file + size))
-		return (0);
+		return (1);
 	while (i < sym->nsyms)
 	{
 		if (!(create_symbol_list(d, symtable[i], strtable)))
-			return (0);
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file,
@@ -83,21 +84,27 @@ int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file,
 	struct segment_command_64	*sgmt64;
 
 	i = 0;
-	error = 1;
+	error = 0;
 	lc = (void *)(file + sizeof(struct mach_header_64));
 	while (i < ncmds)
 	{
 		if ((unsigned char *)(lc + 1) > (file + size))
-			return (0);
+			return (1);
 		if (lc->cmd == LC_SEGMENT_64 && !d->first_sectoff)
 		{
 			sgmt64 = (struct segment_command_64 *)(void*)lc;
 			if (!ft_strcmp(SEG_PAGEZERO, sgmt64->segname))
+			{
+				if ((unsigned char *)(sgmt64 + 1) > (file + size))
+					return (1);
 				d->first_sectoff = (void*)(sgmt64 + 1);
+			}
+			else
+				d->first_sectoff = (void*)(sgmt64);
 		}
 		if (lc->cmd == LC_SYMTAB)
 			error = symtab_handler_64((void *)lc, d, file, size);
-		if (error <= 0)
+		if (error)
 			return (error);
 		lc = (void *)((unsigned char*)lc + lc->cmdsize);
 		i++;
@@ -106,3 +113,11 @@ int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file,
 	ft_lstdel(&d->sym, smb_del);
 	return (error);
 }
+
+
+
+
+
+
+
+

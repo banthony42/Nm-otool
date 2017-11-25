@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/23 18:15:38 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/25 17:02:52 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int				file_access(void *file, off_t read, off_t file_size);
 char			*itoa_base_uint64(uint64_t value, int base);
 
 void			ft_nm(t_list *elem);
+int				*error_number(int *err);
 void			nm_output(t_list *elem);
 void			data_del(void *content, size_t size);
 void			smb_del(void *content, size_t size);

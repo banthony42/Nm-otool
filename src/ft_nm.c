@@ -6,20 +6,29 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 19:39:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/17 16:29:43 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/25 20:01:45 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
+int		*error_number(int *err)
+{
+	static int error;
+
+	if (err)
+		error = *err;
+	return (&error);
+}
+
 int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
 {
 	if (!file)
-		return (0);
+		return (1);
 	if (magic == MH_CIGAM && size && d)
 		;
 	ft_putendlcol(RED, "Arch_32");
-	return (1);
+	return (0);
 }
 
 
@@ -30,7 +39,7 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	struct mach_header_64	*hdr64;
 
 	if (!file_access(file, sizeof(struct mach_header_64), size))
-		return (0);
+		return (1);
 	error = -1;
 	hdr64 = (struct mach_header_64 *)file;
 	ncmds = hdr64->ncmds;
@@ -42,9 +51,9 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 		ncmds = swap_uint32(ncmds);
 		error = arch_64_cigam(ncmds, d, file, size);
 	}
-	if (error <= 0)
+	if (error)
 		return (error);
-	return (1);
+	return (0);
 }
 
 void	ft_nm(t_list *elem)
@@ -53,7 +62,7 @@ void	ft_nm(t_list *elem)
 	t_data		*d;
 	int			error;
 
-	error = -2;
+	error = 2;
 	if (!elem || !elem->content)
 		return ;
 	if ((d = (t_data*)elem->content)->token != PATH || !d->file)
@@ -68,10 +77,9 @@ void	ft_nm(t_list *elem)
 		error = fat_arch_32_handler(magic, d, (unsigned char*)d->file, d->stat.st_size);
 	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))
 		error = archive_handler(d);
-	if (error == -2)
-		ft_putendlcol(YELLOW, "NM: UNKNOW MAGIC");
-	if (error <= 0)
+	if (error)
 		ft_nm_info(d->av, ERR_FILE);
+	error_number(&error);
 }
 
 /*

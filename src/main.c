@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/24 19:17:17 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/25 16:37:54 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void		nm_output(t_list *elem)
 {
 	t_smb	*tmp;
 
-	if (!(tmp = (t_smb*)elem->content) || tmp->type == (uint8_t)'?')
+	if (!(tmp = (t_smb*)elem->content) || tmp->type == (uint8_t)'?'
+			|| tmp->type == (uint8_t)'-')
 		return ;
 	if (tmp->type == (uint8_t)'U')
 		ft_putstr(PADD_SPACE);
@@ -98,10 +99,10 @@ static void	option_analyse(t_list **entry)
 	one->lstadd_somewhere = &(lstadd_alpha);
 	if (is_opt(one, 'r') && !(is_opt(one, 'p')))
 		one->lst_browser = &(lstiter_reverse);
+	if (is_opt(one, 'p'))
+		one->lstadd_somewhere = &(ft_lstaddback);
 	else if (is_opt(one, 'n'))
 		one->lstadd_somewhere = &(lstadd_numeric);
-	else if (is_opt(one, 'p'))
-		one->lstadd_somewhere = &(ft_lstaddback);
 	l = *entry;
 	while ((*entry))
 	{
@@ -135,10 +136,15 @@ int			main(int ac, char **av)
 	}
 	option_analyse(&entry);
 	ft_lstiter(entry, &ft_nm);		/*Recup des data*/
-	ft_lstdel(&entry, data_del);	/*Liberation de la memoire*/
 //	system("leaks ft_nm");
-	return (EXIT_SUCCESS);
+	ft_lstdel(&entry, data_del);	/*Liberation de la memoire*/
+	return (*(error_number(NULL)));
 }
+
+
+
+
+
 
 
 

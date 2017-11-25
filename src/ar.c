@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/10 17:27:19 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/25 20:02:14 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static off_t	is_ranlib(t_data *d, char **name, off_t n)
 		ft_strdel(name);
 		return (RANLIB);
 	}
+	ft_putchar('\n');
 	ft_putstr(d->av);
 	ft_putchar('(');
 	if (name && *name)
@@ -56,11 +57,11 @@ static int		magic_handler(off_t *i, t_data *d, struct ar_hdr *h)
 	uint32_t	magic;
 	int			error;
 
-	error = -1;
+	error = 1;
 	if (ft_strncmp(h->ar_fmag, ARFMAG, ft_strlen(ARFMAG)))
 		return (error);
 	if ((*i = extract_ar_name(d, h)) == RANLIB)
-		return (1);
+		return (0);
 	magic = *(uint32_t *)(void*)&h->ar_fmag[*i];
 	if (magic == MH_MAGIC_64 || magic == MH_CIGAM_64)
 		error = arch_64_handler(magic, d, (void*)&h->ar_fmag[*i], (off_t)ft_atoi(h->ar_size));
@@ -83,18 +84,18 @@ int				archive_handler(t_data *d)
 	unsigned char	*ptr;
 
 	i = SARMAG;
-	error = -1;
+	error = 1;
 	ptr = ((unsigned char *)d->file) + i;
 	while (OFFSET(ptr, d->file) < d->stat.st_size)
 	{
 		if ((h = (struct ar_hdr *)ptr))
 			error = magic_handler(&i, d, h);
-		if (error <= 0 && i != SARMAG)
+		if (error && error != ARCHIVE_CONCAT && i != SARMAG)
 			return (error);
 		if (error == ARCHIVE_CONCAT)
 			ft_putendl(ARCHIVE_CONCAT_MSG);
 		i = (off_t)((sizeof(struct ar_hdr)) + (size_t)ft_atoi(h->ar_size));
 		ptr = ptr + i;
 	}
-	return (1);
+	return (0);
 }

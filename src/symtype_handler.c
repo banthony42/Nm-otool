@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/24 19:53:25 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/25 18:48:44 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,23 @@
 **	module in the same library.
 */
 
-static uint8_t	get_sect_type(struct segment_command_64 *sgmt,
+static uint8_t	get_sect_type64(unsigned char *file, off_t size, struct segment_command_64 *sgmt,
 									struct nlist_64 symtable)
 {
 	uint8_t				n;
 	int					i;
 	struct section_64	*sect;
 
-	n = 0;
+	n = 1;
 	sect = NULL;
-	while (sgmt->cmd == LC_SEGMENT_64)
+	if (!sgmt || (unsigned char *)(sgmt + 1) > (file + size))
+		return (0);
+	while (((unsigned char*)(sgmt + 1) < (file + size)) && sgmt->cmd == LC_SEGMENT_64)
 	{
 		i = -1;
+		n--;
+		if ((unsigned char*)(sgmt + 1) > (file + size))
+			return (0);
 		sect = (struct section_64 *)(sgmt + 1);
 		while (++n < symtable.n_sect && (uint8_t)++i < sgmt->nsects)
 			sect++;
@@ -48,8 +53,6 @@ static uint8_t	get_sect_type(struct segment_command_64 *sgmt,
 		return ((uint8_t)'D');
 	else if (sect && !(ft_strcmp(SECT_BSS, sect->sectname)))
 		return ((uint8_t)'B');
-	else if (sect && !(ft_strcmp(SECT_COMMON, sect->sectname)))
-		return ((uint8_t)'C');
 	return ((uint8_t)'S');
 }
 
@@ -58,16 +61,24 @@ uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable)
 	uint8_t	type;
 
 	if ((symtable.n_type & N_STAB))
-		return ((uint8_t)'?');
+		return ((uint8_t)'-');
 	if ((symtable.n_type & N_TYPE) == N_UNDF)
+	{
 		type = (uint8_t)'U';
+		if (symtable.n_type & N_EXT && symtable.n_type & N_PEXT)
+			type = (uint8_t)'u';
+		if (symtable.n_type & N_EXT && symtable.n_value)
+			type = (uint8_t)'C';
+	}
 	else if ((symtable.n_type & N_TYPE) == N_ABS)
 		type = (uint8_t)'A';
 	else if ((symtable.n_type & N_TYPE) == N_SECT)
-		type = get_sect_type((void*)d->first_sectoff, symtable);
+		type = get_sect_type64(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
 	else if ((symtable.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else
 		type = (uint8_t)'?';
+	if (!(symtable.n_type & N_EXT))
+		type = (uint8_t)ft_tolower((int)type);
 	return (type);
 }
