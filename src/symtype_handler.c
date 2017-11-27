@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/25 18:48:44 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/27 16:25:48 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,28 @@ static uint8_t	get_sect_type64(unsigned char *file, off_t size, struct segment_c
 		return (0);
 	while (((unsigned char*)(sgmt + 1) < (file + size)) && sgmt->cmd == LC_SEGMENT_64)
 	{
-		i = -1;
-		n--;
+		i = 0;
 		if ((unsigned char*)(sgmt + 1) > (file + size))
 			return (0);
 		sect = (struct section_64 *)(sgmt + 1);
-		while (++n < symtable.n_sect && (uint8_t)++i < sgmt->nsects)
+		while (n < symtable.n_sect && (uint8_t)i < sgmt->nsects)
+		{
+//			ft_putnbr(n);
+//			ft_putstrcol(BLUE, sect->segname);
+//			ft_putendlcol(BLUE, sect->sectname);
 			sect++;
+			n++;
+			i++;
+		}
 		if (n == symtable.n_sect)
+		{
+//			ft_putnbr(n);
+//			ft_putstrcol(BLUE, sect->segname);
+//			ft_putendlcol(BLUE, sect->sectname);
+//			ft_putendlcol(RED, "END");
 			break ;
+		}
+//		ft_putendlcol(RED, "NEXT SEG");
 		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
 	}
 	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))

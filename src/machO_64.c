@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:36:17 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/25 18:24:22 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/27 16:25:17 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static t_list	*create_symbol_list(t_data *d, struct nlist_64 symtable,
 		return (NULL);
 	if (!(tmp->value = itoa_base_uint64(symtable.n_value, 16)))
 		return (NULL);
+//	ft_putendlcol(GREEN, tmp->name);
 	if (!(tmp->type = get_symboltype64(d, symtable)))
 		return (NULL);
 	if (tmp->name[0] != '\0')

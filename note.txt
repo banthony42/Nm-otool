@@ -6,9 +6,16 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/11/24 16:31:28 by banthony         ###   ########.fr         
+     Updated: 2017/11/27 16:27:26 by banthony         ###   ########.fr         
 
 ********************************************************************************
+
+
+
+Issue:
+	libmlx.a (/usr/share/local/lib/) - probleme sur __bss
+
+
 
 
 Sur un fichier sans droit, l'erreur pop sur open
