@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:36:17 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/27 16:25:17 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/28 19:47:18 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file,
 	int error;
 
 	error = -1;
-	printf("ncmds swapped:%d\n", ncmds);
+	ft_putendlcol(YELLOW, "_64_cigam_handler");
 	if (ncmds && file && size && d)
 		;
 	if (error)
@@ -26,7 +26,7 @@ int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file,
 	return (0);
 }
 
-static t_list	*create_symbol_list(t_data *d, struct nlist_64 symtable,
+static t_list	*create_symbol_list64(t_data *d, struct nlist_64 symtable,
 												char *strtable)
 {
 	t_smb	*tmp;
@@ -37,9 +37,9 @@ static t_list	*create_symbol_list(t_data *d, struct nlist_64 symtable,
 		return (NULL);
 	if (!(tmp->value = itoa_base_uint64(symtable.n_value, 16)))
 		return (NULL);
-//	ft_putendlcol(GREEN, tmp->name);
 	if (!(tmp->type = get_symboltype64(d, symtable)))
 		return (NULL);
+	tmp->arch = ARCH64;
 	if (tmp->name[0] != '\0')
 	{
 		if (!d->sym)
@@ -51,6 +51,9 @@ static t_list	*create_symbol_list(t_data *d, struct nlist_64 symtable,
 	return (d->sym);
 }
 
+/*
+**	Possible besoin de decliner en magic - cigam
+*/
 static int		symtab_handler_64(struct symtab_command *sym, t_data *d,
 										unsigned char *file, off_t size)
 {
@@ -69,7 +72,7 @@ static int		symtab_handler_64(struct symtab_command *sym, t_data *d,
 		return (1);
 	while (i < sym->nsyms)
 	{
-		if (!(create_symbol_list(d, symtable[i], strtable)))
+		if (!(create_symbol_list64(d, symtable[i], strtable)))
 			return (1);
 		i++;
 	}

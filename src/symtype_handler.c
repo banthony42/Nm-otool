@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/27 16:25:48 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/28 19:29:29 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 **	module in the same library.
 */
 
+/*
+** probleme sur /usr/lib/libmlx.a (section _bss et _data qui saute au parsing)
+*/
 static uint8_t	get_sect_type64(unsigned char *file, off_t size, struct segment_command_64 *sgmt,
 									struct nlist_64 symtable)
 {
@@ -43,7 +46,7 @@ static uint8_t	get_sect_type64(unsigned char *file, off_t size, struct segment_c
 		while (n < symtable.n_sect && (uint8_t)i < sgmt->nsects)
 		{
 //			ft_putnbr(n);
-//			ft_putstrcol(BLUE, sect->segname);
+//			ft_putstrcol(YELLOW, sect->segname);
 //			ft_putendlcol(BLUE, sect->sectname);
 			sect++;
 			n++;
@@ -87,6 +90,69 @@ uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable)
 		type = (uint8_t)'A';
 	else if ((symtable.n_type & N_TYPE) == N_SECT)
 		type = get_sect_type64(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
+	else if ((symtable.n_type & N_TYPE) == N_INDR)
+		type = (uint8_t)'I';
+	else
+		type = (uint8_t)'?';
+	if (!(symtable.n_type & N_EXT))
+		type = (uint8_t)ft_tolower((int)type);
+	return (type);
+}
+
+static uint8_t	get_sect_type32(unsigned char *file, off_t size, struct segment_command *sgmt,
+									struct nlist symtable)
+{
+	uint8_t				n;
+	int					i;
+	struct section		*sect;
+
+	n = 1;
+	sect = NULL;
+	if (!sgmt || (unsigned char *)(sgmt + 1) > (file + size))
+		return (0);
+	while (((unsigned char*)(sgmt + 1) < (file + size)) && sgmt->cmd == LC_SEGMENT)
+	{
+		i = 0;
+		if ((unsigned char*)(sgmt + 1) > (file + size))
+			return (0);
+		sect = (struct section *)(sgmt + 1);
+		while (n < symtable.n_sect && (uint8_t)i < sgmt->nsects)
+		{
+			sect++;
+			n++;
+			i++;
+		}
+		if (n == symtable.n_sect)
+			break ;
+		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
+	}
+	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))
+		return ((uint8_t)'T');
+	else if (sect && !(ft_strcmp(SECT_DATA, sect->sectname)))
+		return ((uint8_t)'D');
+	else if (sect && !(ft_strcmp(SECT_BSS, sect->sectname)))
+		return ((uint8_t)'B');
+	return ((uint8_t)'S');
+}
+
+uint8_t			get_symboltype32(t_data *d, struct nlist symtable)
+{
+	uint8_t	type;
+
+	if ((symtable.n_type & N_STAB))
+		return ((uint8_t)'-');
+	if ((symtable.n_type & N_TYPE) == N_UNDF)
+	{
+		type = (uint8_t)'U';
+		if (symtable.n_type & N_EXT && symtable.n_type & N_PEXT)
+			type = (uint8_t)'u';
+		if (symtable.n_type & N_EXT && symtable.n_value)
+			type = (uint8_t)'C';
+	}
+	else if ((symtable.n_type & N_TYPE) == N_ABS)
+		type = (uint8_t)'A';
+	else if ((symtable.n_type & N_TYPE) == N_SECT)
+		type = get_sect_type32(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
 	else if ((symtable.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else

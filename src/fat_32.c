@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/25 16:28:59 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/28 20:00:14 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t 
 	i = 0;
 	error = 1;
 	frh = (void*)(file + sizeof(struct fat_header));	/*Recup du pointeur vers la premiere struct fat_header*/
-	while (i < nfat_arch)
+	while (i < nfat_arch && !i)	/*Enlever le !i pour option -arch all*/
 	{
 		offset = swap_uint32(frh[i].offset);	/*Swap data*/
 		if (!file_access(file, offset, size))
@@ -62,7 +62,7 @@ int	fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t 
 	i = 0;
 	error = 1;
 	frh = (void*)(file + sizeof(struct fat_header));	/*Recup du pointeur vers la premiere struct fat_header*/
-	while (i < nfat_arch)
+	while (i < nfat_arch && !i)	/*Enlever !i pour option -arch all*/
 	{
 		if (!file_access(file, frh[i].offset, size))
 			return (1);

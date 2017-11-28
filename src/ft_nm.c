@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 19:39:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/25 20:01:45 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/28 18:09:35 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,25 @@ int		*error_number(int *err)
 
 int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
 {
-	if (!file)
+	int					error;
+	uint32_t			ncmds;
+	struct mach_header	*hdr;
+
+	if (!file_access(file, sizeof(struct mach_header), size))
 		return (1);
-	if (magic == MH_CIGAM && size && d)
-		;
-	ft_putendlcol(RED, "Arch_32");
+	error = -1;
+	hdr = (struct mach_header *)file;
+	ncmds = hdr->ncmds;
+	if (magic == MH_MAGIC)
+		error = arch_32_magic(ncmds, d, file, size);
+	if (magic == MH_CIGAM)
+	{
+		ft_putendlcol(YELLOW, "MH_CIGAM - TODO");
+		ncmds = swap_uint32(ncmds);
+		error = arch_32_cigam(ncmds, d, file, size);
+	}
+	if (error)
+		return (error);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/25 16:37:54 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/28 19:44:08 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ void		nm_output(t_list *elem)
 	if (!(tmp = (t_smb*)elem->content) || tmp->type == (uint8_t)'?'
 			|| tmp->type == (uint8_t)'-')
 		return ;
-	if (tmp->type == (uint8_t)'U')
-		ft_putstr(PADD_SPACE);
+	if (tmp->type == (uint8_t)'U' && tmp->arch == 64)
+		ft_putstr(PADD_SPACE64);
+	else if (tmp->type == (uint8_t)'U' && tmp->arch == 32)
+		ft_putstr(PADD_SPACE32);
 	else
 		ft_putstr(tmp->value);
 	ft_putchar(' ');

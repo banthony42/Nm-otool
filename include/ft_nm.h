@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/26 19:26:19 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/28 19:47:32 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@
 # define ARCHIVE_CONCAT 42
 # define ARCHIVE_CONCAT_MSG "ft_nm: archive inside an other archive, is not managed"
 # define RANLIB	-42
-# define PADD_ZERO	"0000000000000000"
-# define PADD_SPACE	"                "
+# define ARCH32 32
+# define ARCH64 64
+# define PADD_SPACE64	"                "
+# define PADD_SPACE32	"        "
 
 typedef enum	e_options
 {
@@ -60,7 +62,8 @@ typedef	struct	s_smb
 {
 	char		*value;				/*valeur du symbol*/
 	uint8_t		type;				/*Type du symbol*/
-	char		padding[7];			/*variable d'alignement de la structure*/
+	uint8_t		arch;
+	char		padding[6];			/*variable d'alignement de la structure*/
 	char		*name;				/*Nom du symbol*/
 }				t_smb;
 
@@ -104,37 +107,59 @@ void			default_file(t_list **lst);
 /*
 **	Nm
 */
-uint32_t		swap_uint32(uint32_t val);
-uint64_t		swap_uint64(uint64_t val);
-int				is_opt(void *data, char opt);
-int				file_access(void *file, off_t read, off_t file_size);
-char			*itoa_base_uint64(uint64_t value, int base);
 
 void			ft_nm(t_list *elem);
+int				is_opt(void *data, char opt);
+int				file_access(void *file, off_t read, off_t file_size);
 int				*error_number(int *err);
 void			nm_output(t_list *elem);
 void			data_del(void *content, size_t size);
 void			smb_del(void *content, size_t size);
-uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable);
 
-int				archive_handler(t_data *d);
-int				fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
-int				fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
-int				fat_arch_32_handler(uint32_t magic, t_data *d, unsigned char *file, off_t size);
-int				arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size);
-int				arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size);
-
-int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
-int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
 
 /*
-**	struct fat_arch_64 pas toujours present sur les mac
+**	Nm - Archive
+*/
+int				archive_handler(t_data *d);
+
+/*
+**	Nm - Universal binaries x32
+*/
+
+int				fat_arch_32_handler(uint32_t magic, t_data *d, unsigned char *file, off_t size);
+int				fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
+int				fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
+
+/*
+**	Nm - Universal binaries x64 - (La struct fat_arch_64 n'est pas toujours presentes sur les mac)
 */
 /*
 int				fat_arch_64_handler(uint32_t magic, unsigned char *file, off_t size);
 int				fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
 int				fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
 */
+
+/*
+**	Nm - Mach-o x32
+*/
+int				arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size);
+int				arch_32_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
+int				arch_32_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
+uint32_t		swap_uint32(uint32_t val);
+uint8_t			get_symboltype32(t_data *d, struct nlist symtable);
+char			*itoa_base_uint32(uint32_t value, int base);
+
+/*
+**	Nm - Mach-o x64
+*/
+
+int				arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size);
+int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
+int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
+uint64_t		swap_uint64(uint64_t val);
+char			*itoa_base_uint64(uint64_t value, int base);
+uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable);
+
 #endif
 
 
