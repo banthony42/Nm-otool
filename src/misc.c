@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/24 19:33:20 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/29 18:21:35 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@
 
 int			ft_nm_info(char *str, char *info)
 {
-	ft_putstr("ft_nm: ");
+	if (info)
+		ft_putstr("ft_nm: ");
 	ft_putstr(str);
 	if (str)
-		ft_putstr(": ");
-	ft_putendl(info);
+		ft_putstr(":");
+	if (info)
+		ft_putendl(info);
+	else
+		ft_putchar('\n');
 	return (0);
 }
 

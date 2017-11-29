@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/28 19:47:32 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/29 17:47:11 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define RANLIB	-42
 # define ARCH32 32
 # define ARCH64 64
+# define ARCH_OK -21
 # define PADD_SPACE64	"                "
 # define PADD_SPACE32	"        "
 

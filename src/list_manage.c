@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 17:29:26 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/24 19:35:02 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/29 19:39:12 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ void		lstadd_alpha(t_list **begin, t_list *new)
 		lst_swap(begin, mem[1], new);
 		return ;
 	}
+	else if (ft_strcmp(e[1]->name, e[0]->name) == 0)
+	{
+		if (ft_strcmp(e[1]->value, e[0]->value) > 0)
+		{
+			lst_swap(&mem[0], mem[1], new);
+			return ;
+		}
+	}
 	while (mem[0])
 	{
 		if (!(e[1] = (t_smb*)mem[0]->content))
@@ -63,6 +71,14 @@ void		lstadd_alpha(t_list **begin, t_list *new)
 		{
 			lst_swap(&mem[0], mem[1], new);
 			return ;
+		}
+		else if (ft_strcmp(e[1]->name, e[0]->name) == 0)
+		{
+			if (ft_strcmp(e[1]->value, e[0]->value) > 0)
+			{
+				lst_swap(&mem[0], mem[1], new);
+				return ;
+			}
 		}
 		mem[1] = mem[0];
 		mem[0] = mem[0]->next;
