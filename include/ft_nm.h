@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/29 17:47:11 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/30 19:04:41 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@
 # define RANLIB	-42
 # define ARCH32 32
 # define ARCH64 64
-# define ARCH_OK -21
+# define ARCH_OK 21
+# define ARCH_ALL -21
 # define PADD_SPACE64	"                "
 # define PADD_SPACE32	"        "
 
@@ -58,6 +59,17 @@ typedef enum	e_options
 {
 	OPTION, PATH,
 }				t_options;
+
+typedef struct	s_arch
+{
+	char		*name;
+	cpu_type_t	cputype;
+	int			padding;
+}				t_arch;
+
+# define ARCH_DATA_SIZE 6
+
+extern t_arch arch_data[ARCH_DATA_SIZE];
 
 typedef	struct	s_smb
 {
@@ -130,6 +142,7 @@ int				archive_handler(t_data *d);
 int				fat_arch_32_handler(uint32_t magic, t_data *d, unsigned char *file, off_t size);
 int				fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
 int				fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
+void			print_arch(struct fat_arch, t_data *d, int mgc);
 
 /*
 **	Nm - Universal binaries x64 - (La struct fat_arch_64 n'est pas toujours presentes sur les mac)

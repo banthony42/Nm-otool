@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 19:39:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/28 18:09:35 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:15:17 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
 		error = arch_32_magic(ncmds, d, file, size);
 	if (magic == MH_CIGAM)
 	{
-		ft_putendlcol(YELLOW, "MH_CIGAM - TODO");
 		ncmds = swap_uint32(ncmds);
 		error = arch_32_cigam(ncmds, d, file, size);
 	}
@@ -45,11 +44,10 @@ int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	return (0);
 }
 
-
 int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 {
-	int error;
-	uint32_t ncmds;
+	int						error;
+	uint32_t				ncmds;
 	struct mach_header_64	*hdr64;
 
 	if (!file_access(file, sizeof(struct mach_header_64), size))
@@ -58,7 +56,7 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	hdr64 = (struct mach_header_64 *)file;
 	ncmds = hdr64->ncmds;
 	if (magic == MH_MAGIC_64)
-			error = arch_64_magic(ncmds, d, file, size);
+		error = arch_64_magic(ncmds, d, file, size);
 	if (magic == MH_CIGAM_64)
 	{
 		ft_putendlcol(YELLOW, "MH_CIGAM_64 - TODO");
@@ -88,7 +86,8 @@ void	ft_nm(t_list *elem)
 	else if (magic == MH_MAGIC || magic == MH_CIGAM)
 		error = arch_32_handler(magic, d, d->file, d->stat.st_size);
 	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)
-		error = fat_arch_32_handler(magic, d, (unsigned char*)d->file, d->stat.st_size);
+		error = fat_arch_32_handler(magic, d,
+									(unsigned char*)d->file, d->stat.st_size);
 	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))
 		error = archive_handler(d);
 	if (error)

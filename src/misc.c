@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/29 18:21:35 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:13:06 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,29 +83,6 @@ void		data_del(void *content, size_t size)
 	ft_strdel(&d->av);
 	ft_lstdel(&d->sym, smb_del);
 	ft_memdel((void**)&d);
-}
-
-/*
-**Fonction temporaire
-*/
-
-void		print_elem(t_list *elem)
-{
-	t_data*h;
-
-	h = (t_data*)elem->content;
-	if (h->token == OPTION)
-		ft_putstr("OPTION\t");
-	if (h->token == PATH)
-		ft_putstr("FILE\t");
-	ft_putstr(h->av);
-	ft_putstr("\tfd ");
-	ft_putnbr(h->fd);
-	ft_putstr("\tdlen: ");
-	ft_putnbr(h->data_len);
-	ft_putchar('\t');
-	ft_putstr("\topt ");
-	ft_print_memory(h->opt, NB_OPTIONS);
 }
 
 /*Swap x32 - Gestion des MH_CIGAM & FAT_CIGAM*/

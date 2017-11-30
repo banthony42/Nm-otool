@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:47 by banthony          #+#    #+#             */
-/*   Updated: 2017/10/30 17:08:01 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:18:48 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	fat_arch_64_handler(uint32_t magic, unsigned char *file, off_t size)
 	uint32_t			nfat_arch;
 	struct fat_arch_64	*frh;
 
-	if (!file_access(file, sizeof(struct fat_header) + sizeof(struct fat_arch_64), size))
+	if (!file_access(file, sizeof(struct fat_header)
+							+ sizeof(struct fat_arch_64), size))
 		return (0);
 	i = 0;
 	error = -1;
@@ -46,7 +47,8 @@ int	fat_arch_64_handler(uint32_t magic, unsigned char *file, off_t size)
 	return (1);
 }
 
-int	fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size)
+int	fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch_64 *frh,
+									unsigned char *file, off_t size)
 {
 	int				error;
 	uint32_t		*mgc;
@@ -72,7 +74,8 @@ int	fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char
 	return (1);
 }
 
-int	fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size)
+int	fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch_64 *frh,
+									unsigned char *file, off_t size)
 {
 	int				error;
 	uint32_t		*mgc;

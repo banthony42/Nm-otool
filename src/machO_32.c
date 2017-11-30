@@ -6,22 +6,23 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:36:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/28 19:47:04 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:33:03 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int				arch_32_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
+int				arch_32_cigam(uint32_t ncmds, t_data *d,
+								unsigned char *file, off_t size)
 {
 	int error;
 
-	error = -1;
-	ft_putendlcol(YELLOW, "_32_cigam_handler");
+	error = 0;
 	if (ncmds && file && size && d)
 		;
 	if (error)
 		return (error);
+	ft_putendlcol(YELLOW, "_32_cigam_handler");
 	return (0);
 }
 
@@ -51,7 +52,7 @@ static t_list	*create_symbol_list32(t_data *d, struct nlist symtable,
 }
 
 static int		symtab_handler_32(struct symtab_command *sym, t_data *d,
-							  unsigned char *file, off_t size)
+										unsigned char *file, off_t size)
 {
 	uint32_t		i;
 	char			*strtable;
@@ -73,7 +74,8 @@ static int		symtab_handler_32(struct symtab_command *sym, t_data *d,
 	return (0);
 }
 
-int				arch_32_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
+int				arch_32_magic(uint32_t ncmds, t_data *d,
+								unsigned char *file, off_t size)
 {
 	int						error;
 	uint32_t				i;
@@ -110,22 +112,3 @@ int				arch_32_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
 	ft_lstdel(&d->sym, smb_del);
 	return (error);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

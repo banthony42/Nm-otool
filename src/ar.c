@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/25 20:02:14 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:26:13 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,14 @@ static int		magic_handler(off_t *i, t_data *d, struct ar_hdr *h)
 		return (0);
 	magic = *(uint32_t *)(void*)&h->ar_fmag[*i];
 	if (magic == MH_MAGIC_64 || magic == MH_CIGAM_64)
-		error = arch_64_handler(magic, d, (void*)&h->ar_fmag[*i], (off_t)ft_atoi(h->ar_size));
+		error = arch_64_handler(magic, d, (void*)&h->ar_fmag[*i],
+									(off_t)ft_atoi(h->ar_size));
 	else if (magic == MH_MAGIC || magic == MH_CIGAM)
-		error = arch_32_handler(magic, d, (void*)&h->ar_fmag[*i], (off_t)ft_atoi(h->ar_size));
+		error = arch_32_handler(magic, d, (void*)&h->ar_fmag[*i],
+									(off_t)ft_atoi(h->ar_size));
 	else if (magic == FAT_MAGIC || magic == FAT_CIGAM)
-		error = fat_arch_32_handler(magic, d, (void*)&h->ar_fmag[*i], (off_t)ft_atoi(h->ar_size));
+		error = fat_arch_32_handler(magic, d, (void*)&h->ar_fmag[*i],
+									(off_t)ft_atoi(h->ar_size));
 	else if (!(ft_strncmp(ARMAG, (char*)&h->ar_fmag[*i], SARMAG)))
 		return (ARCHIVE_CONCAT);
 	else

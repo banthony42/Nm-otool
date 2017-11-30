@@ -6,7 +6,7 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/11/28 20:29:56 by banthony         ###   ########.fr        #
+#    Updated: 2017/11/30 18:05:23 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,7 +22,7 @@ HEADER_FILE = ft_nm.h	\
 
 SRC_FILE = 	main.c				parsing.c	ft_nm.c	misc.c	ar.c	fat_32.c			\
 			itoa_base_uint.c	macho_64.c	list_manage.c			symtype_handler.c	\
-			macho_32.c	\
+			macho_32.c			misc2.c											\
 
 #fat_64.c	\
 

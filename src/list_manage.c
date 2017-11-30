@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 17:29:26 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/29 19:39:12 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:09:35 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **		New est ajouter avant la ou en est le pointeur begin
 */
 
-static void	lst_swap(t_list **begin, t_list *previous, t_list *new)
+static void		lst_swap(t_list **begin, t_list *previous, t_list *new)
 {
 	t_list	*tmp;
 
@@ -41,96 +41,86 @@ static void	lst_swap(t_list **begin, t_list *previous, t_list *new)
 **	Insertion par tri lexicographique
 */
 
-void		lstadd_alpha(t_list **begin, t_list *new)
+static int		add_compare_name(t_smb **e, t_list **begin,
+								t_list *mem[2], t_list *new)
 {
-	t_list	*mem[2];
-	t_smb	*e[2];
-
-	mem[0] = *begin;
-	mem[1] = NULL;
-	if (!(e[0] = (t_smb*)new->content) || !(e[1] = (t_smb*)mem[0]->content))
-		return ;
 	if (ft_strcmp(e[1]->name, e[0]->name) > 0)
 	{
-		lst_swap(begin, mem[1], new);
-		return ;
+		if (begin)
+			lst_swap(begin, mem[1], new);
+		else
+			lst_swap(&mem[0], mem[1], new);
+		return (0);
 	}
 	else if (ft_strcmp(e[1]->name, e[0]->name) == 0)
 	{
 		if (ft_strcmp(e[1]->value, e[0]->value) > 0)
 		{
 			lst_swap(&mem[0], mem[1], new);
-			return ;
+			return (0);
 		}
 	}
-	while (mem[0])
-	{
-		if (!(e[1] = (t_smb*)mem[0]->content))
-			return ;
-		if (ft_strcmp(e[1]->name, e[0]->name) > 0)
-		{
-			lst_swap(&mem[0], mem[1], new);
-			return ;
-		}
-		else if (ft_strcmp(e[1]->name, e[0]->name) == 0)
-		{
-			if (ft_strcmp(e[1]->value, e[0]->value) > 0)
-			{
-				lst_swap(&mem[0], mem[1], new);
-				return ;
-			}
-		}
-		mem[1] = mem[0];
-		mem[0] = mem[0]->next;
-	}
-	ft_lstaddback(begin, new);
+	return (1);
 }
 
-void		lstadd_numeric(t_list **begin, t_list *new)
+void			lstadd_alpha(t_list **begin, t_list *new)
 {
 	t_list	*mem[2];
 	t_smb	*e[2];
 
 	mem[0] = *begin;
 	mem[1] = NULL;
-	if (!(e[0] = (t_smb*)new->content) || !(e[1] = (t_smb*)mem[0]->content))
+	if (!(e[0] = (t_smb*)new->content)
+		|| !(e[1] = (t_smb*)mem[0]->content))
 		return ;
-	if (ft_strcmp(e[1]->value, e[0]->value) > 0)
-	{
-		lst_swap(begin, mem[1], new);
+	if (!add_compare_name(e, begin, mem, new))
 		return ;
-	}
 	while (mem[0])
 	{
 		if (!(e[1] = (t_smb*)mem[0]->content))
 			return ;
-		if (ft_strcmp(e[1]->value, e[0]->value) > 0)
-		{
-			lst_swap(&mem[0], mem[1], new);
+		if (!add_compare_name(e, NULL, mem, new))
 			return ;
-		}
 		mem[1] = mem[0];
 		mem[0] = mem[0]->next;
 	}
 	ft_lstaddback(begin, new);
 }
 
-void		lstiter_reverse(t_list *lst, void (*f)(t_list *elem))
+static int		add_compare_value(t_smb **e, t_list **begin,
+								t_list *mem[2], t_list *new)
 {
-	if (lst)
-		lstiter_reverse(lst->next, f);
-	if (lst)
-		f(lst);
+	if (ft_strcmp(e[1]->value, e[0]->value) > 0)
+	{
+		if (begin)
+			lst_swap(begin, mem[1], new);
+		else
+			lst_swap(&mem[0], mem[1], new);
+		return (0);
+	}
+	return (1);
 }
 
-void		smb_del(void *content, size_t size)
+void			lstadd_numeric(t_list **begin, t_list *new)
 {
-	t_smb *tmp;
+	t_list	*mem[2];
+	t_smb	*e[2];
 
-	if (!content || !size)
+	mem[0] = *begin;
+	mem[1] = NULL;
+	if (!(e[0] = (t_smb*)new->content)
+		|| !(e[1] = (t_smb*)mem[0]->content))
 		return ;
-	tmp = (t_smb *)content;
-	ft_strdel(&tmp->name);
-	ft_strdel(&tmp->value);
-	ft_memdel((void **)&tmp);
+	if (!add_compare_value(e, begin, mem, new))
+		return ;
+	while (mem[0])
+	{
+		if (!(e[1] = (t_smb*)mem[0]->content))
+			return ;
+		if (!add_compare_value(e, NULL, mem, new))
+			return ;
+		mem[1] = mem[0];
+		mem[0] = mem[0]->next;
+	}
+	ft_lstaddback(begin, new);
 }

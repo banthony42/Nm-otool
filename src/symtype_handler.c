@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/28 19:29:29 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:11:57 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@
 /*
 ** probleme sur /usr/lib/libmlx.a (section _bss et _data qui saute au parsing)
 */
-static uint8_t	get_sect_type64(unsigned char *file, off_t size, struct segment_command_64 *sgmt,
-									struct nlist_64 symtable)
+
+static uint8_t	get_sect_type64(unsigned char *file, off_t size,
+				struct segment_command_64 *sgmt, struct nlist_64 symtable)
 {
 	uint8_t				n;
 	int					i;
@@ -45,22 +46,14 @@ static uint8_t	get_sect_type64(unsigned char *file, off_t size, struct segment_c
 		sect = (struct section_64 *)(sgmt + 1);
 		while (n < symtable.n_sect && (uint8_t)i < sgmt->nsects)
 		{
-//			ft_putnbr(n);
-//			ft_putstrcol(YELLOW, sect->segname);
-//			ft_putendlcol(BLUE, sect->sectname);
 			sect++;
 			n++;
 			i++;
 		}
 		if (n == symtable.n_sect)
 		{
-//			ft_putnbr(n);
-//			ft_putstrcol(BLUE, sect->segname);
-//			ft_putendlcol(BLUE, sect->sectname);
-//			ft_putendlcol(RED, "END");
 			break ;
 		}
-//		ft_putendlcol(RED, "NEXT SEG");
 		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
 	}
 	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))

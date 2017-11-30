@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:36:17 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/28 19:47:18 by banthony         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:32:35 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static t_list	*create_symbol_list64(t_data *d, struct nlist_64 symtable,
 /*
 **	Possible besoin de decliner en magic - cigam
 */
+
 static int		symtab_handler_64(struct symtab_command *sym, t_data *d,
 										unsigned char *file, off_t size)
 {
@@ -117,11 +118,3 @@ int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file,
 	ft_lstdel(&d->sym, smb_del);
 	return (error);
 }
-
-
-
-
-
-
-
-
