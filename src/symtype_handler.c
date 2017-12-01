@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/30 16:11:57 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/02 00:52:21 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,12 @@ static uint8_t	get_sect_type64(unsigned char *file, off_t size,
 	return ((uint8_t)'S');
 }
 
-uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable)
+uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable, uint8_t is_magic)
 {
 	uint8_t	type;
 
+	if (is_magic)
+		;
 	if ((symtable.n_type & N_STAB))
 		return ((uint8_t)'-');
 	if ((symtable.n_type & N_TYPE) == N_UNDF)
@@ -128,29 +130,42 @@ static uint8_t	get_sect_type32(unsigned char *file, off_t size, struct segment_c
 	return ((uint8_t)'S');
 }
 
-uint8_t			get_symboltype32(t_data *d, struct nlist symtable)
+uint8_t			get_symboltype32(t_data *d, struct nlist symtable, uint8_t is_magic)
 {
+	struct nlist symt;
 	uint8_t	type;
 
-	if ((symtable.n_type & N_STAB))
+	if (!is_magic)
+	{
+		symt.n_type = symtable.n_type;//swap_uint8(symtable.n_type);
+		symt.n_sect = symtable.n_sect;//swap_uint8(symtable.n_sect);
+		symt.n_value = swap_uint32(symtable.n_value);
+	}
+	else
+	{
+		symt.n_type = symtable.n_type;
+		symt.n_sect = symtable.n_sect;
+		symt.n_value = symtable.n_value;
+	}
+	if ((symt.n_type & N_STAB))
 		return ((uint8_t)'-');
-	if ((symtable.n_type & N_TYPE) == N_UNDF)
+	if ((symt.n_type & N_TYPE) == N_UNDF)
 	{
 		type = (uint8_t)'U';
-		if (symtable.n_type & N_EXT && symtable.n_type & N_PEXT)
+		if (symt.n_type & N_EXT && symt.n_type & N_PEXT)
 			type = (uint8_t)'u';
-		if (symtable.n_type & N_EXT && symtable.n_value)
+		if (symt.n_type & N_EXT && symt.n_value)
 			type = (uint8_t)'C';
 	}
-	else if ((symtable.n_type & N_TYPE) == N_ABS)
+	else if ((symt.n_type & N_TYPE) == N_ABS)
 		type = (uint8_t)'A';
-	else if ((symtable.n_type & N_TYPE) == N_SECT)
-		type = get_sect_type32(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
-	else if ((symtable.n_type & N_TYPE) == N_INDR)
+	else if ((symt.n_type & N_TYPE) == N_SECT)
+		type = get_sect_type32(d->file, d->stat.st_size, (void*)d->first_sectoff, symt);
+	else if ((symt.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else
 		type = (uint8_t)'?';
-	if (!(symtable.n_type & N_EXT))
+	if (!(symt.n_type & N_EXT))
 		type = (uint8_t)ft_tolower((int)type);
 	return (type);
 }

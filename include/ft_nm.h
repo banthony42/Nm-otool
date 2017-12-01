@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/30 19:04:41 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/02 00:42:36 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ typedef struct	s_arch
 {
 	char		*name;
 	cpu_type_t	cputype;
-	int			padding;
+	cpu_type_t	cpusubtype;
 }				t_arch;
 
-# define ARCH_DATA_SIZE 6
+# define ARCH_DATA_SIZE 44
 
-extern t_arch arch_data[ARCH_DATA_SIZE];
+extern t_arch g_arch_data[ARCH_DATA_SIZE];
 
 typedef	struct	s_smb
 {
@@ -160,9 +160,9 @@ int				arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size);
 int				arch_32_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
 int				arch_32_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
 uint32_t		swap_uint32(uint32_t val);
-uint8_t			get_symboltype32(t_data *d, struct nlist symtable);
+uint8_t			get_symboltype32(t_data *d, struct nlist symtable, uint8_t is_magic);
 char			*itoa_base_uint32(uint32_t value, int base);
-
+uint8_t		swap_uint8(uint8_t val);
 /*
 **	Nm - Mach-o x64
 */
@@ -172,9 +172,10 @@ int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size)
 int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
 uint64_t		swap_uint64(uint64_t val);
 char			*itoa_base_uint64(uint64_t value, int base);
-uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable);
+uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable, uint8_t is_magic);
 
 #endif
+
 
 
 

@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macho_64.c                                         :+:      :+:    :+:   */
+/*   macho_64magic.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 19:36:17 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/30 17:32:35 by banthony         ###   ########.fr       */
+/*   Created: 2017/12/01 22:42:18 by banthony          #+#    #+#             */
+/*   Updated: 2017/12/02 00:22:18 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
-
-int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file,
-							off_t size)
-{
-	int error;
-
-	error = -1;
-	ft_putendlcol(YELLOW, "_64_cigam_handler");
-	if (ncmds && file && size && d)
-		;
-	if (error)
-		return (error);
-	return (0);
-}
 
 static t_list	*create_symbol_list64(t_data *d, struct nlist_64 symtable,
 												char *strtable)
@@ -37,7 +23,7 @@ static t_list	*create_symbol_list64(t_data *d, struct nlist_64 symtable,
 		return (NULL);
 	if (!(tmp->value = itoa_base_uint64(symtable.n_value, 16)))
 		return (NULL);
-	if (!(tmp->type = get_symboltype64(d, symtable)))
+	if (!(tmp->type = get_symboltype64(d, symtable, 1)))
 		return (NULL);
 	tmp->arch = ARCH64;
 	if (tmp->name[0] != '\0')

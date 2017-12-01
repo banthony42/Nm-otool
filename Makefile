@@ -6,7 +6,7 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/11/30 18:05:23 by banthony         ###   ########.fr        #
+#    Updated: 2017/12/01 22:43:44 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,9 +20,10 @@ PATH_HEAD = ./include/
 
 HEADER_FILE = ft_nm.h	\
 
-SRC_FILE = 	main.c				parsing.c	ft_nm.c	misc.c	ar.c	fat_32.c			\
-			itoa_base_uint.c	macho_64.c	list_manage.c			symtype_handler.c	\
-			macho_32.c			misc2.c											\
+SRC_FILE = 	main.c				parsing.c		ft_nm.c	misc.c	itoa_base_uint.c	\
+			macho_64magic.c		macho_64cigam.c	list_manage.c	symtype_handler.c	\
+			macho_32magic.c		macho_32cigam.c	misc2.c								\
+			ar.c				fat_32.c											\
 
 #fat_64.c	\
 

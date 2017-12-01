@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/30 16:13:06 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/02 00:42:40 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ int			is_opt(void *data, char opt)
 	}
 	ft_strdel(&table);
 	return (0);
+}
+
+/*
+**	142 - 0x8e - 1000 1110
+**  232 - 0xe8 - 1110 1000
+**
+*/
+
+uint8_t	swap_uint8(uint8_t val)
+{
+	val = ((val << 4) & 0xFF) | ((val >> 4) & 0xFF);
+	return (val);
 }
 
 uint32_t	swap_uint32(uint32_t val)
