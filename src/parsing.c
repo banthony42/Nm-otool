@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:44:27 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/24 19:20:54 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 23:43:46 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static int		option_error_handler(t_list **lst)
 
 void			prepare_files(t_list *elm)
 {
+	int		error;
 	int		ret;
 	t_data	*d;
 
@@ -50,6 +51,7 @@ void			prepare_files(t_list *elm)
 		return ;
 	if (!(d = (t_data*)elm->content))
 		return ;
+	ret = 0;
 	if (d->token == PATH)
 	{
 		if ((d->fd = open(d->av, O_RDONLY)) < 0)
@@ -64,6 +66,9 @@ void			prepare_files(t_list *elm)
 		if (d->file == MAP_FAILED)
 			d->file = NULL;
 	}
+	if (d->fd < 0 || ret < 0 || !d->file || !(d->stat.st_mode & S_IRUSR))
+		error = 1;
+	error_number(&error);
 }
 
 static t_data	*new_data(char *str, int *wait)
