@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 21:14:39 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 23:27:12 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static off_t	extract_ar_name(t_data *d, struct ar_hdr *h)
 	n = 2;
 	ft_bzero(nb, 16);
 	name = NULL;
-	if ((str = ft_strstr(h->ar_name, "#1/")))
+	if ((str = ft_strnstr(h->ar_name, "#1/", 16)))
 	{
 		ft_strncpy(nb, &str[3], 13);
 		n += ft_atoi(nb);
@@ -58,11 +58,8 @@ static int		magic_handler(off_t *i, t_data *d, struct ar_hdr *h)
 	int			error;
 
 	error = 1;
-	if (ft_strncmp(h->ar_fmag, ARFMAG, SARMAG))
-	{
-		ft_putendlcol(RED, "coucou");
+	if (ft_strncmp(h->ar_fmag, ARFMAG, ft_strlen(ARFMAG)))
 		return (error);
-	}
 	if ((*i = extract_ar_name(d, h)) == RANLIB)
 		return (0);
 	magic = *(uint32_t *)(void*)&h->ar_fmag[*i];
@@ -77,12 +74,10 @@ static int		magic_handler(off_t *i, t_data *d, struct ar_hdr *h)
 									(off_t)ft_atoi(h->ar_size));
 	else if (!(ft_strncmp(ARMAG, (char*)&h->ar_fmag[*i], SARMAG)))
 		return (ARCHIVE_CONCAT);
-	else
-		ft_putendlcol(YELLOW, ERR_MAGIC);
 	return (error);
 }
 
-int				archive_handler(t_data *d)
+int				archive_handler(void *file, off_t size, t_data *d)
 {
 	off_t			i;
 	int				error;
@@ -91,11 +86,13 @@ int				archive_handler(t_data *d)
 
 	i = SARMAG;
 	error = 1;
-	ptr = ((unsigned char *)d->file) + i;
-	while (OFFSET(ptr, d->file) < d->stat.st_size)
+	ptr = ((unsigned char *)file) + i;
+	while (OFFSET(ptr, file) < size)
 	{
-		if ((h = (struct ar_hdr *)ptr))
-			error = magic_handler(&i, d, h);
+		h = (struct ar_hdr *)ptr;
+		if ((unsigned char *)(h + 1) > ((unsigned char *)file + size))
+			return (1);
+		error = magic_handler(&i, d, h);
 		if (error && error != ARCHIVE_CONCAT && i != SARMAG)
 			return (error);
 		if (error == ARCHIVE_CONCAT)
@@ -105,6 +102,8 @@ int				archive_handler(t_data *d)
 	}
 	return (0);
 }
+
+
 
 
 

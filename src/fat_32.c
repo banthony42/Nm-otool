@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 20:50:34 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 23:12:11 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ int			fat_arch_32_cigam(uint32_t nfat_arch, t_data *d,
 			return (1);
 		mgc = (uint32_t*)(void*)(file + swap_uint32(frh[i[0]].offset));
 		if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)
-			error = arch_64_handler(*mgc, d, (void*)mgc, size);
+			error = arch_64_handler(*mgc, d, (void*)mgc, swap_uint32(frh[i[0]].size));
 		else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)
-			error = arch_32_handler(*mgc, d, (void*)mgc, size);
+			error = arch_32_handler(*mgc, d, (void*)mgc, swap_uint32(frh[i[0]].size));
 		else if (!(ft_strncmp(ARMAG, (char*)mgc, SARMAG)))
-			error = archive_handler(d);
+			error = archive_handler((void *)mgc, swap_uint32(frh[i[0]].size), d);
 		if (error)
 			return (error);
 		if (i[1] && i[1] != ARCH_ALL)
@@ -111,11 +111,11 @@ int			fat_arch_32_magic(uint32_t nfat_arch, t_data *d,
 			return (1);
 		mgc = (uint32_t*)(void*)(file + frh[i[0]].offset);/*Recup du magic Mach-O*/
 		if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)/*Mach-O 64bit*/
-			error = arch_64_handler(*mgc, d, (void*)mgc, size);
+			error = arch_64_handler(*mgc, d, (void*)mgc, frh[i[0]].size);
 		else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)/*Mach-O 32bit*/
-			error = arch_32_handler(*mgc, d, (void*)mgc, size);
+			error = arch_32_handler(*mgc, d, (void*)mgc, frh[i[0]].size);
 		else if (!(ft_strncmp(ARMAG, (char*)mgc, SARMAG)))
-			error = archive_handler(d);
+			error = archive_handler((void*)mgc, frh[i[0]].size, d);
 		if (error)
 			return (error);
 		if (i[1] && i[1] != ARCH_ALL)

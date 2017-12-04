@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 19:39:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 20:43:06 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 21:38:43 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_nm(t_list *elem)
 		error = fat_arch_32_handler(magic, d,
 									(unsigned char*)d->file, d->stat.st_size);
 	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))
-		error = archive_handler(d);
+		error = archive_handler(d->file, d->stat.st_size, d);
 	if (error)
 		ft_nm_info(d->av, ERR_FILE);
 	error_number(&error);

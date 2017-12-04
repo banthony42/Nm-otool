@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/02 00:42:36 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 21:39:02 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void			smb_del(void *content, size_t size);
 /*
 **	Nm - Archive
 */
-int				archive_handler(t_data *d);
+int				archive_handler(void *file, off_t size, t_data *d);
 
 /*
 **	Nm - Universal binaries x32

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:47 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/30 16:18:48 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 23:12:36 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ int	fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch_64 *frh,
 			return (-1);
 		mgc = (uint32_t*)(void*)(file + offset);
 		if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)
-			error = arch_64_handler(*mgc, (void*)mgc, size);
+			error = arch_64_handler(*mgc, (void*)mgc, swap_uint64(frh[i[0]].size));
 		else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)
-			error = arch_32_handler(*mgc, (void*)mgc, size);
+			error = arch_32_handler(*mgc, (void*)mgc, swap_uint64(frh[i[0]].size));
+		else if (!(ft_strncmp(ARMAG, (char*)mgc, SARMAG)))
+			error = archive_handler((void *)mgc, swap_uint64(frh[i[0]].size), d);
 		if (error <= 0)
 			return (error);
 		i++;
@@ -89,9 +91,11 @@ int	fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch_64 *frh,
 			return (-1);
 		mgc = (uint32_t*)(void*)(file + frh[i].offset);
 		if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)
-			error = arch_64_handler(*mgc, (void*)mgc, size);
+			error = arch_64_handler(*mgc, (void*)mgc, frh[i[0]].size);
 		else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)
-			error = arch_32_handler(*mgc, (void*)mgc, size);
+			error = arch_32_handler(*mgc, (void*)mgc, frh[i[0]].size);
+		else if (!(ft_strncmp(ARMAG, (char*)mgc, SARMAG)))
+			error = archive_handler((void*)mgc, frh[i[0]].size, d);
 		if (error <= 0)
 			return (error);
 		i++;
