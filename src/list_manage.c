@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 17:29:26 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/30 16:09:35 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 20:24:20 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ static int		add_compare_name(t_smb **e, t_list **begin,
 	{
 		if (ft_strcmp(e[1]->value, e[0]->value) > 0)
 		{
-			lst_swap(&mem[0], mem[1], new);
+			if (begin)
+				lst_swap(begin, mem[1], new);
+			else
+				lst_swap(&mem[0], mem[1], new);
 			return (0);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/02 00:52:21 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 18:50:21 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,23 @@ static uint8_t	get_sect_type64(unsigned char *file, off_t size,
 				struct segment_command_64 *sgmt, struct nlist_64 symtable)
 {
 	uint8_t				n;
-	int					i;
+	uint8_t					i;
 	struct section_64	*sect;
 
-	n = 1;
+	n = 0;
 	sect = NULL;
 	if (!sgmt || (unsigned char *)(sgmt + 1) > (file + size))
 		return (0);
-	while (((unsigned char*)(sgmt + 1) < (file + size)) && sgmt->cmd == LC_SEGMENT_64)
+	while (n < symtable.n_sect)
 	{
-		i = 0;
-		if ((unsigned char*)(sgmt + 1) > (file + size))
-			return (0);
+		i = 1;
+		n++;
 		sect = (struct section_64 *)(sgmt + 1);
-		while (n < symtable.n_sect && (uint8_t)i < sgmt->nsects)
+		while (n < symtable.n_sect && i < sgmt->nsects)
 		{
 			sect++;
 			n++;
 			i++;
-		}
-		if (n == symtable.n_sect)
-		{
-			break ;
 		}
 		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
 	}
@@ -98,27 +93,24 @@ static uint8_t	get_sect_type32(unsigned char *file, off_t size, struct segment_c
 									struct nlist symtable)
 {
 	uint8_t				n;
-	int					i;
+	uint8_t					i;
 	struct section		*sect;
 
-	n = 1;
+	n = 0;
 	sect = NULL;
 	if (!sgmt || (unsigned char *)(sgmt + 1) > (file + size))
 		return (0);
-	while (((unsigned char*)(sgmt + 1) < (file + size)) && sgmt->cmd == LC_SEGMENT)
+	while (n < symtable.n_sect)
 	{
-		i = 0;
-		if ((unsigned char*)(sgmt + 1) > (file + size))
-			return (0);
+		i = 1;
+		n++;
 		sect = (struct section *)(sgmt + 1);
-		while (n < symtable.n_sect && (uint8_t)i < sgmt->nsects)
+		while (i < sgmt->nsects && n < symtable.n_sect)
 		{
-			sect++;
-			n++;
 			i++;
+			n++;
+			sect++;
 		}
-		if (n == symtable.n_sect)
-			break ;
 		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
 	}
 	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))
@@ -135,18 +127,12 @@ uint8_t			get_symboltype32(t_data *d, struct nlist symtable, uint8_t is_magic)
 	struct nlist symt;
 	uint8_t	type;
 
+	symt.n_type = symtable.n_type;
+	symt.n_sect = symtable.n_sect;
 	if (!is_magic)
-	{
-		symt.n_type = symtable.n_type;//swap_uint8(symtable.n_type);
-		symt.n_sect = symtable.n_sect;//swap_uint8(symtable.n_sect);
 		symt.n_value = swap_uint32(symtable.n_value);
-	}
 	else
-	{
-		symt.n_type = symtable.n_type;
-		symt.n_sect = symtable.n_sect;
 		symt.n_value = symtable.n_value;
-	}
 	if ((symt.n_type & N_STAB))
 		return ((uint8_t)'-');
 	if ((symt.n_type & N_TYPE) == N_UNDF)

@@ -6,7 +6,7 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/11/29 16:34:05 by banthony         ###   ########.fr         
+     Updated: 2017/12/04 21:19:33 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
@@ -14,7 +14,8 @@
 
 Issue:
 	libmlx.a (/usr/share/local/lib/) - probleme sur __bss
-
+	Bon debut sur CIGAM, voir swap au niveau des get_symtype
+	Bug sur archive dans fat
 
 Todo:
 	option "-arch all", trouver un caractere pour le gerer rapidement -z ?

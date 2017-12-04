@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/30 20:11:34 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 20:50:34 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int			fat_arch_32_cigam(uint32_t nfat_arch, t_data *d,
 			error = arch_64_handler(*mgc, d, (void*)mgc, size);
 		else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)
 			error = arch_32_handler(*mgc, d, (void*)mgc, size);
+		else if (!(ft_strncmp(ARMAG, (char*)mgc, SARMAG)))
+			error = archive_handler(d);
 		if (error)
 			return (error);
 		if (i[1] && i[1] != ARCH_ALL)
@@ -112,6 +114,8 @@ int			fat_arch_32_magic(uint32_t nfat_arch, t_data *d,
 			error = arch_64_handler(*mgc, d, (void*)mgc, size);
 		else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)/*Mach-O 32bit*/
 			error = arch_32_handler(*mgc, d, (void*)mgc, size);
+		else if (!(ft_strncmp(ARMAG, (char*)mgc, SARMAG)))
+			error = archive_handler(d);
 		if (error)
 			return (error);
 		if (i[1] && i[1] != ARCH_ALL)

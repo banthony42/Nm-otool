@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/11/30 16:26:13 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/04 21:14:39 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,11 @@ static int		magic_handler(off_t *i, t_data *d, struct ar_hdr *h)
 	int			error;
 
 	error = 1;
-	if (ft_strncmp(h->ar_fmag, ARFMAG, ft_strlen(ARFMAG)))
+	if (ft_strncmp(h->ar_fmag, ARFMAG, SARMAG))
+	{
+		ft_putendlcol(RED, "coucou");
 		return (error);
+	}
 	if ((*i = extract_ar_name(d, h)) == RANLIB)
 		return (0);
 	magic = *(uint32_t *)(void*)&h->ar_fmag[*i];
@@ -102,3 +105,11 @@ int				archive_handler(t_data *d)
 	}
 	return (0);
 }
+
+
+
+
+
+
+
+
