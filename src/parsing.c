@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:44:27 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 23:43:46 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/05 21:42:08 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,49 @@ static int		option_error_handler(t_list **lst)
 	return (1);
 }
 
+static int	get_type(t_data *d)
+{
+	int ret;
+
+	ret = 0;
+	if ((d->fd = open(d->av, O_RDONLY)) < 0)	/*No such file, permission denied*/
+	{
+		if (errno == EACCES)
+			ft_nm_info(d->av, PERMISSION);
+		else if (errno == ENOENT)
+			ft_nm_info(d->av, FILE_NOT_FOUND);
+		return (1);
+	}
+	else if ((ret = fstat(d->fd, &d->stat)) < 0)	/*fstat error*/
+	{
+		ft_nm_info(d->av, FSTAT_ERROR);
+		return (1);
+	}
+	else if (S_ISDIR(d->stat.st_mode))
+	{
+		ft_nm_info(d->av, IS_A_DIR);
+		return (1);
+	}
+	return (0);
+}
+
 void			prepare_files(t_list *elm)
 {
 	int		error;
-	int		ret;
 	t_data	*d;
 
-	if (!elm)
+	if (!elm || !(d = (t_data*)elm->content) || d->token != PATH)
 		return ;
-	if (!(d = (t_data*)elm->content))
-		return ;
-	ret = 0;
-	if (d->token == PATH)
+	error = 0;
+	error = get_type(d);
+	if (!error && (d->file = mmap(NULL, (size_t)d->stat.st_size,
+					PROT_READ, MAP_PRIVATE, d->fd, 0)) == MAP_FAILED)
 	{
-		if ((d->fd = open(d->av, O_RDONLY)) < 0)
-			ft_nm_info(d->av, FILE_NOT_FOUND);
-		else if ((ret = fstat(d->fd, &d->stat)) < 0)
-			ft_nm_info(d->av, FSTAT_ERROR);
-		else if (!(d->stat.st_mode & S_IRUSR))
-			ft_nm_info(d->av, CANT_READ);
-		else if ((d->file = mmap(NULL, (size_t)d->stat.st_size,
-						PROT_READ, MAP_PRIVATE, d->fd, 0)) == MAP_FAILED)
-			ft_nm_info(d->av, MMAP_ERROR);
-		if (d->file == MAP_FAILED)
-			d->file = NULL;
-	}
-	if (d->fd < 0 || ret < 0 || !d->file || !(d->stat.st_mode & S_IRUSR))
+		ft_nm_info(d->av, MMAP_ERROR);
 		error = 1;
+	}
+	if (d->file == MAP_FAILED)	/*mmap has failed*/
+		d->file = NULL;
 	error_number(&error);
 }
 

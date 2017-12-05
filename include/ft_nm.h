@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 21:39:02 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/05 20:46:45 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <mach-o/fat.h>
 #include <ar.h>
 #include <ranlib.h>
+#include <errno.h>
 # include "libft.h"
 
 
@@ -38,7 +39,8 @@
 # define ERR_MAGIC "The magic number was not recognized"
 # define FSTAT_ERROR "fstat error."
 # define MMAP_ERROR "mmap has failed."
-# define CANT_READ "Permission denied."
+# define PERMISSION "Permission denied."
+# define IS_A_DIR "Is a directory."
 # define UNKNOWN_OPTION "Unknown command line argument"
 
 # define AVAILABLE_OPTIONS "gnopruUxj-"

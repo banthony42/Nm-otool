@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 16:08:29 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/01 21:23:12 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/05 22:02:51 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ void		print_arch(struct fat_arch frh, t_data *d, int mgc)
 		cpu = ~CPU_ARCH_MASK & ((uint32_t)frh.cputype);
 		cpusub = ~CPU_SUBTYPE_MASK & ((uint32_t)frh.cpusubtype);
 	}
+	ft_putchar('\n');
 	ft_putstr(d->av);
-	ft_putstr(" (architecture ");
+	ft_putstr(" (for architecture ");
 	while (++i < ARCH_DATA_SIZE)
 	{
 		if (cpu == (uint32_t)g_arch_data[i].cputype &&

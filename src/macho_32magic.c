@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:41:28 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 18:46:04 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/06 00:14:28 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int				arch_32_magic(uint32_t ncmds, t_data *d,
 		lc = (void*)((unsigned char *)lc + lc->cmdsize);
 	}
 	d->lst_browser(d->sym, nm_output);
+	d->first_sectoff = NULL;
 	ft_lstdel(&d->sym, smb_del);
 	return (error);
 }

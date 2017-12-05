@@ -6,7 +6,7 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/12/04 23:31:52 by banthony         ###   ########.fr         
+     Updated: 2017/12/06 00:15:47 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
@@ -15,6 +15,11 @@
 Issue:
 	libmlx.a (/usr/share/local/lib/) - probleme sur __bss
 	Bon debut sur CIGAM, voir swap au niveau des get_symtype
+	cat a.out | ft_nm -  (lecture sur entree standard) feat simon
+	test.a - archive avec un fichier vide, ne pas return pour ca feat simon
+	fucking_bomb - otool - feat simon
+	return 2 fichier 3 octets, unifier les return, en general 1 par convention sur erreur - feat simon
+	check de fichier corrompu lors du parcours de la stringtable ! feat simon
 
 Todo:
 	option "-arch all", trouver un caractere pour le gerer rapidement -z ?

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 18:50:21 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/06 00:12:06 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,39 @@ static uint8_t	get_sect_type32(unsigned char *file, off_t size, struct segment_c
 	return ((uint8_t)'S');
 }
 
+static uint8_t	get_sect_type32cigam(unsigned char *file, off_t size, struct segment_command *sgmt,
+									struct nlist symtable)
+{
+	uint8_t				n;
+	uint8_t					i;
+	struct section		*sect;
+
+	n = 0;
+	sect = NULL;
+	if (!sgmt || (unsigned char *)(sgmt + 1) > (file + size))
+		return (0);
+	while (n < symtable.n_sect)
+	{
+		i = 1;
+		n++;
+		sect = (struct section *)(sgmt + 1);
+		while (i < swap_uint32(sgmt->nsects) && n < symtable.n_sect)
+		{
+			i++;
+			n++;
+			sect++;
+		}
+		sgmt = (void*)((unsigned char*)sgmt + swap_uint32(sgmt->cmdsize));
+	}
+	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))
+		return ((uint8_t)'T');
+	else if (sect && !(ft_strcmp(SECT_DATA, sect->sectname)))
+		return ((uint8_t)'D');
+	else if (sect && !(ft_strcmp(SECT_BSS, sect->sectname)))
+		return ((uint8_t)'B');
+	return ((uint8_t)'S');
+}
+
 uint8_t			get_symboltype32(t_data *d, struct nlist symtable, uint8_t is_magic)
 {
 	struct nlist symt;
@@ -146,7 +179,12 @@ uint8_t			get_symboltype32(t_data *d, struct nlist symtable, uint8_t is_magic)
 	else if ((symt.n_type & N_TYPE) == N_ABS)
 		type = (uint8_t)'A';
 	else if ((symt.n_type & N_TYPE) == N_SECT)
-		type = get_sect_type32(d->file, d->stat.st_size, (void*)d->first_sectoff, symt);
+	{
+		if (!is_magic)
+			type = get_sect_type32cigam(d->file, d->stat.st_size, (void*)d->first_sectoff, symt);
+		else
+			type = get_sect_type32(d->file, d->stat.st_size, (void*)d->first_sectoff, symt);
+	}
 	else if ((symt.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else
