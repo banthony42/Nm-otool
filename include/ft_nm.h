@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/05 20:46:45 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/06 23:26:59 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void			print_elem(t_list *elem);	/*Temporaire, affichage de la liste t_data*/
 t_list			*parsing(char **av);
 void			prepare_files(t_list *elm);
 void			default_file(t_list **lst);
+char			*ft_strndup(char *s1, uint32_t n, void *file, off_t size);
 
 /*
 **	Nm
@@ -126,6 +127,7 @@ void			default_file(t_list **lst);
 void			ft_nm(t_list *elem);
 int				is_opt(void *data, char opt);
 int				file_access(void *file, off_t read, off_t file_size);
+int				is_corrup(unsigned char *ptr, void *file, off_t size);
 int				*error_number(int *err);
 void			nm_output(t_list *elem);
 void			data_del(void *content, size_t size);
@@ -162,19 +164,21 @@ int				arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size);
 int				arch_32_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
 int				arch_32_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
 uint32_t		swap_uint32(uint32_t val);
-uint8_t			get_symboltype32(t_data *d, struct nlist symtable, uint8_t is_magic);
+uint8_t			get_symboltype32magic(t_data *d, struct nlist symtable);
+uint8_t			get_symboltype32cigam(t_data *d, struct nlist symtable);
 char			*itoa_base_uint32(uint32_t value, int base);
-uint8_t		swap_uint8(uint8_t val);
+uint8_t			swap_uint8(uint8_t val);	/*Pas utiliser pour l'instant*/
+
 /*
 **	Nm - Mach-o x64
 */
-
 int				arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size);
 int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
 int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
 uint64_t		swap_uint64(uint64_t val);
 char			*itoa_base_uint64(uint64_t value, int base);
-uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable, uint8_t is_magic);
+uint8_t			get_symboltype64magic(t_data *d, struct nlist_64 symtable);
+uint8_t			get_symboltype64cigam(t_data *d, struct nlist_64 symtable);
 
 #endif
 

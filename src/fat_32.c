@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 23:12:11 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/06 22:22:27 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ int			file_access(void *file, off_t read, off_t file_size)
 	return (0);
 }
 
+int			is_corrup(unsigned char *ptr, void *file, off_t size)
+{
+	if (ptr < (unsigned char *)file)
+		return (1);
+	if (ptr > (unsigned char *)((unsigned char *)file + size))
+		return (1);
+	return (0);
+}
+
 static int	is_arch(t_data *d, struct fat_arch *frh, int *i, uint32_t nfat_arch)
 {
 	uint8_t	n;
@@ -31,6 +40,8 @@ static int	is_arch(t_data *d, struct fat_arch *frh, int *i, uint32_t nfat_arch)
 
 	arch = 0;
 	n = 0;
+	if (is_corrup((void *)(frh + nfat_arch), d->file, d->stat.st_size))
+		return (1);
 	while (n < nfat_arch)
 	{
 		if (((uint32_t)frh[n].cputype & CPU_TYPE_X86))
@@ -41,7 +52,7 @@ static int	is_arch(t_data *d, struct fat_arch *frh, int *i, uint32_t nfat_arch)
 		ft_nm_info(d->av, NULL);
 	else if (!arch)
 		print_arch(frh[i[0]], d, i[2]);
-	if (!arch)
+	if (!arch)	/*Aucune arch ne correspond a celle du system, affichage de toutes les arch*/
 		return (ARCH_ALL);
 	if (((uint32_t)frh[i[0]].cputype & CPU_TYPE_X86) || nfat_arch == 1)
 		return (ARCH_OK);
@@ -69,7 +80,7 @@ int			fat_arch_32_cigam(uint32_t nfat_arch, t_data *d,
 	{
 		if (!(i[1] = is_arch(d, frh, i, nfat_arch)) && i[1] != ARCH_ALL)
 			continue ;
-		if (!file_access(file, swap_uint32(frh[i[0]].offset), size))
+		if (is_corrup((void *)(file + swap_uint32(frh[i[0]].offset)), file, size))
 			return (1);
 		mgc = (uint32_t*)(void*)(file + swap_uint32(frh[i[0]].offset));
 		if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)
@@ -107,7 +118,7 @@ int			fat_arch_32_magic(uint32_t nfat_arch, t_data *d,
 	{
 		if (!(i[1] = is_arch(d, frh, i, nfat_arch)) && i[1] != ARCH_ALL)
 			continue ;
-		if (!file_access(file, frh[i[0]].offset, size))
+		if (is_corrup((void *)(file + frh[i[0]].offset), file, size))
 			return (1);
 		mgc = (uint32_t*)(void*)(file + frh[i[0]].offset);/*Recup du magic Mach-O*/
 		if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)/*Mach-O 64bit*/
@@ -131,9 +142,11 @@ int			fat_arch_32_handler(uint32_t magic, t_data *d,
 	uint32_t		i;
 	uint32_t		nfat_arch;
 
-	if (!file_access(file, sizeof(struct fat_header)
+/*	if (!file_access(file, sizeof(struct fat_header)
 							+ sizeof(struct fat_arch), size))
-		return (0);
+		return (0);*/
+	if (is_corrup((void*)(file + sizeof(struct fat_header)), file ,size))
+		return (1);
 	i = 0;
 	error = 1;
 	nfat_arch = *(uint32_t*)(void*)(file + sizeof(uint32_t));/*Recup du nb de struct fat_arch*/

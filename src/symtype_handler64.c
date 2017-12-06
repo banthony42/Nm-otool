@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/06 00:12:06 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/06 21:22:01 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,7 @@
 **	module in the same library.
 */
 
-/*
-** probleme sur /usr/lib/libmlx.a (section _bss et _data qui saute au parsing)
-*/
-
-static uint8_t	get_sect_type64(unsigned char *file, off_t size,
+static uint8_t	get_sect_type64magic(unsigned char *file, off_t size,
 				struct segment_command_64 *sgmt, struct nlist_64 symtable)
 {
 	uint8_t				n;
@@ -36,13 +32,15 @@ static uint8_t	get_sect_type64(unsigned char *file, off_t size,
 
 	n = 0;
 	sect = NULL;
-	if (!sgmt || (unsigned char *)(sgmt + 1) > (file + size))
+	if (!sgmt || is_corrup((void *)(sgmt + 1), file, size))
 		return (0);
 	while (n < symtable.n_sect)
 	{
 		i = 1;
 		n++;
 		sect = (struct section_64 *)(sgmt + 1);
+		if (is_corrup((void *)(sgmt + sgmt->nsects), file ,size))
+			return (1);
 		while (n < symtable.n_sect && i < sgmt->nsects)
 		{
 			sect++;
@@ -51,21 +49,19 @@ static uint8_t	get_sect_type64(unsigned char *file, off_t size,
 		}
 		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
 	}
-	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))
+	if (sect && !(ft_strncmp(SECT_TEXT, sect->sectname, 16)))
 		return ((uint8_t)'T');
-	else if (sect && !(ft_strcmp(SECT_DATA, sect->sectname)))
+	else if (sect && !(ft_strncmp(SECT_DATA, sect->sectname, 16)))
 		return ((uint8_t)'D');
-	else if (sect && !(ft_strcmp(SECT_BSS, sect->sectname)))
+	else if (sect && !(ft_strncmp(SECT_BSS, sect->sectname, 16)))
 		return ((uint8_t)'B');
 	return ((uint8_t)'S');
 }
 
-uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable, uint8_t is_magic)
+uint8_t			get_symboltype64magic(t_data *d, struct nlist_64 symtable)
 {
 	uint8_t	type;
 
-	if (is_magic)
-		;
 	if ((symtable.n_type & N_STAB))
 		return ((uint8_t)'-');
 	if ((symtable.n_type & N_TYPE) == N_UNDF)
@@ -79,7 +75,7 @@ uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable, uint8_t is_magic
 	else if ((symtable.n_type & N_TYPE) == N_ABS)
 		type = (uint8_t)'A';
 	else if ((symtable.n_type & N_TYPE) == N_SECT)
-		type = get_sect_type64(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
+		type = get_sect_type64magic(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
 	else if ((symtable.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else
@@ -89,55 +85,24 @@ uint8_t			get_symboltype64(t_data *d, struct nlist_64 symtable, uint8_t is_magic
 	return (type);
 }
 
-static uint8_t	get_sect_type32(unsigned char *file, off_t size, struct segment_command *sgmt,
-									struct nlist symtable)
+static uint8_t	get_sect_type64cigam(unsigned char *file, off_t size,
+				struct segment_command_64 *sgmt, struct nlist_64 symtable)
 {
 	uint8_t				n;
 	uint8_t					i;
-	struct section		*sect;
+	struct section_64	*sect;
 
 	n = 0;
 	sect = NULL;
-	if (!sgmt || (unsigned char *)(sgmt + 1) > (file + size))
+	if (!sgmt || is_corrup((void*)(sgmt + 1), file, size))
 		return (0);
 	while (n < symtable.n_sect)
 	{
 		i = 1;
 		n++;
-		sect = (struct section *)(sgmt + 1);
-		while (i < sgmt->nsects && n < symtable.n_sect)
-		{
-			i++;
-			n++;
-			sect++;
-		}
-		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
-	}
-	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))
-		return ((uint8_t)'T');
-	else if (sect && !(ft_strcmp(SECT_DATA, sect->sectname)))
-		return ((uint8_t)'D');
-	else if (sect && !(ft_strcmp(SECT_BSS, sect->sectname)))
-		return ((uint8_t)'B');
-	return ((uint8_t)'S');
-}
-
-static uint8_t	get_sect_type32cigam(unsigned char *file, off_t size, struct segment_command *sgmt,
-									struct nlist symtable)
-{
-	uint8_t				n;
-	uint8_t					i;
-	struct section		*sect;
-
-	n = 0;
-	sect = NULL;
-	if (!sgmt || (unsigned char *)(sgmt + 1) > (file + size))
-		return (0);
-	while (n < symtable.n_sect)
-	{
-		i = 1;
-		n++;
-		sect = (struct section *)(sgmt + 1);
+		sect = (struct section_64 *)(sgmt + 1);
+		if (is_corrup((void*)(sgmt + swap_uint32(sgmt->nsects)), file, size))
+			return (1);
 		while (i < swap_uint32(sgmt->nsects) && n < symtable.n_sect)
 		{
 			i++;
@@ -146,50 +111,38 @@ static uint8_t	get_sect_type32cigam(unsigned char *file, off_t size, struct segm
 		}
 		sgmt = (void*)((unsigned char*)sgmt + swap_uint32(sgmt->cmdsize));
 	}
-	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))
+	if (sect && !(ft_strncmp(SECT_TEXT, sect->sectname, 16)))
 		return ((uint8_t)'T');
-	else if (sect && !(ft_strcmp(SECT_DATA, sect->sectname)))
+	else if (sect && !(ft_strncmp(SECT_DATA, sect->sectname, 16)))
 		return ((uint8_t)'D');
-	else if (sect && !(ft_strcmp(SECT_BSS, sect->sectname)))
+	else if (sect && !(ft_strncmp(SECT_BSS, sect->sectname, 16)))
 		return ((uint8_t)'B');
 	return ((uint8_t)'S');
 }
 
-uint8_t			get_symboltype32(t_data *d, struct nlist symtable, uint8_t is_magic)
+uint8_t			get_symboltype64cigam(t_data *d, struct nlist_64 symtable)
 {
-	struct nlist symt;
 	uint8_t	type;
 
-	symt.n_type = symtable.n_type;
-	symt.n_sect = symtable.n_sect;
-	if (!is_magic)
-		symt.n_value = swap_uint32(symtable.n_value);
-	else
-		symt.n_value = symtable.n_value;
-	if ((symt.n_type & N_STAB))
+	if ((symtable.n_type & N_STAB))
 		return ((uint8_t)'-');
-	if ((symt.n_type & N_TYPE) == N_UNDF)
+	if ((symtable.n_type & N_TYPE) == N_UNDF)
 	{
 		type = (uint8_t)'U';
-		if (symt.n_type & N_EXT && symt.n_type & N_PEXT)
+		if (symtable.n_type & N_EXT && symtable.n_type & N_PEXT)
 			type = (uint8_t)'u';
-		if (symt.n_type & N_EXT && symt.n_value)
+		if (symtable.n_type & N_EXT && swap_uint64(symtable.n_value))
 			type = (uint8_t)'C';
 	}
-	else if ((symt.n_type & N_TYPE) == N_ABS)
+	else if ((symtable.n_type & N_TYPE) == N_ABS)
 		type = (uint8_t)'A';
-	else if ((symt.n_type & N_TYPE) == N_SECT)
-	{
-		if (!is_magic)
-			type = get_sect_type32cigam(d->file, d->stat.st_size, (void*)d->first_sectoff, symt);
-		else
-			type = get_sect_type32(d->file, d->stat.st_size, (void*)d->first_sectoff, symt);
-	}
-	else if ((symt.n_type & N_TYPE) == N_INDR)
+	else if ((symtable.n_type & N_TYPE) == N_SECT)
+		type = get_sect_type64cigam(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
+	else if ((symtable.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else
 		type = (uint8_t)'?';
-	if (!(symt.n_type & N_EXT))
+	if (!(symtable.n_type & N_EXT))
 		type = (uint8_t)ft_tolower((int)type);
 	return (type);
 }
