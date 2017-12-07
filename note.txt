@@ -6,35 +6,21 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/12/06 20:20:32 by banthony         ###   ########.fr         
+     Updated: 2017/12/07 19:02:59 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
 
 
 Issue:
-	libmlx.a (/usr/share/local/lib/) - probleme sur __bss
 	cat a.out | ft_nm -  (lecture sur entree standard) feat simon
-	test.a - archive avec un fichier vide, ne pas return pour ca feat simon
-	fucking_bomb - otool - feat simon
-	return 2 fichier 3 octets, unifier les return, en general 1 par convention sur erreur - feat simon
-	check de fichier corrompu lors du parcours de la stringtable ! feat simon
-
-	cas ou la variable strsize (size strtable est fausse, volontairement petite)
-	du coup si aucun check n'est fait sur (strtable + symtable.n_un.n_strx) boum
-
-	attention a strncpy qui ne place pas de '\0',
-	--> probleme sur les ft_put...
 
 Todo:
 	option "-arch all", trouver un caractere pour le gerer rapidement -z ?
-	pour tester le cigam x32 /usr/bin/audiodevice
-	ajouter des protection fichier corrompu sur les symtype_handler
+	OTOOL - fucking_bomb - otool - feat simon
 
-Sur un fichier sans droit, l'erreur pop sur open
-	-> No such file or directory.	  au lieu de
-	-> Permission denied.
 
+Note:
 
 Pour recuperer le cpusubtype, il faut utiliser un masque:
 (frh->cpusubtype & ~CPU_SUBTYPE_MASK)

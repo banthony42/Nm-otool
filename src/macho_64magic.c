@@ -6,12 +6,16 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:42:18 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/06 23:31:10 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/07 18:27:30 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
+/*
+**	strndup securise:
+**	Au maximum sur n caracteres, et verifie que la chaine est dans le fichier
+*/
 char	*ft_strndup(char *s1, uint32_t n, void *file, off_t size)
 {
 	char	*ptr;
@@ -27,24 +31,21 @@ char	*ft_strndup(char *s1, uint32_t n, void *file, off_t size)
 	{
 		if (!(ptr = (char *)malloc((len + 1) * sizeof(char))))
 			return (NULL);
-		ft_strncpy(ptr, s1, n);
+		ft_strncpy(ptr, s1, len);
 	}
 	ptr[len] = '\0';
 	return (ptr);
 }
 
 static t_list	*create_symbol_list64(t_data *d, struct nlist_64 symtable,
-									  char *strtable, uint32_t size)
+									  char *strtable, uint32_t strtable_size)
 {
 	t_smb	*tmp;
 
-	if (size)
-		;
 	if (!(tmp = (t_smb*)ft_memalloc(sizeof(t_smb))))
 		return (NULL);
-/*	if (!(tmp->name = ft_strndup(strtable + symtable.n_un.n_strx, (size - symtable.n_un.n_strx), d->file, d->stat.st_size)))
-		return (NULL);
-*/	if (!(tmp->name = ft_strdup(strtable + symtable.n_un.n_strx)))
+	if (!(tmp->name = ft_strndup(strtable + symtable.n_un.n_strx,
+			strtable_size - symtable.n_un.n_strx, d->file, d->stat.st_size)))
 		return (NULL);
 	if (!(tmp->value = itoa_base_uint64(symtable.n_value, 16)))
 		return (NULL);

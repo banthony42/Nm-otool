@@ -6,20 +6,21 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:41:28 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/06 20:58:49 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/07 18:32:04 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
 static t_list	*create_symbol_list32(t_data *d, struct nlist symtable,
-												char *strtable)
+									  char *strtable, uint32_t strtable_size)
 {
 	t_smb *tmp;
 
 	if (!(tmp = (t_smb *)ft_memalloc(sizeof(t_smb))))
 		return (NULL);
-	if (!(tmp->name = ft_strdup(strtable + symtable.n_un.n_strx)))
+	if (!(tmp->name = ft_strndup(strtable + symtable.n_un.n_strx,
+		strtable_size - symtable.n_un.n_strx, d->file, d->stat.st_size)))
 		return (NULL);
 	if (!(tmp->value = itoa_base_uint32(symtable.n_value, 16)))
 		return (NULL);
@@ -57,7 +58,7 @@ static int		symtab_handler_32(struct symtab_command *sym, t_data *d,
 	{
 		if (is_corrup((void*)(strtable + symtable[i].n_un.n_strx), file, size))
 			return (1);
-		if (!(create_symbol_list32(d, symtable[i], strtable)))
+		if (!(create_symbol_list32(d, symtable[i], strtable, sym->strsize)))
 			return (0);
 		i++;
 	}

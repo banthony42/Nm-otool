@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/06 22:17:21 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/07 18:36:24 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ int				archive_handler(void *file, off_t size, t_data *d)
 		if (is_corrup((void *)(h + 1), file, size))
 			return (1);
 		error = magic_handler(&i, d, h);
-		if (error && error != ARCHIVE_CONCAT && i != SARMAG)
-			return (error);
 		if (error == ARCHIVE_CONCAT)
 			ft_putendl(ARCHIVE_CONCAT_MSG);
 		i = (off_t)((sizeof(struct ar_hdr)) + (size_t)ft_atoi(h->ar_size));
 		ptr = ptr + i;
 	}
+	if (error && error != ARCHIVE_CONCAT && i != SARMAG)
+		return (error);
 	return (0);
 }
 

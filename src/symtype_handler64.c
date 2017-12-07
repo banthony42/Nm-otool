@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/06 21:22:01 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/07 19:12:23 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static uint8_t	get_sect_type64magic(unsigned char *file, off_t size,
 				struct segment_command_64 *sgmt, struct nlist_64 symtable)
 {
 	uint8_t				n;
-	uint8_t					i;
+	uint8_t				i;
 	struct section_64	*sect;
 
 	n = 0;
@@ -39,7 +39,7 @@ static uint8_t	get_sect_type64magic(unsigned char *file, off_t size,
 		i = 1;
 		n++;
 		sect = (struct section_64 *)(sgmt + 1);
-		if (is_corrup((void *)(sgmt + sgmt->nsects), file ,size))
+		if (is_corrup((void *)(sgmt + sgmt->nsects), file, size))
 			return (1);
 		while (n < symtable.n_sect && i < sgmt->nsects)
 		{
@@ -75,7 +75,8 @@ uint8_t			get_symboltype64magic(t_data *d, struct nlist_64 symtable)
 	else if ((symtable.n_type & N_TYPE) == N_ABS)
 		type = (uint8_t)'A';
 	else if ((symtable.n_type & N_TYPE) == N_SECT)
-		type = get_sect_type64magic(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
+		type = get_sect_type64magic(d->file, d->stat.st_size,
+			(void*)d->first_sectoff, symtable);
 	else if ((symtable.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else
@@ -89,7 +90,7 @@ static uint8_t	get_sect_type64cigam(unsigned char *file, off_t size,
 				struct segment_command_64 *sgmt, struct nlist_64 symtable)
 {
 	uint8_t				n;
-	uint8_t					i;
+	uint8_t				i;
 	struct section_64	*sect;
 
 	n = 0;
@@ -137,7 +138,8 @@ uint8_t			get_symboltype64cigam(t_data *d, struct nlist_64 symtable)
 	else if ((symtable.n_type & N_TYPE) == N_ABS)
 		type = (uint8_t)'A';
 	else if ((symtable.n_type & N_TYPE) == N_SECT)
-		type = get_sect_type64cigam(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
+		type = get_sect_type64cigam(d->file, d->stat.st_size,
+				(void*)d->first_sectoff, symtable);
 	else if ((symtable.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else

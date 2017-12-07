@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 19:39:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/06 21:40:12 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/07 19:02:43 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_nm(t_list *elem)
 	t_data		*d;
 	int			error;
 
-	error = 2;
+	error = 1;
 	if (!elem || !elem->content)
 		return ;
 	if ((d = (t_data*)elem->content)->token != PATH || !d->file)
