@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 20:30:44 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/08 20:16:17 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	fill_option(t_list **lst, t_list **l, t_list **last, t_data **d)
 	tab[NB_OPTIONS] = '\0';
 	while (tmp->av[++i])
 		if ((ptr = ft_strchr(tab, (int)tmp->av[i])))
-			(*d)->opt[ptr - &tab[0]] = tmp->av[i];
+			(*d)->opt[ptr - tab] = tmp->av[i];
 	ft_strdel(&tab);
 	if (!*last)
 	{
@@ -49,9 +49,8 @@ static void	concat_options(t_list **lst)
 
 	l = *lst;
 	last = NULL;
-	if (!(d = (t_data*)malloc((sizeof(t_data)))))
+	if (!(d = (t_data*)ft_memalloc((sizeof(t_data)))))
 		return ;
-	ft_bzero(d, sizeof(t_data));
 	d->token = OPTION;
 	ft_memset(d->opt, '-', NB_OPTIONS);
 	while (l)
@@ -61,33 +60,61 @@ static void	concat_options(t_list **lst)
 			l = l->next;
 	}
 	ft_lstadd(lst, ft_lstnew(d, sizeof(t_data)));
-	data_del(d, sizeof(t_data));
 	l = *lst;
 	while (l)
 	{
+		ft_memcpy(((t_data*)(l)->content)->opt, d->opt, NB_OPTIONS);
 		((t_data*)(l)->content)->data_len = (unsigned int)ft_lstlen(*lst);
 		l = (l)->next;
 	}
+	data_del(d, sizeof(t_data));
+}
+
+void		nm_display(t_data *d)
+{
+	t_smb *tmp;
+
+	tmp = (t_smb*)d->sym;
+	while (d->sym)
+	{
+		ft_memcpy(((t_smb*)d->sym->content)->options, d->opt, NB_OPTIONS);
+		d->sym = d->sym->next;
+	}
+	d->sym = (t_list*)tmp;
+	d->lst_browser(d->sym, nm_output);
 }
 
 void		nm_output(t_list *elem)
 {
 	t_smb	*tmp;
 
-	if (!(tmp = (t_smb*)elem->content) || tmp->type == (uint8_t)'?'
-			|| tmp->type == (uint8_t)'-')
+	if (!(tmp = (t_smb*)(elem->content)) || (tmp->type == '?')
+										|| (tmp->type == '-'))
 		return ;
-	if (tmp->type == (uint8_t)'U' && tmp->arch == 64)
-		ft_putstr(PADD_SPACE64);
-	else if (tmp->type == (uint8_t)'U' && tmp->arch == 32)
-		ft_putstr(PADD_SPACE32);
-	else
-		ft_putstr(tmp->value);
-	ft_putchar(' ');
-	ft_putchar((char)tmp->type);
-	ft_putchar(' ');
+	if (is_opt(tmp->options, 'U') && ft_strchr("UuCc", tmp->type))
+		return ;
+	if (is_opt(tmp->options, 'u') && !ft_strchr("UuCc", tmp->type))
+		return ;
+	if (!is_opt(tmp->options, 'u') || !is_opt(tmp->options, 'j'))
+	{
+		if ((tmp->type == 'U') && tmp->arch == ARCH64)
+			ft_putstr(PADD_SPACE64);
+		else if ((tmp->type == 'U') && tmp->arch == ARCH32)
+			ft_putstr(PADD_SPACE32);
+		else
+			ft_putstr(tmp->value);
+		ft_putchar(' ');
+		ft_putchar((char)tmp->type);
+		ft_putchar(' ');
+	}
 	ft_putendl(tmp->name);
 }
+
+/*
+**	gj
+**	Enregistrement des ordres demandes  dans le maillon one. (temporaire)
+**	Parcours de la liste data, ajout des ordres dans chaque maillons.
+*/
 
 static void	option_analyse(t_list **entry)
 {
@@ -99,11 +126,11 @@ static void	option_analyse(t_list **entry)
 		return ;
 	one->lst_browser = &(ft_lstiter);
 	one->lstadd_somewhere = &(lstadd_alpha);
-	if (is_opt(one, 'r') && !(is_opt(one, 'p')))
+	if (is_opt(one->opt, 'r') && !(is_opt(one->opt, 'p')))
 		one->lst_browser = &(lstiter_reverse);
-	if (is_opt(one, 'p'))
+	if (is_opt(one->opt, 'p'))
 		one->lstadd_somewhere = &(ft_lstaddback);
-	else if (is_opt(one, 'n'))
+	else if (is_opt(one->opt, 'n'))
 		one->lstadd_somewhere = &(lstadd_numeric);
 	l = *entry;
 	while ((*entry))
@@ -137,27 +164,7 @@ int			main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	option_analyse(&entry);
-	ft_lstiter(entry, &ft_nm);		/*Recup des data*/
-//	system("leaks ft_nm");
-	ft_lstdel(&entry, data_del);	/*Liberation de la memoire*/
+	ft_lstiter(entry, &ft_nm);
+	ft_lstdel(&entry, data_del);
 	return (*(error_number(NULL)));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

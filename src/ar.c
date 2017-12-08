@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/07 18:36:24 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/08 16:21:23 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,3 @@ int				archive_handler(void *file, off_t size, t_data *d)
 		return (error);
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-

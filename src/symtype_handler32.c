@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   symtype_handler.c                                  :+:      :+:    :+:   */
+/*   symtype_handler32.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/06 21:32:32 by banthony         ###   ########.fr       */
+/*   Created: 2017/12/07 21:27:39 by banthony          #+#    #+#             */
+/*   Updated: 2017/12/07 21:27:40 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,23 @@
 **	module in the same library.
 */
 
-static uint8_t	get_sect_type32magic(unsigned char *file, off_t size, struct segment_command *sgmt,
-									struct nlist symtable)
+static uint8_t	compare_sect(struct section *sect)
+{
+	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))
+		return ((uint8_t)'T');
+	else if (sect && !(ft_strcmp(SECT_DATA, sect->sectname)))
+		return ((uint8_t)'D');
+	else if (sect && !(ft_strcmp(SECT_BSS, sect->sectname)))
+		return ((uint8_t)'B');
+	else
+		return ((uint8_t)'S');
+}
+
+static uint8_t	get_sect_type32magic(unsigned char *file, off_t size,
+					struct segment_command *sgmt, struct nlist symtable)
 {
 	uint8_t				n;
-	uint8_t					i;
+	uint8_t				i;
 	struct section		*sect;
 
 	n = 0;
@@ -49,13 +61,8 @@ static uint8_t	get_sect_type32magic(unsigned char *file, off_t size, struct segm
 		}
 		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
 	}
-	if (sect && !(ft_strcmp(SECT_TEXT, sect->sectname)))
-		return ((uint8_t)'T');
-	else if (sect && !(ft_strcmp(SECT_DATA, sect->sectname)))
-		return ((uint8_t)'D');
-	else if (sect && !(ft_strcmp(SECT_BSS, sect->sectname)))
-		return ((uint8_t)'B');
-	return ((uint8_t)'S');
+	i = compare_sect(sect);
+	return (i);
 }
 
 uint8_t			get_symboltype32magic(t_data *d, struct nlist symtable)
@@ -75,7 +82,8 @@ uint8_t			get_symboltype32magic(t_data *d, struct nlist symtable)
 	else if ((symtable.n_type & N_TYPE) == N_ABS)
 		type = (uint8_t)'A';
 	else if ((symtable.n_type & N_TYPE) == N_SECT)
-		type = get_sect_type32magic(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
+		type = get_sect_type32magic(d->file, d->stat.st_size,
+							(void*)d->first_sectoff, symtable);
 	else if ((symtable.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else
@@ -85,11 +93,11 @@ uint8_t			get_symboltype32magic(t_data *d, struct nlist symtable)
 	return (type);
 }
 
-static uint8_t	get_sect_type32cigam(unsigned char *file, off_t size, struct segment_command *sgmt,
-									struct nlist symtable)
+static uint8_t	get_sect_type32cigam(unsigned char *file, off_t size,
+					struct segment_command *sgmt, struct nlist symtable)
 {
 	uint8_t				n;
-	uint8_t					i;
+	uint8_t				i;
 	struct section		*sect;
 
 	n = 0;
@@ -111,13 +119,8 @@ static uint8_t	get_sect_type32cigam(unsigned char *file, off_t size, struct segm
 		}
 		sgmt = (void*)((unsigned char*)sgmt + swap_uint32(sgmt->cmdsize));
 	}
-	if (sect && !(ft_strncmp(SECT_TEXT, sect->sectname, 16)))
-		return ((uint8_t)'T');
-	else if (sect && !(ft_strncmp(SECT_DATA, sect->sectname, 16)))
-		return ((uint8_t)'D');
-	else if (sect && !(ft_strncmp(SECT_BSS, sect->sectname, 16)))
-		return ((uint8_t)'B');
-	return ((uint8_t)'S');
+	i = compare_sect(sect);
+	return (i);
 }
 
 uint8_t			get_symboltype32cigam(t_data *d, struct nlist symtable)
@@ -137,7 +140,8 @@ uint8_t			get_symboltype32cigam(t_data *d, struct nlist symtable)
 	else if ((symtable.n_type & N_TYPE) == N_ABS)
 		type = (uint8_t)'A';
 	else if ((symtable.n_type & N_TYPE) == N_SECT)
-		type = get_sect_type32cigam(d->file, d->stat.st_size, (void*)d->first_sectoff, symtable);
+		type = get_sect_type32cigam(d->file, d->stat.st_size,
+							(void*)d->first_sectoff, symtable);
 	else if ((symtable.n_type & N_TYPE) == N_INDR)
 		type = (uint8_t)'I';
 	else

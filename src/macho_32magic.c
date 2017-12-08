@@ -6,14 +6,14 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:41:28 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/07 18:32:04 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/08 19:24:09 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
 static t_list	*create_symbol_list32(t_data *d, struct nlist symtable,
-									  char *strtable, uint32_t strtable_size)
+									char *strtable, uint32_t strtable_size)
 {
 	t_smb *tmp;
 
@@ -92,17 +92,14 @@ int				arch_32_magic(uint32_t ncmds, t_data *d,
 		if (is_corrup((void *)(lc + 1), file, size))
 			return (1);
 		if (lc->cmd == LC_SEGMENT && !d->first_sectoff)
-		{
-			if (get_first_sectoff(d, (void*)lc, file, size))
-				return (1);
-		}
-		if (lc->cmd == LC_SYMTAB)
+			error = get_first_sectoff(d, (void*)lc, file, size);
+		if (!error && lc->cmd == LC_SYMTAB)
 			error = symtab_handler_32((void*)lc, d, file, size);
 		if (error)
 			return (error);
 		lc = (void*)((unsigned char *)lc + lc->cmdsize);
 	}
-	d->lst_browser(d->sym, nm_output);
+	nm_display(d);
 	ft_lstdel(&d->sym, smb_del);
 	d->first_sectoff = NULL;
 	return (error);

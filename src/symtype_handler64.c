@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   symtype_handler.c                                  :+:      :+:    :+:   */
+/*   symtype_handler64.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 19:17:22 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/07 19:12:23 by banthony         ###   ########.fr       */
+/*   Created: 2017/12/07 21:04:06 by banthony          #+#    #+#             */
+/*   Updated: 2017/12/07 21:04:06 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@
 **	indicates a undefined reference to a private external in another
 **	module in the same library.
 */
+
+static uint8_t	compare_sect(struct section_64 *sect)
+{
+	if (sect && !(ft_strncmp(SECT_TEXT, sect->sectname, 16)))
+		return ((uint8_t)'T');
+	else if (sect && !(ft_strncmp(SECT_DATA, sect->sectname, 16)))
+		return ((uint8_t)'D');
+	else if (sect && !(ft_strncmp(SECT_BSS, sect->sectname, 16)))
+		return ((uint8_t)'B');
+	else
+		return ((uint8_t)'S');
+}
 
 static uint8_t	get_sect_type64magic(unsigned char *file, off_t size,
 				struct segment_command_64 *sgmt, struct nlist_64 symtable)
@@ -49,13 +61,8 @@ static uint8_t	get_sect_type64magic(unsigned char *file, off_t size,
 		}
 		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
 	}
-	if (sect && !(ft_strncmp(SECT_TEXT, sect->sectname, 16)))
-		return ((uint8_t)'T');
-	else if (sect && !(ft_strncmp(SECT_DATA, sect->sectname, 16)))
-		return ((uint8_t)'D');
-	else if (sect && !(ft_strncmp(SECT_BSS, sect->sectname, 16)))
-		return ((uint8_t)'B');
-	return ((uint8_t)'S');
+	i = compare_sect(sect);
+	return (i);
 }
 
 uint8_t			get_symboltype64magic(t_data *d, struct nlist_64 symtable)
@@ -97,14 +104,14 @@ static uint8_t	get_sect_type64cigam(unsigned char *file, off_t size,
 	sect = NULL;
 	if (!sgmt || is_corrup((void*)(sgmt + 1), file, size))
 		return (0);
-	while (n < symtable.n_sect)
+	while (n++ < symtable.n_sect)
 	{
 		i = 1;
 		n++;
 		sect = (struct section_64 *)(sgmt + 1);
 		if (is_corrup((void*)(sgmt + swap_uint32(sgmt->nsects)), file, size))
 			return (1);
-		while (i < swap_uint32(sgmt->nsects) && n < symtable.n_sect)
+		while (i++ < swap_uint32(sgmt->nsects) && n++ < symtable.n_sect)
 		{
 			i++;
 			n++;
@@ -112,13 +119,8 @@ static uint8_t	get_sect_type64cigam(unsigned char *file, off_t size,
 		}
 		sgmt = (void*)((unsigned char*)sgmt + swap_uint32(sgmt->cmdsize));
 	}
-	if (sect && !(ft_strncmp(SECT_TEXT, sect->sectname, 16)))
-		return ((uint8_t)'T');
-	else if (sect && !(ft_strncmp(SECT_DATA, sect->sectname, 16)))
-		return ((uint8_t)'D');
-	else if (sect && !(ft_strncmp(SECT_BSS, sect->sectname, 16)))
-		return ((uint8_t)'B');
-	return ((uint8_t)'S');
+	i = compare_sect(sect);
+	return (i);
 }
 
 uint8_t			get_symboltype64cigam(t_data *d, struct nlist_64 symtable)

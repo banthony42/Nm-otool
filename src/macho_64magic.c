@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:42:18 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/07 18:27:30 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/08 19:23:47 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 **	strndup securise:
 **	Au maximum sur n caracteres, et verifie que la chaine est dans le fichier
 */
-char	*ft_strndup(char *s1, uint32_t n, void *file, off_t size)
+
+char			*ft_strndup(char *s1, uint32_t n, void *file, off_t size)
 {
 	char	*ptr;
 	size_t	len;
@@ -32,13 +33,13 @@ char	*ft_strndup(char *s1, uint32_t n, void *file, off_t size)
 		if (!(ptr = (char *)malloc((len + 1) * sizeof(char))))
 			return (NULL);
 		ft_strncpy(ptr, s1, len);
+		ptr[len] = '\0';
 	}
-	ptr[len] = '\0';
 	return (ptr);
 }
 
 static t_list	*create_symbol_list64(t_data *d, struct nlist_64 symtable,
-									  char *strtable, uint32_t strtable_size)
+										char *strtable, uint32_t strtable_size)
 {
 	t_smb	*tmp;
 
@@ -62,10 +63,6 @@ static t_list	*create_symbol_list64(t_data *d, struct nlist_64 symtable,
 	ft_memdel((void**)&tmp);
 	return (d->sym);
 }
-
-/*
-**	Possible besoin de decliner en magic - cigam
-*/
 
 static int		symtab_handler_64(struct symtab_command *sym, t_data *d,
 										unsigned char *file, off_t size)
@@ -95,7 +92,7 @@ static int		symtab_handler_64(struct symtab_command *sym, t_data *d,
 }
 
 static int		get_first_sectoff(t_data *d, struct segment_command_64 *sgmt64,
-								  unsigned char *file, off_t size)
+												unsigned char *file, off_t size)
 {
 	if (is_corrup((void *)(sgmt64 + 2), file, size))
 		return (1);
@@ -121,17 +118,14 @@ int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file,
 		if (is_corrup((void*)(lc + 1), file, size))
 			return (1);
 		if (lc->cmd == LC_SEGMENT_64 && !d->first_sectoff)
-		{
-			if (get_first_sectoff(d, (void*)lc, file, size))
-				return (1);
-		}
-		if (lc->cmd == LC_SYMTAB)
+			error = get_first_sectoff(d, (void*)lc, file, size);
+		if (!error && lc->cmd == LC_SYMTAB)
 			error = symtab_handler_64((void *)lc, d, file, size);
 		if (error)
 			return (error);
 		lc = (void *)((unsigned char*)lc + lc->cmdsize);
 	}
-	d->lst_browser(d->sym, nm_output);
+	nm_display(d);
 	ft_lstdel(&d->sym, smb_del);
 	d->first_sectoff = NULL;
 	return (error);

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 19:39:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/07 19:02:43 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/07 22:05:12 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	uint32_t			ncmds;
 	struct mach_header	*hdr;
 
-/*	if (!file_access(file, sizeof(struct mach_header), size))
-	return (1);*/
 	error = -1;
 	hdr = (struct mach_header *)file;
 	if (is_corrup((void *)(hdr + 1), file, size))
@@ -52,8 +50,6 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	uint32_t				ncmds;
 	struct mach_header_64	*hdr64;
 
-/*	if (!file_access(file, sizeof(struct mach_header_64), size))
-		return (1);*/
 	error = -1;
 	hdr64 = (struct mach_header_64 *)file;
 	if (is_corrup((void*)(hdr64 + 1), file, size))
@@ -63,7 +59,6 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 		error = arch_64_magic(ncmds, d, file, size);
 	if (magic == MH_CIGAM_64)
 	{
-		ft_putendlcol(YELLOW, "MH_CIGAM_64 - TODO");
 		ncmds = swap_uint32(ncmds);
 		error = arch_64_cigam(ncmds, d, file, size);
 	}

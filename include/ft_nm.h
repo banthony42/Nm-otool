@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/06 23:26:59 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/08 19:27:37 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 /*
 **	Messages
 */
-# define NM_USG "ft_nm [-gnopruUxj--] [file...]\n"
+# define NM_USG "ft_nm [-gnpruUj--] [file...]\n"
 # define FILE_NOT_FOUND "No such file or directory."
 # define ERR_FILE "The file was not recognized as a valid object file"
 # define ERR_MAGIC "The magic number was not recognized"
@@ -59,7 +59,7 @@
 
 typedef enum	e_options
 {
-	OPTION, PATH,
+	OPTION, PATH
 }				t_options;
 
 typedef struct	s_arch
@@ -78,7 +78,7 @@ typedef	struct	s_smb
 	char		*value;				/*valeur du symbol*/
 	uint8_t		type;				/*Type du symbol*/
 	uint8_t		arch;
-	char		padding[6];			/*variable d'alignement de la structure*/
+	char		options[22];			/*variable d'alignement de la structure*/
 	char		*name;				/*Nom du symbol*/
 }				t_smb;
 
@@ -125,11 +125,12 @@ char			*ft_strndup(char *s1, uint32_t n, void *file, off_t size);
 */
 
 void			ft_nm(t_list *elem);
-int				is_opt(void *data, char opt);
-int				file_access(void *file, off_t read, off_t file_size);
+int				is_opt(char *data, char opt);
 int				is_corrup(unsigned char *ptr, void *file, off_t size);
 int				*error_number(int *err);
+void			nm_display(t_data *d);
 void			nm_output(t_list *elem);
+t_data			*new_data(char *str, int *wait);
 void			data_del(void *content, size_t size);
 void			smb_del(void *content, size_t size);
 
@@ -149,12 +150,12 @@ int				fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off
 void			print_arch(struct fat_arch, t_data *d, int mgc);
 
 /*
-**	Nm - Universal binaries x64 - (La struct fat_arch_64 n'est pas toujours presentes sur les mac)
-*/
-/*
-int				fat_arch_64_handler(uint32_t magic, unsigned char *file, off_t size);
-int				fat_arch_64_cigam(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
-int				fat_arch_64_magic(uint32_t nfat_arch, struct fat_arch_64 *frh, unsigned char *file, off_t size);
+**	Nm - Universal binaries x64
+**	La struct fat_arch_64 n'est pas toujours presentes sur les mac.
+**	De plus lorsqu'elle est presente on peut y lire ce commentaire:
+**	"The support for the 64-bit fat file format described here is a work in
+**	progress and not yet fully supported in all the Apple Developer Tools."
+**	C'est pourquoi j'ai fait le choix de ne pas gerer ce type de fichier.
 */
 
 /*
@@ -167,7 +168,6 @@ uint32_t		swap_uint32(uint32_t val);
 uint8_t			get_symboltype32magic(t_data *d, struct nlist symtable);
 uint8_t			get_symboltype32cigam(t_data *d, struct nlist symtable);
 char			*itoa_base_uint32(uint32_t value, int base);
-uint8_t			swap_uint8(uint8_t val);	/*Pas utiliser pour l'instant*/
 
 /*
 **	Nm - Mach-o x64

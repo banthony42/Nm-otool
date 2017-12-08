@@ -6,7 +6,7 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/12/06 18:06:01 by banthony         ###   ########.fr        #
+#    Updated: 2017/12/08 19:20:02 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,9 +23,7 @@ HEADER_FILE = ft_nm.h	\
 SRC_FILE = 	main.c				parsing.c		ft_nm.c	misc.c	itoa_base_uint.c	\
 			macho_64magic.c		macho_64cigam.c	list_manage.c	symtype_handler32.c	\
 			macho_32magic.c		macho_32cigam.c	misc2.c			symtype_handler64.c	\
-			ar.c				fat_32.c											\
-
-#fat_64.c	\
+			ar.c				fat_32.c		misc3.c									\
 
 SRC = $(SRC_FILE:%c=$(PATH_SRC)%c)
 

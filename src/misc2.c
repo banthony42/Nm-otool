@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_manage2.c                                     :+:      :+:    :+:   */
+/*   misc2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/30 16:08:29 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/05 22:02:51 by banthony         ###   ########.fr       */
+/*   Created: 2017/12/07 21:27:29 by banthony          #+#    #+#             */
+/*   Updated: 2017/12/08 18:54:23 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+/*
+**	Base de donnees pour les architectures.
+**	Utiliser lors d'un affichage de donnees de plusieurs architecture.
+**	(fat32)
+*/
 
 t_arch g_arch_data[ARCH_DATA_SIZE] =
 {
@@ -19,7 +25,7 @@ t_arch g_arch_data[ARCH_DATA_SIZE] =
 	{	"arm"			, CPU_TYPE_ARM			, CPU_SUBTYPE_ARM_ALL		},
 	{	"arm6"			, CPU_TYPE_ARM64		, CPU_SUBTYPE_ARM64_ALL		},
 	{	"ppc"			, CPU_TYPE_POWERPC		, CPU_SUBTYPE_POWERPC_ALL	},
-	{	"ppc64"			, CPU_TYPE_POWERPC64	, 0							},
+	{	"ppc64"			, CPU_TYPE_POWERPC64	, CPU_SUBTYPE_POWERPC_ALL	},
 	{	"m68k"			, CPU_TYPE_MC680x0		, CPU_SUBTYPE_MC680x0_ALL	},
 	{	"hppa"			, CPU_TYPE_HPPA			, CPU_SUBTYPE_HPPA_ALL		},
 	{	"i860"			, CPU_TYPE_I860			, CPU_SUBTYPE_I860_ALL		},
@@ -60,7 +66,11 @@ t_arch g_arch_data[ARCH_DATA_SIZE] =
 	{	"hppa7100LC"	, CPU_TYPE_HPPA			, CPU_SUBTYPE_HPPA_7100LC	},
 };
 
-void		print_arch(struct fat_arch frh, t_data *d, int mgc)
+/*
+**	Parcours de la base de donnee, affichage du nom de l'arch lors d'un match.
+*/
+
+void	print_arch(struct fat_arch frh, t_data *d, int mgc)
 {
 	int			i;
 	uint32_t	cpu;
@@ -89,7 +99,20 @@ void		print_arch(struct fat_arch frh, t_data *d, int mgc)
 	ft_putendl("):");
 }
 
-void		lstiter_reverse(t_list *lst, void (*f)(t_list *elem))
+int		is_corrup(unsigned char *ptr, void *file, off_t size)
+{
+	if (ptr < (unsigned char *)file)
+		return (1);
+	if (ptr > (unsigned char *)((unsigned char *)file + size))
+		return (1);
+	return (0);
+}
+
+/*
+**	Recursivite pour parcour inverse de la liste.
+*/
+
+void	lstiter_reverse(t_list *lst, void (*f)(t_list *elem))
 {
 	if (lst)
 		lstiter_reverse(lst->next, f);
@@ -97,7 +120,7 @@ void		lstiter_reverse(t_list *lst, void (*f)(t_list *elem))
 		f(lst);
 }
 
-void		smb_del(void *content, size_t size)
+void	smb_del(void *content, size_t size)
 {
 	t_smb *tmp;
 
@@ -109,25 +132,22 @@ void		smb_del(void *content, size_t size)
 	ft_memdel((void **)&tmp);
 }
 
-/*
-**Fonction temporaire
-*/
-
-void		print_elem(t_list *elem)
+t_data	*new_data(char *str, int *wait)
 {
-	t_data*h;
+	t_data *d;
 
-	h = (t_data*)elem->content;
-	if (h->token == OPTION)
-		ft_putstr("OPTION\t");
-	if (h->token == PATH)
-		ft_putstr("FILE\t");
-	ft_putstr(h->av);
-	ft_putstr("\tfd ");
-	ft_putnbr(h->fd);
-	ft_putstr("\tdlen: ");
-	ft_putnbr(h->data_len);
-	ft_putchar('\t');
-	ft_putstr("\topt ");
-	ft_print_memory(h->opt, NB_OPTIONS);
+	d = NULL;
+	if (!str)
+		return (NULL);
+	if (!(d = (t_data*)malloc(sizeof(t_data))))
+		return (NULL);
+	ft_bzero(d, sizeof(t_data));
+	if (!(d->av = ft_strdup(str)))
+		return (NULL);
+	d->token = PATH;
+	if (str[0] == '-' && *wait)
+		d->token = OPTION;
+	if (!(ft_strcmp(str, "--")))
+		*wait = 0;
+	return (d);
 }
