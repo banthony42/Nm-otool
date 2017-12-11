@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nm.c                                            :+:      :+:    :+:   */
+/*   ft_nm_master.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 19:39:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/07 22:05:12 by banthony         ###   ########.fr       */
+/*   Created: 2017/12/11 13:45:17 by banthony          #+#    #+#             */
+/*   Updated: 2017/12/11 22:18:48 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
-int		*error_number(int *err)
+/*
+**	Avant l'affichage, transmission des options saisies
+**	aux maillons de la liste de struct t_smb.
+*/
+
+void	nm_display(t_data *d)
 {
-	static int error;
+	t_smb *tmp;
 
-	if (err)
-		error = *err;
-	return (&error);
+	tmp = (t_smb*)d->sym;
+	while (d->sym)
+	{
+		ft_memcpy(((t_smb*)d->sym->content)->options, d->opt, NB_OPT_NM);
+		d->sym = d->sym->next;
+	}
+	d->sym = (t_list*)tmp;
+	d->lst_browser(d->sym, nm_output);
 }
 
 int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
@@ -67,7 +77,7 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	return (0);
 }
 
-void	ft_nm(t_list *elem)
+void	ft_nm_otool(t_list *elem)
 {
 	uint32_t	magic;
 	t_data		*d;
@@ -76,10 +86,10 @@ void	ft_nm(t_list *elem)
 	error = 1;
 	if (!elem || !elem->content)
 		return ;
-	if ((d = (t_data*)elem->content)->token != PATH || !d->file)
+	if ((d = (t_data*)elem->content)->token[TYPE] != PATH || !d->file)
 		return ;
 	if (d->data_len > 2)
-		ft_nm_info(d->av, NULL);
+		cmd_info(FT_NM, d->av, NULL);
 	if ((magic = *(uint32_t*)d->file) == MH_MAGIC_64 || magic == MH_CIGAM_64)
 		error = arch_64_handler(magic, d, d->file, d->stat.st_size);
 	else if (magic == MH_MAGIC || magic == MH_CIGAM)
@@ -90,12 +100,6 @@ void	ft_nm(t_list *elem)
 	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))
 		error = archive_handler(d->file, d->stat.st_size, d);
 	if (error)
-		ft_nm_info(d->av, ERR_FILE);
+		cmd_info(FT_NM, d->av, ERR_FILE);
 	error_number(&error);
 }
-
-/*
-**	error < 0: Erreur sur magic_number ;
-**	error == 0: Erreur lors de la lecture fichier
-**	ARMAG/SARMAG - Correspond au magic_str et size_magic_str - voir ar.h
-*/

@@ -6,11 +6,11 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/08 16:19:54 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:10:09 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
 /*
 **	Recherche d'une architecture identique a l'architecture de l'host.
@@ -33,7 +33,7 @@ static int	is_arch(t_data *d, struct fat_arch *frh, int *i, uint32_t nfat_arch)
 		n++;
 	}
 	if (nfat_arch == 1)
-		ft_nm_info(d->av, NULL);
+		cmd_info(FT_NM, d->av, NULL);
 	else if (!arch)
 		print_arch(frh[i[0]], d, i[2]);
 	if (!arch)

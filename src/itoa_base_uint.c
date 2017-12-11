@@ -6,11 +6,11 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 20:21:47 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/08 00:24:34 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:10:47 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
 char		*itoa_base_uint64(uint64_t value, int base)
 {

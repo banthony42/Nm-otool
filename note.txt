@@ -6,16 +6,19 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/12/11 13:37:35 by banthony         ###   ########.fr         
+     Updated: 2017/12/11 22:25:58 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
-Issue:
-	cat a.out | ft_nm -  (lecture sur entree standard) simon (Bonus)
+Issue ft_nm:
+	  leaks a trouver dans gestion des Mach-o
+	  cat a.out | ft_nm -  (lecture sur entree standard) simon (Bonus)
+	  BONUS "-arch all", trouver un caractere pour le gerer rapidement -z ?
 
-Todo:
-	option "-arch all", trouver un caractere pour le gerer rapidement -z ? (Bonus)
-	ft_otool -fichier de test hard - fucking_bomb - otool - simon
+Issue ft_otool:
+	  Appel conditionel dans mes mach-o handler, a tester.
+	  Fichier de test hard - fucking_bomb - otool - simon
+	  BONUS -afh ? (Affichage des header, archive, fat, mach-o)
 
 $> nm ./test/a.out
 0000000100000000 T __mh_execute_header

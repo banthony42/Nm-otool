@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_nm_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 12:20:01 by banthony         ###   ########.fr       */
+/*   Created: 2017/12/11 13:45:08 by banthony          #+#    #+#             */
+/*   Updated: 2017/12/11 22:12:14 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
 static void	fill_option(t_list **lst, t_list **l, t_list **last, t_data **d)
 {
@@ -19,11 +19,11 @@ static void	fill_option(t_list **lst, t_list **l, t_list **last, t_data **d)
 	char	*tab;
 	int		i;
 
-	if (!*l || (tmp = (t_data*)(*l)->content)->token != OPTION)
+	if (!*l || (tmp = (t_data*)(*l)->content)->token[TYPE] != OPTION)
 		return ;
-	tab = ft_strdup(AVAILABLE_OPTIONS);
+	tab = ft_strdup(AVAILABLE_OPT_NM);
 	i = 0;
-	tab[NB_OPTIONS] = '\0';
+	tab[NB_OPT_NM] = '\0';
 	while (tmp->av[++i])
 		if ((ptr = ft_strchr(tab, (int)tmp->av[i])))
 			(*d)->opt[ptr - tab] = tmp->av[i];
@@ -51,8 +51,8 @@ static void	concat_options(t_list **lst)
 	last = NULL;
 	if (!(d = (t_data*)ft_memalloc((sizeof(t_data)))))
 		return ;
-	d->token = OPTION;
-	ft_memset(d->opt, '-', NB_OPTIONS);
+	d->token[TYPE] = OPTION;
+	ft_memset(d->opt, '-', NB_OPT_NM);
 	while (l)
 	{
 		fill_option(lst, &l, &last, &d);
@@ -63,39 +63,11 @@ static void	concat_options(t_list **lst)
 	l = *lst;
 	while (l)
 	{
-		ft_memcpy(((t_data*)(l)->content)->opt, d->opt, NB_OPTIONS);
+		ft_memcpy(((t_data*)(l)->content)->opt, d->opt, NB_OPT_NM);
 		((t_data*)(l)->content)->data_len = (unsigned int)ft_lstlen(*lst);
 		l = (l)->next;
 	}
 	data_del(d, sizeof(t_data));
-}
-
-void		nm_output(t_list *elem)
-{
-	t_smb	*tmp;
-
-	if (!(tmp = (t_smb*)(elem->content)) || (tmp->type == '?')
-										|| (tmp->type == '-'))
-		return ;
-	if (is_opt(tmp->options, 'U') && ft_strchr("UuCc", tmp->type))
-		return ;
-	if (is_opt(tmp->options, 'u') && !ft_strchr("UuCc", tmp->type))
-		return ;
-	if (is_opt(tmp->options, 'g') && ft_islower((int)tmp->type))
-		return ;
-	if (!is_opt(tmp->options, 'u') && !is_opt(tmp->options, 'j'))
-	{
-		if ((tmp->type == 'U') && tmp->arch == ARCH64)
-			ft_putstr(PADD_SPACE64);
-		else if ((tmp->type == 'U') && tmp->arch == ARCH32)
-			ft_putstr(PADD_SPACE32);
-		else
-			ft_putstr(tmp->value);
-		ft_putchar(' ');
-		ft_putchar((char)tmp->type);
-		ft_putchar(' ');
-	}
-	ft_putendl(tmp->name);
 }
 
 /*
@@ -143,7 +115,7 @@ int			main(int ac, char **av)
 		default_file(&entry);
 		ft_lstiter(entry, &prepare_files);
 	}
-	else if ((entry = parsing(av)))
+	else if ((entry = parsing(av, FT_NM, AVAILABLE_OPT_NM)))
 		concat_options(&entry);
 	else
 	{
@@ -151,7 +123,7 @@ int			main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	option_analyse(&entry);
-	ft_lstiter(entry, &ft_nm);
+	ft_lstiter(entry, &ft_nm_otool);
 	ft_lstdel(&entry, data_del);
 	return (*(error_number(NULL)));
 }

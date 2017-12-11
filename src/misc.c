@@ -6,11 +6,11 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/08 18:20:55 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:11:25 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
 /*
 **	Affiche le nom du programme suivi de deux char*
@@ -18,10 +18,10 @@
 **	pour notifier sur une erreur de nom de fichier
 */
 
-int			ft_nm_info(char *str, char *info)
+int			cmd_info(char *cmd, char *str, char *info)
 {
 	if (info)
-		ft_putstr("ft_nm: ");
+		ft_putstr(cmd);
 	ft_putstr(str);
 	if (str)
 		ft_putstr(":");
@@ -77,9 +77,9 @@ void		data_del(void *content, size_t size)
 	ft_strdel(&d->av);
 	ft_lstdel(&d->sym, smb_del);
 	if (d->fd > 0 && (close(d->fd) < 0))
-		ft_nm_info(d->av, "close error.");
+		cmd_info("Erreur: ", d->av, "close error.");
 	if (d->file && munmap(d->file, (size_t)d->stat.st_size) < 0)
-		ft_nm_info(d->av, "munmap error.");
+		cmd_info("Erreur: ", d->av, "munmap error.");
 	ft_memdel((void**)&d);
 }
 

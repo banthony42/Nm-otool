@@ -6,11 +6,11 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:41:24 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/08 19:24:20 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:11:05 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
 static t_list	*create_symbol_list32(t_data *d, struct nlist symtable,
 									char *strtable, uint32_t strtable_size)
@@ -102,7 +102,8 @@ int				arch_32_cigam(uint32_t ncmds, t_data *d,
 			return (error);
 		lc = (void*)((unsigned char *)lc + swap_uint32(lc->cmdsize));
 	}
-	nm_display(d);
+	if (d->token[CMD] == NM)
+		nm_display(d);
 	ft_lstdel(&d->sym, smb_del);
 	d->first_sectoff = NULL;
 	return (0);

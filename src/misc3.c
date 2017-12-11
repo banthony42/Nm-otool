@@ -6,24 +6,19 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 16:20:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 13:38:43 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:19:41 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
-void	nm_display(t_data *d)
+int		*error_number(int *err)
 {
-	t_smb *tmp;
+	static int error;
 
-	tmp = (t_smb*)d->sym;
-	while (d->sym)
-	{
-		ft_memcpy(((t_smb*)d->sym->content)->options, d->opt, NB_OPTIONS);
-		d->sym = d->sym->next;
-	}
-	d->sym = (t_list*)tmp;
-	d->lst_browser(d->sym, nm_output);
+	if (err)
+		error = *err;
+	return (&error);
 }
 
 int		ft_islower(int c)
@@ -31,6 +26,34 @@ int		ft_islower(int c)
 	if (c >= (int)'a' && c <= (int)'z')
 		return (1);
 	return (0);
+}
+
+void	nm_output(t_list *elem)
+{
+	t_smb	*tmp;
+
+	if (!(tmp = (t_smb*)(elem->content)) || (tmp->type == '?')
+										|| (tmp->type == '-'))
+		return ;
+	if (is_opt(tmp->options, 'U') && ft_strchr("UuCc", tmp->type))
+		return ;
+	if (is_opt(tmp->options, 'u') && !ft_strchr("UuCc", tmp->type))
+		return ;
+	if (is_opt(tmp->options, 'g') && ft_islower((int)tmp->type))
+		return ;
+	if (!is_opt(tmp->options, 'u') && !is_opt(tmp->options, 'j'))
+	{
+		if ((tmp->type == 'U') && tmp->arch == ARCH64)
+			ft_putstr(PADD_SPACE64);
+		else if ((tmp->type == 'U') && tmp->arch == ARCH32)
+			ft_putstr(PADD_SPACE32);
+		else
+			ft_putstr(tmp->value);
+		ft_putchar(' ');
+		ft_putchar((char)tmp->type);
+		ft_putchar(' ');
+	}
+	ft_putendl(tmp->name);
 }
 
 /*
@@ -42,9 +65,9 @@ void	print_elem(t_list *elem)
 	t_data*h;
 
 	h = (t_data*)elem->content;
-	if (h->token == OPTION)
+	if (h->token[TYPE] == OPTION)
 		ft_putstr("OPTION\t");
-	if (h->token == PATH)
+	if (h->token[TYPE] == PATH)
 		ft_putstr("FILE\t");
 	ft_putstr(h->av);
 	ft_putstr("\tfd ");
@@ -53,5 +76,5 @@ void	print_elem(t_list *elem)
 	ft_putnbr(h->data_len);
 	ft_putchar('\t');
 	ft_putstr("\topt ");
-	ft_print_memory(h->opt, NB_OPTIONS);
+	ft_print_memory(h->opt, NB_OPT_NM);
 }

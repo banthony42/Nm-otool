@@ -6,11 +6,11 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 17:29:26 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/04 20:24:20 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:10:53 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
 /*
 **	Si previous == NULL => (ajout en tete de liste)

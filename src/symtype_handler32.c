@@ -6,11 +6,11 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:27:39 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/07 21:27:40 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:11:47 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
 /*
 **	U  (undefined),  A  (absolute),  T  (text section symbol),

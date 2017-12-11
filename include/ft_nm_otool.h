@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nm.h                                            :+:      :+:    :+:   */
+/*   ft_nm_otool.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 13:30:05 by banthony         ###   ########.fr       */
+/*   Created: 2017/12/11 22:06:58 by banthony          #+#    #+#             */
+/*   Updated: 2017/12/11 22:20:26 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_NM_H
-# define FT_NM_H
+#ifndef FT_NM_OTOOL_H
+# define FT_NM_OTOOL_H
 
 # include <sys/mman.h>
 # include <sys/stat.h>
@@ -29,7 +29,6 @@
 /*
 **	Messages
 */
-# define NM_USG "ft_nm [-gnpruUj--] [file...]\n"
 # define FILE_NOT_FOUND "No such file or directory."
 # define ERR_FILE "The file was not recognized as a valid object file"
 # define ERR_MAGIC "The magic number was not recognized"
@@ -38,9 +37,17 @@
 # define PERMISSION "Permission denied."
 # define IS_A_DIR "Is a directory."
 # define UNKNOWN_OPTION "Unknown command line argument"
+# define COMMON "Error: "
 
-# define AVAILABLE_OPTIONS "gnopruUxj-"
-# define NB_OPTIONS ft_strlen(AVAILABLE_OPTIONS) - 1
+# define FT_NM "ft_nm: "
+# define NM_USG "ft_nm [-gnpruUj--] [file...]\n"
+# define AVAILABLE_OPT_NM "gnopruUxj-"
+# define NB_OPT_NM ft_strlen(AVAILABLE_OPT_NM) - 1
+
+# define FT_OTOOL "ft_otool: "
+# define OTOOL_USG "ft_otool [-t--] [file...]\n\t-t print the text section"
+# define AVAILABLE_OPT_OTOOL "t-"
+# define NB_OPT_OTOOL ft_strlen(AVAILABLE_OPT_OTOOL) - 1
 
 # define OFFSET(OFFSET, BEGIN) ((char*)OFFSET - (char*)BEGIN)
 # define ARCHIVE_CONCAT 42
@@ -55,7 +62,7 @@
 
 typedef enum		e_options
 {
-	OPTION, PATH
+	TYPE, CMD, OPTION, PATH, NM, OTOOL,
 }					t_options;
 
 typedef struct		s_arch
@@ -88,7 +95,7 @@ typedef	struct		s_smb
 /*
 **	av: Entree utilisateur
 **	file: Fichier mappe en memoire
-**	first_sectoff: ptr vers le premiers segment du fichier
+**	first_sectoff: ptr vers le premiers segment du fichier (symtypes & ft_otool)
 **	fd: fd du fichier
 **	data_len: taille de la liste de fichier + un maillon d'options
 **	stat: info du fichier via fstat
@@ -105,7 +112,7 @@ typedef struct		s_data
 	int				fd;
 	unsigned int	data_len;
 	struct stat		stat;
-	size_t			token;
+	size_t			token[2];
 	char			opt[16];
 	void			(*lstadd_somewhere)(t_list **begin, t_list *new);
 	void			(*lst_browser)(t_list *lst, void (*f)(t_list *elem));
@@ -126,8 +133,8 @@ void				lstiter_reverse(t_list *lst, void (*f)(t_list *elem));
 /*
 **	Parsing Nm
 */
-int					ft_nm_info(char *str, char *info);
-t_list				*parsing(char **av);
+int					cmd_info(char *cm, char *str, char *info);
+t_list				*parsing(char **av, char *cmd, char *options);
 void				prepare_files(t_list *elm);
 void				default_file(t_list **lst);
 char				*ft_strndup(char *s1, uint32_t n, void *file, off_t size);
@@ -138,16 +145,21 @@ char				*ft_strndup(char *s1, uint32_t n, void *file, off_t size);
 void				print_elem(t_list *elem);
 
 /*
+**	Otool
+*/
+void				ft_otool(t_data *d);
+
+/*
 **	Nm
 */
-void				ft_nm(t_list *elem);
+void				ft_nm_otool(t_list *elem);
 int					ft_islower(int c);
 int					is_opt(char *data, char opt);
 int					is_corrup(unsigned char *ptr, void *file, off_t size);
 int					*error_number(int *err);
 void				nm_display(t_data *d);
 void				nm_output(t_list *elem);
-t_data				*new_data(char *str, int *wait);
+t_data				*new_data(char *str, int *wait, char *cmd);
 void				data_del(void *content, size_t size);
 void				smb_del(void *content, size_t size);
 

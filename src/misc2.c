@@ -6,11 +6,11 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:27:29 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/08 18:54:23 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:19:35 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
 /*
 **	Base de donnees pour les architectures.
@@ -132,21 +132,23 @@ void	smb_del(void *content, size_t size)
 	ft_memdel((void **)&tmp);
 }
 
-t_data	*new_data(char *str, int *wait)
+t_data	*new_data(char *str, int *wait, char *cmd)
 {
 	t_data *d;
 
 	d = NULL;
 	if (!str)
 		return (NULL);
-	if (!(d = (t_data*)malloc(sizeof(t_data))))
+	if (!(d = (t_data*)ft_memalloc(sizeof(t_data))))
 		return (NULL);
-	ft_bzero(d, sizeof(t_data));
 	if (!(d->av = ft_strdup(str)))
 		return (NULL);
-	d->token = PATH;
+	d->token[TYPE] = PATH;
+	d->token[CMD] = OTOOL;
+	if (!ft_strcmp(cmd, FT_NM))
+		d->token[CMD] = NM;
 	if (str[0] == '-' && *wait)
-		d->token = OPTION;
+		d->token[TYPE] = OPTION;
 	if (!(ft_strcmp(str, "--")))
 		*wait = 0;
 	return (d);

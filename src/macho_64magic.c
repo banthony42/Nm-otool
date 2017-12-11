@@ -6,11 +6,11 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:42:18 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/08 19:23:47 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:11:20 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_nm_otool.h"
 
 /*
 **	strndup securise:
@@ -125,7 +125,7 @@ int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file,
 			return (error);
 		lc = (void *)((unsigned char*)lc + lc->cmdsize);
 	}
-	nm_display(d);
+	(d->token[CMD] == NM) ? (nm_display(d)) : (ft_otool(d));
 	ft_lstdel(&d->sym, smb_del);
 	d->first_sectoff = NULL;
 	return (error);
