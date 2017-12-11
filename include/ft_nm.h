@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:12:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/08 19:27:37 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 13:30:05 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,10 @@
 # include <mach-o/loader.h>
 # include <mach-o/nlist.h>
 # include <mach-o/fat.h>
-#include <ar.h>
-#include <ranlib.h>
-#include <errno.h>
+# include <ar.h>
+# include <ranlib.h>
+# include <errno.h>
 # include "libft.h"
-
-
-#include <stdio.h>
-
 
 /*
 **	Messages
@@ -48,7 +44,7 @@
 
 # define OFFSET(OFFSET, BEGIN) ((char*)OFFSET - (char*)BEGIN)
 # define ARCHIVE_CONCAT 42
-# define ARCHIVE_CONCAT_MSG "ft_nm: archive inside an other archive, is not managed"
+# define ARCHIVE_CONCAT_MSG "ft_nm: archive inside an archive, is not managed"
 # define RANLIB	-42
 # define ARCH32 32
 # define ARCH64 64
@@ -57,97 +53,119 @@
 # define PADD_SPACE64	"                "
 # define PADD_SPACE32	"        "
 
-typedef enum	e_options
+typedef enum		e_options
 {
 	OPTION, PATH
-}				t_options;
+}					t_options;
 
-typedef struct	s_arch
+typedef struct		s_arch
 {
-	char		*name;
-	cpu_type_t	cputype;
-	cpu_type_t	cpusubtype;
-}				t_arch;
+	char			*name;
+	cpu_type_t		cputype;
+	cpu_type_t		cpusubtype;
+}					t_arch;
 
 # define ARCH_DATA_SIZE 44
 
-extern t_arch g_arch_data[ARCH_DATA_SIZE];
+extern t_arch		g_arch_data[ARCH_DATA_SIZE];
 
-typedef	struct	s_smb
+/*
+**	value: valeur du symbol
+**	type: type du symbol
+**	arch: ARCH32 ou ARCH64
+**	options: Tableau d'options presentes
+**	name: nom du symbol
+*/
+typedef	struct		s_smb
 {
-	char		*value;				/*valeur du symbol*/
-	uint8_t		type;				/*Type du symbol*/
-	uint8_t		arch;
-	char		options[22];			/*variable d'alignement de la structure*/
-	char		*name;				/*Nom du symbol*/
-}				t_smb;
+	char			*value;
+	uint8_t			type;
+	uint8_t			arch;
+	char			options[22];
+	char			*name;
+}					t_smb;
 
-typedef struct	s_data
+/*
+**	av: Entree utilisateur
+**	file: Fichier mappe en memoire
+**	first_sectoff: ptr vers le premiers segment du fichier
+**	fd: fd du fichier
+**	data_len: taille de la liste de fichier + un maillon d'options
+**	stat: info du fichier via fstat
+**	token: Flag pour differencier options d'un fichier
+**	opt: tableau d'options, rempli par la lettre correspondante sinon '-'
+**	lstadd_somewhere: fonction de tri par insertion, suivant options -np
+**	lst_browser: fonction de parcourt de liste, suivant option -r
+*/
+typedef struct		s_data
 {
-	char			*av;													/*Entree utilisateur*/
-	void			*file;													/*fichier mappe en memoire*/
-	void			*first_sectoff;											/*ptr vers premiere segment*/
-	int				fd;														/*fd du fichier*/
-	unsigned int	data_len;												/*taille de la liste*/
-	struct stat		stat;													/*stat du fichier*/
-	size_t			token;													/*option ou fichier*/
-	char			opt[16];												/*si option, lesquelles*/
-	void			(*lstadd_somewhere)(t_list **begin, t_list *new);		/*voir ci dessous*/
-	void			(*lst_browser)(t_list *lst, void (*f)(t_list *elem));	/*voir ci dessous*/
-	t_list			*sym;													/*Liste des symbol du fichier*/
+	char			*av;
+	void			*file;
+	void			*first_sectoff;
+	int				fd;
+	unsigned int	data_len;
+	struct stat		stat;
+	size_t			token;
+	char			opt[16];
+	void			(*lstadd_somewhere)(t_list **begin, t_list *new);
+	void			(*lst_browser)(t_list *lst, void (*f)(t_list *elem));
+	t_list			*sym;
 }					t_data;
-
 
 /*
 **	Fonction pour lstadd_somewhere, valeur par defaut: lstadd_alpha
 */
-void			lstadd_alpha(t_list **begin, t_list *new);		/*Tri alphabetiquement a l'insertion (nm)*/
-void			lstadd_numeric(t_list **begin, t_list *new);	/*Tri numeriquement a l'insertion (nm -n)*/
-/*void			ft_lstaddback(t_list **begin, t_list **new);*/	/*Ajout dans l'ordre de la symtable (nm -p)*/
+void				lstadd_alpha(t_list **begin, t_list *new);
+void				lstadd_numeric(t_list **begin, t_list *new);
 
 /*
 **	Fonction pour lst_browser, valeur par defaut: ft_lstiter
 */
-void			lstiter_reverse(t_list *lst, void (*f)(t_list *elem));	/*(nm -r)*/
+void				lstiter_reverse(t_list *lst, void (*f)(t_list *elem));
 
 /*
 **	Parsing Nm
 */
-int				ft_nm_info(char *str, char *info);
-void			print_elem(t_list *elem);	/*Temporaire, affichage de la liste t_data*/
-t_list			*parsing(char **av);
-void			prepare_files(t_list *elm);
-void			default_file(t_list **lst);
-char			*ft_strndup(char *s1, uint32_t n, void *file, off_t size);
+int					ft_nm_info(char *str, char *info);
+t_list				*parsing(char **av);
+void				prepare_files(t_list *elm);
+void				default_file(t_list **lst);
+char				*ft_strndup(char *s1, uint32_t n, void *file, off_t size);
+
+/*
+**	Temporaire
+*/
+void				print_elem(t_list *elem);
 
 /*
 **	Nm
 */
-
-void			ft_nm(t_list *elem);
-int				is_opt(char *data, char opt);
-int				is_corrup(unsigned char *ptr, void *file, off_t size);
-int				*error_number(int *err);
-void			nm_display(t_data *d);
-void			nm_output(t_list *elem);
-t_data			*new_data(char *str, int *wait);
-void			data_del(void *content, size_t size);
-void			smb_del(void *content, size_t size);
-
+void				ft_nm(t_list *elem);
+int					ft_islower(int c);
+int					is_opt(char *data, char opt);
+int					is_corrup(unsigned char *ptr, void *file, off_t size);
+int					*error_number(int *err);
+void				nm_display(t_data *d);
+void				nm_output(t_list *elem);
+t_data				*new_data(char *str, int *wait);
+void				data_del(void *content, size_t size);
+void				smb_del(void *content, size_t size);
 
 /*
 **	Nm - Archive
 */
-int				archive_handler(void *file, off_t size, t_data *d);
+int					archive_handler(void *file, off_t size, t_data *d);
 
 /*
 **	Nm - Universal binaries x32
 */
-
-int				fat_arch_32_handler(uint32_t magic, t_data *d, unsigned char *file, off_t size);
-int				fat_arch_32_cigam(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
-int				fat_arch_32_magic(uint32_t nfat_arch, t_data *d, unsigned char *file, off_t size);
-void			print_arch(struct fat_arch, t_data *d, int mgc);
+int					fat_arch_32_handler(uint32_t magic, t_data *d
+										, unsigned char *file, off_t size);
+int					fat_arch_32_cigam(uint32_t nfat_arch, t_data *d
+										, unsigned char *file, off_t size);
+int					fat_arch_32_magic(uint32_t nfat_arch, t_data *d
+										, unsigned char *file, off_t size);
+void				print_arch(struct fat_arch frh, t_data *d, int mgc);
 
 /*
 **	Nm - Universal binaries x64
@@ -161,41 +179,29 @@ void			print_arch(struct fat_arch, t_data *d, int mgc);
 /*
 **	Nm - Mach-o x32
 */
-int				arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size);
-int				arch_32_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
-int				arch_32_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
-uint32_t		swap_uint32(uint32_t val);
-uint8_t			get_symboltype32magic(t_data *d, struct nlist symtable);
-uint8_t			get_symboltype32cigam(t_data *d, struct nlist symtable);
-char			*itoa_base_uint32(uint32_t value, int base);
+int					arch_32_handler(uint32_t magic, t_data *d, void *file
+															, off_t size);
+int					arch_32_magic(uint32_t ncmds, t_data *d
+										, unsigned char *file, off_t size);
+int					arch_32_cigam(uint32_t ncmds, t_data *d
+										, unsigned char *file, off_t size);
+uint32_t			swap_uint32(uint32_t val);
+uint8_t				get_symboltype32magic(t_data *d, struct nlist symtable);
+uint8_t				get_symboltype32cigam(t_data *d, struct nlist symtable);
+char				*itoa_base_uint32(uint32_t value, int base);
 
 /*
 **	Nm - Mach-o x64
 */
-int				arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size);
-int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
-int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file, off_t size);
-uint64_t		swap_uint64(uint64_t val);
-char			*itoa_base_uint64(uint64_t value, int base);
-uint8_t			get_symboltype64magic(t_data *d, struct nlist_64 symtable);
-uint8_t			get_symboltype64cigam(t_data *d, struct nlist_64 symtable);
+int					arch_64_handler(uint32_t magic, t_data *d, void *file
+															, off_t size);
+int					arch_64_magic(uint32_t ncmds, t_data *d
+										, unsigned char *file, off_t size);
+int					arch_64_cigam(uint32_t ncmds, t_data *d
+										, unsigned char *file, off_t size);
+uint64_t			swap_uint64(uint64_t val);
+char				*itoa_base_uint64(uint64_t value, int base);
+uint8_t				get_symboltype64magic(t_data *d, struct nlist_64 symtable);
+uint8_t				get_symboltype64cigam(t_data *d, struct nlist_64 symtable);
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

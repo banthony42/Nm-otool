@@ -6,31 +6,16 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/12/07 19:02:59 by banthony         ###   ########.fr         
+     Updated: 2017/12/11 13:37:35 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
-
-
 Issue:
-	cat a.out | ft_nm -  (lecture sur entree standard) feat simon
+	cat a.out | ft_nm -  (lecture sur entree standard) simon (Bonus)
 
 Todo:
-	option "-arch all", trouver un caractere pour le gerer rapidement -z ?
-	OTOOL - fucking_bomb - otool - feat simon
-
-
-Note:
-
-Pour recuperer le cpusubtype, il faut utiliser un masque:
-(frh->cpusubtype & ~CPU_SUBTYPE_MASK)
-
-
-Variable a recuperer (nm):
-		 symbol table
-		 		symbol name
-				value of the symbol name
-				symbol type of the value
+	option "-arch all", trouver un caractere pour le gerer rapidement -z ? (Bonus)
+	ft_otool -fichier de test hard - fucking_bomb - otool - simon
 
 $> nm ./test/a.out
 0000000100000000 T __mh_execute_header
@@ -43,14 +28,7 @@ $> nm ./test/a.out
 	Value		Type	  Symbol Name
 
 
-	Memoriser l'offset de la premiere structure section, pour les types ?
-
-	Pour les CIGAM, se faire une fonction swap_if_cigam(magic, data) ?
-
-	Les options de tri, agissent uniquement sur les liste de symboles (t_list)
-	pas sur la liste de fichier (t_data)
-
-
+Gestion des donnees pour ft_nm:
   Options		    fichier 1           fichier 2	      fichier n	   Fin liste des fichiers
 ----------------|-----------------|-----------------|-----------------|
 [struct t_data]-->[struct t_data]-->[struct t_data]-->[struct t_data]-->NULL
@@ -59,12 +37,12 @@ $> nm ./test/a.out
 	|				|						|
 	|-->NULL		|						|
 					|						|
-					|						|-->[struct t_list]-->[struct t_list]-->NULL
+					|						|-->[struct t_list]-->[struct t_list]-->NULL	(2 symboles)
 					|
 					|
 					|
 					|
-					|-->[struct t_list]-->[struct t_list ]-->[struct t_list]-->NULL
+					|-->[struct t_list]-->[struct t_list ]-->[struct t_list]-->NULL	(3 symboles)
 								|
 								|-->value
 								|
@@ -73,14 +51,9 @@ $> nm ./test/a.out
 								|-->symbol name
 
 
+Note sur l'arrangement des donnees en memoire:
 
-
-
-Pour N_SECT, ptr_first_section + (sizeof(section) * n_sect) ne marche pas, car il y a des struct segment au milieu
-
-
-Arrangement en memoire des LC_SEGMENT et sections
-
+LC_SEGMENT et sections
 -----------------------------------
 |	- LC_SEGMENT_64				  |
 |	- n_sect = 3				  |

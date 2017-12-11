@@ -6,11 +6,32 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 16:20:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/08 17:44:59 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 13:38:43 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+void	nm_display(t_data *d)
+{
+	t_smb *tmp;
+
+	tmp = (t_smb*)d->sym;
+	while (d->sym)
+	{
+		ft_memcpy(((t_smb*)d->sym->content)->options, d->opt, NB_OPTIONS);
+		d->sym = d->sym->next;
+	}
+	d->sym = (t_list*)tmp;
+	d->lst_browser(d->sym, nm_output);
+}
+
+int		ft_islower(int c)
+{
+	if (c >= (int)'a' && c <= (int)'z')
+		return (1);
+	return (0);
+}
 
 /*
 **	Fonction temporaire, Affichage de la liste t_data

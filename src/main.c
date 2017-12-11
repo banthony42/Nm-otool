@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 20:11:56 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/08 20:16:17 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/11 12:20:01 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,6 @@ static void	concat_options(t_list **lst)
 	data_del(d, sizeof(t_data));
 }
 
-void		nm_display(t_data *d)
-{
-	t_smb *tmp;
-
-	tmp = (t_smb*)d->sym;
-	while (d->sym)
-	{
-		ft_memcpy(((t_smb*)d->sym->content)->options, d->opt, NB_OPTIONS);
-		d->sym = d->sym->next;
-	}
-	d->sym = (t_list*)tmp;
-	d->lst_browser(d->sym, nm_output);
-}
-
 void		nm_output(t_list *elem)
 {
 	t_smb	*tmp;
@@ -95,7 +81,9 @@ void		nm_output(t_list *elem)
 		return ;
 	if (is_opt(tmp->options, 'u') && !ft_strchr("UuCc", tmp->type))
 		return ;
-	if (!is_opt(tmp->options, 'u') || !is_opt(tmp->options, 'j'))
+	if (is_opt(tmp->options, 'g') && ft_islower((int)tmp->type))
+		return ;
+	if (!is_opt(tmp->options, 'u') && !is_opt(tmp->options, 'j'))
 	{
 		if ((tmp->type == 'U') && tmp->arch == ARCH64)
 			ft_putstr(PADD_SPACE64);
@@ -111,7 +99,6 @@ void		nm_output(t_list *elem)
 }
 
 /*
-**	gj
 **	Enregistrement des ordres demandes  dans le maillon one. (temporaire)
 **	Parcours de la liste data, ajout des ordres dans chaque maillons.
 */
