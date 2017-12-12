@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:42:18 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 22:11:20 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/12 21:07:20 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char			*ft_strndup(char *s1, uint32_t n, void *file, off_t size)
 static t_list	*create_symbol_list64(t_data *d, struct nlist_64 symtable,
 										char *strtable, uint32_t strtable_size)
 {
+	t_list	*lst_tmp;
 	t_smb	*tmp;
 
 	if (!(tmp = (t_smb*)ft_memalloc(sizeof(t_smb))))
@@ -48,18 +49,21 @@ static t_list	*create_symbol_list64(t_data *d, struct nlist_64 symtable,
 	if (!(tmp->name = ft_strndup(strtable + symtable.n_un.n_strx,
 			strtable_size - symtable.n_un.n_strx, d->file, d->stat.st_size)))
 		return (NULL);
-	if (!(tmp->value = itoa_base_uint64(symtable.n_value, 16)))
-		return (NULL);
 	if (!(tmp->type = get_symboltype64magic(d, symtable)))
 		return (NULL);
 	tmp->arch = ARCH64;
 	if (tmp->name[0] != '\0')
 	{
+		lst_tmp = ft_lstnew((void*)tmp, sizeof(t_smb));
+		((t_smb *)lst_tmp->content)->name = ft_strdup(tmp->name);
+		if (!(((t_smb *)lst_tmp->content)->value = itoa_base_uint64(symtable.n_value, 16)))
+			return (NULL);
 		if (!d->sym)
-			d->sym = ft_lstnew((void*)tmp, sizeof(t_smb));
+			d->sym = lst_tmp;
 		else
-			d->lstadd_somewhere(&d->sym, ft_lstnew((void*)tmp, sizeof(t_smb)));
+			d->lstadd_somewhere(&d->sym, lst_tmp);
 	}
+	ft_strdel(&tmp->name);
 	ft_memdel((void**)&tmp);
 	return (d->sym);
 }

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 22:10:09 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/12 17:40:35 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,10 @@ int			fat_arch_32_handler(uint32_t magic, t_data *d,
 							unsigned char *file, off_t size)
 {
 	int				error;
-	uint32_t		i;
 	uint32_t		nfat_arch;
 
 	if (is_corrup((void*)(file + sizeof(struct fat_header)), file, size))
 		return (1);
-	i = 0;
 	error = 1;
 	nfat_arch = *(uint32_t*)(void*)(file + sizeof(uint32_t));
 	if (magic == FAT_CIGAM)

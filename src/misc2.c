@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:27:29 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 22:19:35 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/12 21:01:48 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	lstiter_reverse(t_list *lst, void (*f)(t_list *elem))
 
 void	smb_del(void *content, size_t size)
 {
-	t_smb *tmp;
+	t_smb	*tmp;
 
 	if (!content || !size)
 		return ;

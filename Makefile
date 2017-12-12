@@ -6,7 +6,7 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/12/11 22:09:30 by banthony         ###   ########.fr        #
+#    Updated: 2017/12/12 17:51:55 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -59,13 +59,22 @@ OBJ_OTOOL = $(OBJ_FILE_OTOOL:%.o=$(PATH_SRC)%.o)
 
 INCLUDE = $(HEADER_FILE:%h=$(PATH_HEAD)%h)
 
-HEAD_DIR = -I $(PATH_HEAD) -I $(PATH_LIBFT)
-
 LIB = -L $(PATH_LIBFT) -lft
 
 LIB_SANIT = -L $(PATH_LIBFT) -lft_sanit
 
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Linux)
+HEAD_DIR = -I $(PATH_HEAD) -I $(PATH_LIBFT) -I ./system_headers_sguillia/
+HEAD_DIR += -I ./system_headers_sguillia/mach-for-linux
+FLAGS = -Wall -Wextra -Werror -g3
+endif
+
+ifeq ($(UNAME), Darwin)
+HEAD_DIR = -I $(PATH_HEAD) -I $(PATH_LIBFT)
 FLAGS = -Wall -Wextra -Werror -g3 -Weverything
+endif
 
 all: $(NAME_NM) $(NAME_OTOOL)
 
