@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:41:28 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 22:11:10 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/13 16:38:16 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,27 @@
 static t_list	*create_symbol_list32(t_data *d, struct nlist symtable,
 									char *strtable, uint32_t strtable_size)
 {
-	t_smb *tmp;
+	t_list	*l;
+	t_smb	*tmp;
 
 	if (!(tmp = (t_smb *)ft_memalloc(sizeof(t_smb))))
 		return (NULL);
 	if (!(tmp->name = ft_strndup(strtable + symtable.n_un.n_strx,
 		strtable_size - symtable.n_un.n_strx, d->file, d->stat.st_size)))
 		return (NULL);
-	if (!(tmp->value = itoa_base_uint32(symtable.n_value, 16)))
-		return (NULL);
 	if (!(tmp->type = get_symboltype32magic(d, symtable)))
 		return (NULL);
 	tmp->arch = ARCH32;
 	if (tmp->name[0] != '\0')
 	{
-		if (!d->sym)
-			d->sym = ft_lstnew((void*)tmp, sizeof(t_smb));
-		else
-			d->lstadd_somewhere(&d->sym, ft_lstnew((void*)tmp, sizeof(t_smb)));
+		l = ft_lstnew((void*)tmp, sizeof(t_smb));
+		((t_smb*)l->content)->name = ft_strdup(tmp->name);
+		if (!(((t_smb*)l->content)->value =
+			itoa_base_uint32(symtable.n_value, 16)))
+			return (NULL);
+		list_builder(&d, l);
 	}
+	ft_strdel(&tmp->name);
 	ft_memdel((void**)&tmp);
 	return (d->sym);
 }

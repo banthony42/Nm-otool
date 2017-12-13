@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 22:06:58 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/12 17:39:43 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/13 16:19:39 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ void				nm_output(t_list *elem);
 t_data				*new_data(char *str, int *wait, char *cmd);
 void				data_del(void *content, size_t size);
 void				smb_del(void *content, size_t size);
+void				list_builder(t_data **d, t_list *l);
 
 /*
 **	Nm - Archive
