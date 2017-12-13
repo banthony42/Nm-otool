@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:04:06 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 22:11:52 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/13 21:55:37 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static uint8_t	get_sect_type64magic(unsigned char *file, off_t size,
 		i = 1;
 		n++;
 		sect = (struct section_64 *)(sgmt + 1);
-		if (is_corrup((void *)(sgmt + sgmt->nsects), file, size))
+		if (is_corrup((void *)(sgmt + sgmt->cmdsize), file, size))
 			return (1);
 		while (n < symtable.n_sect && i < sgmt->nsects)
 		{
@@ -109,7 +109,7 @@ static uint8_t	get_sect_type64cigam(unsigned char *file, off_t size,
 		i = 1;
 		n++;
 		sect = (struct section_64 *)(sgmt + 1);
-		if (is_corrup((void*)(sgmt + swap_uint32(sgmt->nsects)), file, size))
+		if (is_corrup((void*)(sgmt + swap_uint32(sgmt->cmdsize)), file, size))
 			return (1);
 		while (i++ < swap_uint32(sgmt->nsects) && n++ < symtable.n_sect)
 		{

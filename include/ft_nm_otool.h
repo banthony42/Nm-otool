@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 22:06:58 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 16:19:39 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/13 21:20:25 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <ranlib.h>
 # include <errno.h>
 # include "libft.h"
+
+#include <stdio.h>
 
 /*
 **	Messages
@@ -147,7 +149,7 @@ void				print_elem(t_list *elem);
 /*
 **	Otool
 */
-void				ft_otool(t_data *d);
+void				ft_otool(t_data *d, unsigned char *file, off_t size, uint32_t arch);
 
 /*
 **	Nm

@@ -6,11 +6,13 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/12/13 16:43:15 by banthony         ###   ########.fr         
+     Updated: 2017/12/13 21:08:51 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
 Issue ft_nm:
+	  Penser a mettre a jour les message d'erreur avec FT_NM/FT_OTOOL
+	  fonction de d->token[CMD]
 	  BONUS cat a.out | ft_nm -  (lecture sur entree standard) simon
 	  BONUS "-arch all", trouver un caractere pour le gerer rapidement -z ?
 

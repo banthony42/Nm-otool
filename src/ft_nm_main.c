@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 13:45:08 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 16:40:40 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/13 18:47:50 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,5 @@ int			main(int ac, char **av)
 	option_analyse(&entry);
 	ft_lstiter(entry, &ft_nm_otool);
 	ft_lstdel(&entry, data_del);
-	system("leaks ft_nm");
 	return (*(error_number(NULL)));
 }

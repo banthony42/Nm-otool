@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 16:20:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 16:32:00 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/13 18:49:06 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	list_builder(t_data **d, t_list *l)
 {
-	if (!(*d)->sym)
+	if (!d || !(*d))
+		return ;
+	if (!((*d)->sym))
 		(*d)->sym = l;
 	else
 		(*d)->lstadd_somewhere(&(*d)->sym, l);

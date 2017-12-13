@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:41:24 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 16:37:45 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/13 21:00:32 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ static t_list	*create_symbol_list32(t_data *d, struct nlist symtable,
 	t_list	*l;
 	t_smb	*tmp;
 
+	l = NULL;
 	if (!(tmp = (t_smb *)ft_memalloc(sizeof(t_smb))))
 		return (NULL);
 	if (!(tmp->name = ft_strndup(strtable + swap_uint32(symtable.n_un.n_strx),
-		strtable_size - swap_uint32(symtable.n_un.n_strx),
-		d->file, d->stat.st_size)))
+							strtable_size - swap_uint32(symtable.n_un.n_strx),
+							d->file, d->stat.st_size)))
 		return (NULL);
 	if (!(tmp->type = get_symboltype32cigam(d, symtable)))
 		return (NULL);
@@ -32,7 +33,7 @@ static t_list	*create_symbol_list32(t_data *d, struct nlist symtable,
 		l = ft_lstnew((void*)tmp, sizeof(t_smb));
 		((t_smb*)l->content)->name = ft_strdup(tmp->name);
 		if (!(((t_smb*)l->content)->value =
-			itoa_base_uint32(swap_uint32(symtable.n_value), 16)))
+						itoa_base_uint32(swap_uint32(symtable.n_value), 16)))
 			return (NULL);
 		list_builder(&d, l);
 	}
@@ -104,8 +105,7 @@ int				arch_32_cigam(uint32_t ncmds, t_data *d,
 			return (error);
 		lc = (void*)((unsigned char *)lc + swap_uint32(lc->cmdsize));
 	}
-	if (d->token[CMD] == NM)
-		nm_display(d);
+	(d->token[CMD] == NM) ? (nm_display(d)) : (ft_otool(d, file, size, swap_uint32(ARCH32)));
 	ft_lstdel(&d->sym, smb_del);
 	d->first_sectoff = NULL;
 	return (0);

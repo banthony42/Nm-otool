@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 13:45:34 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 22:19:20 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/13 18:47:59 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	concat_options(t_list **lst)
 
 	l = *lst;
 	last = NULL;
-	if (!lst || !(d = (t_data*)ft_memalloc((sizeof(t_data)))))
+	if (!(d = (t_data*)ft_memalloc((sizeof(t_data)))))
 		return ;
 	d->token[TYPE] = OPTION;
 	ft_memset(d->opt, '-', NB_OPT_OTOOL);
@@ -70,18 +70,47 @@ static void	concat_options(t_list **lst)
 	data_del(d, sizeof(t_data));
 }
 
-static int	lst_nbfile(t_list *lst)
+static int	lst_isvalid(t_list *lst)
 {
-	int n;
+	int	option;
+	int file;
 
-	n = 0;
+	file = 0;
+	option = 0;
 	while (lst)
 	{
 		if (((t_data*)lst->content)->token[TYPE] == PATH)
-			n++;
+			file++;
+		if (ft_strchr(((t_data*)lst->content)->opt, 't'))
+			option++;
 		lst = lst->next;
 	}
-	return (n);
+	if (!file || !option)
+		return (0);
+	return (1);
+}
+
+static void	option_analyse(t_list **entry)
+{
+	t_data	*one;
+	t_data	*d;
+	t_list	*l;
+
+	if (!(one = (t_data*)(*entry)->content))
+		return ;
+	one->lst_browser = &(ft_lstiter);
+	one->lstadd_somewhere = &(lstadd_alpha);
+	l = *entry;
+	while ((*entry))
+	{
+		if ((d = (t_data*)(*entry)->content))
+		{
+			d->lst_browser = one->lst_browser;
+			d->lstadd_somewhere = one->lstadd_somewhere;
+		}
+		(*entry) = (*entry)->next;
+	}
+	*entry = l;
 }
 
 /*
@@ -100,13 +129,14 @@ int			main(int ac, char **av)
 		ft_putendl(OTOOL_USG);
 		return (EXIT_FAILURE);
 	}
-	entry = parsing(av, FT_OTOOL, AVAILABLE_OPT_OTOOL);
-	concat_options(&entry);
-	if (!entry || !lst_nbfile(entry))
+	else if ((entry = parsing(av, FT_OTOOL, AVAILABLE_OPT_OTOOL)))
+		concat_options(&entry);
+	if (!lst_isvalid(entry))
 	{
 		ft_putendl(OTOOL_USG);
 		return (EXIT_FAILURE);
 	}
+	option_analyse(&entry);
 	ft_lstiter(entry, &ft_nm_otool);
 	ft_lstdel(&entry, data_del);
 	return (*(error_number(NULL)));

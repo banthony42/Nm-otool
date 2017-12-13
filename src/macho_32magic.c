@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:41:28 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 16:38:16 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/13 21:00:20 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,7 @@ int				arch_32_magic(uint32_t ncmds, t_data *d,
 			return (error);
 		lc = (void*)((unsigned char *)lc + lc->cmdsize);
 	}
-	if (d->token[CMD] == NM)
-		nm_display(d);
+	(d->token[CMD] == NM) ? (nm_display(d)) : (ft_otool(d, file, size, ARCH32));
 	ft_lstdel(&d->sym, smb_del);
 	d->first_sectoff = NULL;
 	return (error);
