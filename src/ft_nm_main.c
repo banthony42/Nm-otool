@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 13:45:08 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 18:47:50 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 21:31:06 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	fill_option(t_list **lst, t_list **l, t_list **last, t_data **d)
 	char	*tab;
 	int		i;
 
-	if (!*l || (tmp = (t_data*)(*l)->content)->token[TYPE] != OPTION)
+	if (!*l || (tmp = (t_data*)(*l)->content)->token[ELMT] != OPTION)
 		return ;
 	tab = ft_strdup(AVAILABLE_OPT_NM);
 	i = 0;
@@ -51,7 +51,7 @@ static void	concat_options(t_list **lst)
 	last = NULL;
 	if (!(d = (t_data*)ft_memalloc((sizeof(t_data)))))
 		return ;
-	d->token[TYPE] = OPTION;
+	d->token[ELMT] = OPTION;
 	ft_memset(d->opt, '-', NB_OPT_NM);
 	while (l)
 	{
@@ -106,7 +106,7 @@ static void	option_analyse(t_list **entry)
 
 int			main(int ac, char **av)
 {
-	t_list *entry;
+	t_list	*entry;
 
 	entry = NULL;
 	if (ac < 2)
@@ -125,5 +125,7 @@ int			main(int ac, char **av)
 	option_analyse(&entry);
 	ft_lstiter(entry, &ft_nm_otool);
 	ft_lstdel(&entry, data_del);
-	return (*(error_number(NULL)));
+	if (*(error_number(NULL)))
+		return (1);
+	return (0);
 }

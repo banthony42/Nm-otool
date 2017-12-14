@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:27:29 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/12 21:01:48 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 19:44:39 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,13 @@ void	print_arch(struct fat_arch frh, t_data *d, int mgc)
 		cpu = ~CPU_ARCH_MASK & ((uint32_t)frh.cputype);
 		cpusub = ~CPU_SUBTYPE_MASK & ((uint32_t)frh.cpusubtype);
 	}
-	ft_putchar('\n');
+	if (d->token[CMD] == NM)
+		ft_putchar('\n');
 	ft_putstr(d->av);
-	ft_putstr(" (for architecture ");
+	if (d->token[CMD] == NM)
+		ft_putstr(" (for architecture ");
+	if (d->token[CMD] == OTOOL)
+		ft_putstr(" (architecture ");
 	while (++i < ARCH_DATA_SIZE)
 	{
 		if (cpu == (uint32_t)g_arch_data[i].cputype &&
@@ -143,12 +147,12 @@ t_data	*new_data(char *str, int *wait, char *cmd)
 		return (NULL);
 	if (!(d->av = ft_strdup(str)))
 		return (NULL);
-	d->token[TYPE] = PATH;
+	d->token[ELMT] = PATH;
 	d->token[CMD] = OTOOL;
 	if (!ft_strcmp(cmd, FT_NM))
 		d->token[CMD] = NM;
 	if (str[0] == '-' && *wait)
-		d->token[TYPE] = OPTION;
+		d->token[ELMT] = OPTION;
 	if (!(ft_strcmp(str, "--")))
 		*wait = 0;
 	return (d);

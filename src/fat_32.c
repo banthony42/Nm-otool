@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:48:31 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 17:59:06 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 23:42:16 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	is_arch(t_data *d, struct fat_arch *frh, int *i, uint32_t nfat_arch)
 		n++;
 	}
 	if (nfat_arch == 1)
-		cmd_info(FT_NM, d->av, NULL);
+		cmd_info(d->token[CMD], d->av, NULL);
 	else if (!arch)
 		print_arch(frh[i[0]], d, i[2]);
 	if (!arch)
@@ -43,15 +43,23 @@ static int	is_arch(t_data *d, struct fat_arch *frh, int *i, uint32_t nfat_arch)
 	return (0);
 }
 
-static int	magic_handler(uint32_t *mgc, t_data *d, uint32_t size)
+static int	magic_handler(uint32_t *mgc, t_data *d, uint32_t size, int flag)
 {
 	int error;
 
 	error = 1;
 	if (*mgc == MH_MAGIC_64 || *mgc == MH_CIGAM_64)
+	{
+		if (d->token[CMD] == OTOOL && flag == ARCH_OK)
+			cmd_info(0, d->av, NULL);
 		error = arch_64_handler(*mgc, d, (void*)mgc, size);
+	}
 	else if (*mgc == MH_MAGIC || *mgc == MH_CIGAM)
+	{
+		if (d->token[CMD] == OTOOL && flag == ARCH_OK)
+			cmd_info(0, d->av, NULL);
 		error = arch_32_handler(*mgc, d, (void*)mgc, size);
+	}
 	else if (!(ft_strncmp(ARMAG, (char*)mgc, SARMAG)))
 		error = archive_handler((void*)mgc, size, d);
 	return (error);
@@ -82,9 +90,9 @@ int			fat_arch_32_cigam(uint32_t nfat_arch, t_data *d,
 						file, size))
 			return (1);
 		mgc = (uint32_t*)(void*)(file + swap_uint32(frh[i[0]].offset));
-		if ((error = magic_handler(mgc, d, swap_uint32(frh[i[0]].size))))
+		if ((error = magic_handler(mgc, d, swap_uint32(frh[i[0]].size), i[1])))
 			return (error);
-		if (i[1] && i[1] != ARCH_ALL)
+		if (i[1] == ARCH_OK)
 			break ;
 	}
 	return (0);
@@ -114,9 +122,9 @@ int			fat_arch_32_magic(uint32_t nfat_arch, t_data *d,
 		if (is_corrup((void *)(file + frh[i[0]].offset), file, size))
 			return (1);
 		mgc = (uint32_t*)(void*)(file + frh[i[0]].offset);
-		if ((error = magic_handler(mgc, d, frh[i[0]].size)))
+		if ((error = magic_handler(mgc, d, frh[i[0]].size, i[1])))
 			return (error);
-		if (i[1] && i[1] != ARCH_ALL)
+		if (i[1] == ARCH_OK)
 			break ;
 	}
 	return (0);
@@ -131,6 +139,8 @@ int			fat_arch_32_handler(uint32_t magic, t_data *d,
 	if (is_corrup((void*)(file + sizeof(struct fat_header)), file, size))
 		return (1);
 	error = 1;
+	if (!d->token[TYPE])
+		d->token[TYPE] = FAT;
 	nfat_arch = *(uint32_t*)(void*)(file + sizeof(uint32_t));
 	if (magic == FAT_CIGAM)
 	{

@@ -6,7 +6,7 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/12/12 17:51:55 by banthony         ###   ########.fr        #
+#    Updated: 2017/12/14 23:46:02 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -26,7 +26,6 @@ SRC_COMMON += ar.c
 SRC_COMMON += fat_32.c
 SRC_COMMON += ft_nm_master.c
 SRC_COMMON += ft_otool_master.c
-SRC_COMMON += itoa_base_uint.c
 SRC_COMMON += list_manage.c
 SRC_COMMON += macho_32cigam.c
 SRC_COMMON += macho_32magic.c
@@ -35,6 +34,7 @@ SRC_COMMON += macho_64magic.c
 SRC_COMMON += misc.c
 SRC_COMMON += misc2.c
 SRC_COMMON += misc3.c
+SRC_COMMON += misc4.c
 SRC_COMMON += parsing.c
 SRC_COMMON += symtype_handler32.c
 SRC_COMMON += symtype_handler64.c

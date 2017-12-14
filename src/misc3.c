@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 16:20:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 18:49:06 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 18:42:55 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ void	print_elem(t_list *elem)
 	t_data*h;
 
 	h = (t_data*)elem->content;
-	if (h->token[TYPE] == OPTION)
+	if (h->token[ELMT] == OPTION)
 		ft_putstr("OPTION\t");
-	if (h->token[TYPE] == PATH)
+	if (h->token[ELMT] == PATH)
 		ft_putstr("FILE\t");
 	ft_putstr(h->av);
 	ft_putstr("\tfd ");

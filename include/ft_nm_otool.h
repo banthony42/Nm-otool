@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 22:06:58 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 17:52:48 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 22:46:19 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 **	Messages
 */
 # define FILE_NOT_FOUND "No such file or directory."
-# define ERR_FILE "The file was not recognized as a valid object file"
+# define ERR_FILE " is not an object file" //"The file was not recognized as a valid object file"
 # define ERR_MAGIC "The magic number was not recognized"
 # define FSTAT_ERROR "fstat error."
 # define MMAP_ERROR "mmap has failed."
@@ -64,7 +64,7 @@
 
 typedef enum		e_options
 {
-	TYPE, CMD, OPTION, PATH, NM, OTOOL,
+	ELMT, CMD, TYPE, OPTION, PATH, NM, OTOOL, ARCHIVE, FAT, MACHO,
 }					t_options;
 
 typedef struct		s_arch
@@ -101,7 +101,7 @@ typedef	struct		s_smb
 **	fd: fd du fichier
 **	data_len: taille de la liste de fichier + un maillon d'options
 **	stat: info du fichier via fstat
-**	token: Flag pour differencier options d'un fichier
+**	token: Flag pour option/fichier, NM/OTOOL, FAT/ARCHIVE/MACHO
 **	opt: tableau d'options, rempli par la lettre correspondante sinon '-'
 **	lstadd_somewhere: fonction de tri par insertion, suivant options -np
 **	lst_browser: fonction de parcourt de liste, suivant option -r
@@ -114,7 +114,7 @@ typedef struct		s_data
 	int				fd;
 	unsigned int	data_len;
 	struct stat		stat;
-	size_t			token[2];
+	size_t			token[3];
 	char			opt[16];
 	void			(*lstadd_somewhere)(t_list **begin, t_list *new);
 	void			(*lst_browser)(t_list *lst, void (*f)(t_list *elem));
@@ -135,7 +135,7 @@ void				lstiter_reverse(t_list *lst, void (*f)(t_list *elem));
 /*
 **	Parsing Nm
 */
-int					cmd_info(char *cm, char *str, char *info);
+int					cmd_info(size_t cmd, char *str, char *info);
 t_list				*parsing(char **av, char *cmd, char *options);
 void				prepare_files(t_list *elm);
 void				default_file(t_list **lst);

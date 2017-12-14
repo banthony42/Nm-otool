@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itoa_base_uint.c                                   :+:      :+:    :+:   */
+/*   misc4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
+/*   By: banthony <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 20:21:47 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 17:55:29 by banthony         ###   ########.fr       */
+/*   Created: 2017/12/14 23:45:31 by banthony          #+#    #+#             */
+/*   Updated: 2017/12/14 23:45:32 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	print_hex(unsigned char *adr, size_t i, size_t size)
 	while (n < i + 16)
 	{
 		if (n < size)
+		{
 			ft_putchar_base(adr[n], 16, "0123456789abcdef");
-		else
-			ft_putstr("  ");
-		ft_putchar(' ');
+			ft_putchar(' ');
+		}
 		n++;
 	}
 }

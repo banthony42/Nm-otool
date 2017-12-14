@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 22:09:46 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 23:09:10 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static off_t	is_ranlib(t_data *d, char **name, off_t n)
 		ft_strdel(name);
 		return (RANLIB);
 	}
-	ft_putchar('\n');
+	if (d->token[CMD] == NM)
+		ft_putchar('\n');
 	ft_putstr(d->av);
 	ft_putchar('(');
 	if (name && *name)
@@ -88,6 +89,13 @@ int				archive_handler(void *file, off_t size, t_data *d)
 	i = SARMAG;
 	error = 1;
 	ptr = ((unsigned char *)file) + i;
+	if (!d->token[TYPE])
+		d->token[TYPE] = ARCHIVE;
+	if (d->token[CMD] == OTOOL)
+	{
+		ft_putstr("Archive : ");
+		ft_putendl(d->av);
+	}
 	while (OFFSET(ptr, file) < size)
 	{
 		h = (struct ar_hdr *)ptr;

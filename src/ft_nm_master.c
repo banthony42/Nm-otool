@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 13:45:17 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 21:21:21 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 23:09:30 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	hdr = (struct mach_header *)file;
 	if (is_corrup((void *)(hdr + 1), file, size))
 		return (1);
+	if (!d->token[TYPE])
+		d->token[TYPE] = MACHO;
 	ncmds = hdr->ncmds;
 	if (magic == MH_MAGIC)
 		error = arch_32_magic(ncmds, d, file, size);
@@ -64,6 +66,8 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	hdr64 = (struct mach_header_64 *)file;
 	if (is_corrup((void*)(hdr64 + 1), file, size))
 		return (1);
+	if (!d->token[TYPE])
+		d->token[TYPE] = MACHO;
 	ncmds = hdr64->ncmds;
 	if (magic == MH_MAGIC_64)
 		error = arch_64_magic(ncmds, d, file, size);
@@ -83,13 +87,13 @@ void	ft_nm_otool(t_list *elem)
 	t_data		*d;
 	int			error;
 
-	error = 1;
+	error = 2;
 	if (!elem || !elem->content)
 		return ;
-	if ((d = (t_data*)elem->content)->token[TYPE] != PATH || !d->file)
+	if ((d = (t_data*)elem->content)->token[ELMT] != PATH || !d->file)
 		return ;
-	if (d->data_len > 2)
-		cmd_info(FT_NM, d->av, NULL);
+	if (d->data_len > 2 && d->token[TYPE] != ARCHIVE && d->token[CMD] == NM)
+		cmd_info(d->token[CMD], d->av, NULL);
 	if ((magic = *(uint32_t*)d->file) == MH_MAGIC_64 || magic == MH_CIGAM_64)
 		error = arch_64_handler(magic, d, d->file, d->stat.st_size);
 	else if (magic == MH_MAGIC || magic == MH_CIGAM)
@@ -100,6 +104,11 @@ void	ft_nm_otool(t_list *elem)
 	else if (!(ft_strncmp(ARMAG, (char*)d->file, SARMAG)))
 		error = archive_handler(d->file, d->stat.st_size, d);
 	if (error)
-		cmd_info(FT_NM, d->av, ERR_FILE);
+		cmd_info(d->token[CMD], d->av, ERR_FILE);
 	error_number(&error);
 }
+
+
+
+
+

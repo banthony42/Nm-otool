@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 18:33:13 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 22:11:25 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 22:30:22 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,17 @@
 **	pour notifier sur une erreur de nom de fichier
 */
 
-int			cmd_info(char *cmd, char *str, char *info)
+int			cmd_info(size_t cmd, char *str, char *info)
 {
 	if (info)
-		ft_putstr(cmd);
+	{
+		if (cmd == NM)
+			ft_putstr(FT_NM);
+		else if (cmd == OTOOL)
+			;
+		else if (cmd)
+			ft_putstr(COMMON);
+	}
 	ft_putstr(str);
 	if (str)
 		ft_putstr(":");
@@ -77,9 +84,9 @@ void		data_del(void *content, size_t size)
 	ft_strdel(&d->av);
 	ft_lstdel(&d->sym, smb_del);
 	if (d->fd > 0 && (close(d->fd) < 0))
-		cmd_info("Erreur: ", d->av, "close error.");
+		cmd_info(d->token[CMD], d->av, "close error.");
 	if (d->file && munmap(d->file, (size_t)d->stat.st_size) < 0)
-		cmd_info("Erreur: ", d->av, "munmap error.");
+		cmd_info(d->token[CMD], d->av, "munmap error.");
 	ft_memdel((void**)&d);
 }
 

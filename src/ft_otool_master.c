@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 21:33:48 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 17:52:27 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 23:12:42 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,10 +172,11 @@ void		ft_otool(t_data *d, unsigned char *file, off_t size, uint32_t arch)
 {
 	int error;
 
-	error = 1;
-	if (!d || !arch)
+	error = 0;
+	if (!d || !arch || !d->file)
 		return ;
-	cmd_info(NULL, d->av, NULL);
+	if (d->token[TYPE] == MACHO)
+		cmd_info(0, d->av, NULL);
 	if (arch == ARCH32)
 		error = otool_32magic(file, size, (void*)d->first_sectoff);
 	else if (arch == ARCH64)
@@ -185,6 +186,6 @@ void		ft_otool(t_data *d, unsigned char *file, off_t size, uint32_t arch)
 	else if (arch == swap_uint32(ARCH64))
 		error = otool_64cigam(file, size, (void*)d->first_sectoff);
 	if (error)
-		cmd_info(FT_OTOOL, d->av, ERR_FILE);
+		cmd_info(d->token[CMD], d->av, ERR_FILE);
 	error_number(&error);
 }
