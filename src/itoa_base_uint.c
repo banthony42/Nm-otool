@@ -6,11 +6,69 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 20:21:47 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/11 22:10:47 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 17:55:29 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm_otool.h"
+
+static void	print_hex(unsigned char *adr, size_t i, size_t size)
+{
+	size_t	n;
+
+	n = i;
+	while (n < i + 16)
+	{
+		if (n < size)
+			ft_putchar_base(adr[n], 16, "0123456789abcdef");
+		else
+			ft_putstr("  ");
+		ft_putchar(' ');
+		n++;
+	}
+}
+
+void		print_memory64(uint64_t vmaddr, void *addr, size_t size)
+{
+	char			*vmadr;
+	unsigned char	*adr;
+	size_t			i;
+
+	adr = (unsigned char*)addr;
+	i = 0;
+	ft_putstr("Contents of (__TEXT,__text) section\n");
+	while (i < size)
+	{
+		vmadr = itoa_base_uint64(vmaddr + i, 16);
+		ft_putstr(vmadr);
+		ft_putchar('\t');
+		print_hex(adr, i, size);
+		ft_putchar('\n');
+		ft_strdel(&vmadr);
+		i += 16;
+	}
+}
+
+void		print_memory32(uint32_t vmaddr, void *addr, size_t size)
+{
+	char			*vmadr;
+	unsigned char	*adr;
+	size_t			i;
+
+	adr = (unsigned char*)addr;
+	i = 0;
+	ft_putstr("Contents of (__TEXT,__text) section\n");
+	while (i < size)
+	{
+		vmadr = itoa_base_uint32(vmaddr + (uint32_t)i, 16);
+		ft_putstr(vmadr);
+		ft_putchar('\t');
+		print_hex(adr, i, size);
+		ft_putchar('\n');
+		ft_strdel(&vmadr);
+		i += 16;
+	}
+}
 
 char		*itoa_base_uint64(uint64_t value, int base)
 {

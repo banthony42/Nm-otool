@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 22:06:58 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 21:20:25 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 17:52:48 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,9 @@ void				print_elem(t_list *elem);
 **	Otool
 */
 void				ft_otool(t_data *d, unsigned char *file, off_t size, uint32_t arch);
+void				print_ptr(void const *addr);
+void				print_memory64(uint64_t vmaddr, void *addr, size_t size);
+void				print_memory32(uint32_t vmaddr, void *addr, size_t size);
 
 /*
 **	Nm

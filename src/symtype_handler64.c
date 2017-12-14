@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:04:06 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 21:55:37 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/14 17:23:43 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 **	module in the same library.
 */
 
-static uint8_t	compare_sect(struct section_64 *sect)
+static uint8_t	compare_sect(struct section_64 *sect, unsigned char *file, off_t size)
 {
+	if (is_corrup((void *)(sect + 1), file, size))
+		return (0);
 	if (sect && !(ft_strncmp(SECT_TEXT, sect->sectname, 16)))
 		return ((uint8_t)'T');
 	else if (sect && !(ft_strncmp(SECT_DATA, sect->sectname, 16)))
@@ -51,8 +53,8 @@ static uint8_t	get_sect_type64magic(unsigned char *file, off_t size,
 		i = 1;
 		n++;
 		sect = (struct section_64 *)(sgmt + 1);
-		if (is_corrup((void *)(sgmt + sgmt->cmdsize), file, size))
-			return (1);
+		if (is_corrup((void *)(sgmt + 1), file, size))
+			return (0);
 		while (n < symtable.n_sect && i < sgmt->nsects)
 		{
 			sect++;
@@ -61,7 +63,7 @@ static uint8_t	get_sect_type64magic(unsigned char *file, off_t size,
 		}
 		sgmt = (void*)((unsigned char*)sgmt + sgmt->cmdsize);
 	}
-	i = compare_sect(sect);
+	i = compare_sect(sect, file, size);
 	return (i);
 }
 
@@ -109,8 +111,8 @@ static uint8_t	get_sect_type64cigam(unsigned char *file, off_t size,
 		i = 1;
 		n++;
 		sect = (struct section_64 *)(sgmt + 1);
-		if (is_corrup((void*)(sgmt + swap_uint32(sgmt->cmdsize)), file, size))
-			return (1);
+		if (is_corrup((void*)(sgmt + 1), file, size))
+			return (0);
 		while (i++ < swap_uint32(sgmt->nsects) && n++ < symtable.n_sect)
 		{
 			i++;
@@ -119,7 +121,7 @@ static uint8_t	get_sect_type64cigam(unsigned char *file, off_t size,
 		}
 		sgmt = (void*)((unsigned char*)sgmt + swap_uint32(sgmt->cmdsize));
 	}
-	i = compare_sect(sect);
+	i = compare_sect(sect, file, size);
 	return (i);
 }
 
