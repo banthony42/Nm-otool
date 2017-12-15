@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:50:57 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 23:09:10 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 23:33:57 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,17 @@ static int		magic_handler(off_t *i, t_data *d, struct ar_hdr *h)
 	return (error);
 }
 
+static void		otool_display(t_data *d)
+{
+	if (!d->token[TYPE])
+		d->token[TYPE] = ARCHIVE;
+	if (d->token[CMD] == OTOOL)
+	{
+		ft_putstr("Archive : ");
+		ft_putendl(d->av);
+	}
+}
+
 int				archive_handler(void *file, off_t size, t_data *d)
 {
 	off_t			i;
@@ -89,13 +100,7 @@ int				archive_handler(void *file, off_t size, t_data *d)
 	i = SARMAG;
 	error = 1;
 	ptr = ((unsigned char *)file) + i;
-	if (!d->token[TYPE])
-		d->token[TYPE] = ARCHIVE;
-	if (d->token[CMD] == OTOOL)
-	{
-		ft_putstr("Archive : ");
-		ft_putendl(d->av);
-	}
+	otool_display(d);
 	while (OFFSET(ptr, file) < size)
 	{
 		h = (struct ar_hdr *)ptr;

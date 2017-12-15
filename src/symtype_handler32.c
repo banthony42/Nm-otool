@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:27:39 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 17:23:16 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:23:32 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 **	module in the same library.
 */
 
-static uint8_t	compare_sect(struct section *sect, unsigned char *file, off_t size)
+static uint8_t	compare_sect(struct section *sect, unsigned char *file,
+								off_t size)
 {
 	if (is_corrup((void *)(sect + 1), file, size))
 		return (0);

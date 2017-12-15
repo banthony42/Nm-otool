@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:42:10 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/13 21:00:06 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:44:41 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int				arch_64_cigam(uint32_t ncmds, t_data *d, unsigned char *file,
 			return (error);
 		lc = (void *)((unsigned char*)lc + swap_uint64(lc->cmdsize));
 	}
-	(d->token[CMD] == NM) ? (nm_display(d)) : (ft_otool(d, file, size, swap_uint32(ARCH64)));
+	(d->token[CMD] == NM) ? (nm_display(d))
+	: (ft_otool(d, file, size, swap_uint32(ARCH64)));
 	ft_lstdel(&d->sym, smb_del);
 	d->first_sectoff = NULL;
 	return (error);

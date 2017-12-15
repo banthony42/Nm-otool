@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 13:45:17 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/15 18:26:29 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:55:57 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	uint32_t			ncmds;
 	struct mach_header	*hdr;
 
-	error = -1;
+	error = 0;
 	hdr = (struct mach_header *)file;
 	if (is_corrup((void *)(hdr + 1), file, size))
 		return (1);
-	if (!d->token[TYPE])
-		d->token[TYPE] = MACHO;
 	ncmds = hdr->ncmds;
 	if (magic == MH_MAGIC)
 	{
@@ -53,13 +51,12 @@ int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	if (magic == MH_CIGAM)
 	{
 		d->cpu[0] = ~CPU_ARCH_MASK & (swap_uint32((uint32_t)hdr->cputype));
-		d->cpu[1] = ~CPU_SUBTYPE_MASK & (swap_uint32((uint32_t)hdr->cpusubtype));
+		d->cpu[1] = ~CPU_SUBTYPE_MASK
+					& (swap_uint32((uint32_t)hdr->cpusubtype));
 		ncmds = swap_uint32(ncmds);
 		error = arch_32_cigam(ncmds, d, file, size);
 	}
-	if (error)
-		return (error);
-	return (0);
+	return (error);
 }
 
 int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
@@ -68,7 +65,7 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	uint32_t				ncmds;
 	struct mach_header_64	*hdr64;
 
-	error = -1;
+	error = 0;
 	hdr64 = (struct mach_header_64 *)file;
 	if (is_corrup((void*)(hdr64 + 1), file, size))
 		return (1);
@@ -84,9 +81,7 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 		ncmds = swap_uint32(ncmds);
 		error = arch_64_cigam(ncmds, d, file, size);
 	}
-	if (error)
-		return (error);
-	return (0);
+	return (error);
 }
 
 void	ft_nm_otool(t_list *elem)
@@ -115,8 +110,3 @@ void	ft_nm_otool(t_list *elem)
 		cmd_info(d->token[CMD], d->av, ERR_FILE);
 	error_number(&error);
 }
-
-
-
-
-

@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 22:06:58 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/15 20:11:14 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 23:02:02 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@
 # include <errno.h>
 # include "libft.h"
 
-#include <stdio.h>
-
 /*
 **	Messages
 */
 # define FILE_NOT_FOUND "No such file or directory."
-# define ERR_FILE " is not an object file" //"The file was not recognized as a valid object file"
+# define ERR_FILE " is not an object file"
 # define ERR_MAGIC "The magic number was not recognized"
 # define FSTAT_ERROR "fstat error."
 # define MMAP_ERROR "mmap has failed."
@@ -106,6 +104,7 @@ typedef	struct		s_smb
 **	opt: tableau d'options, rempli par la lettre correspondante sinon '-'
 **	lstadd_somewhere: fonction de tri par insertion, suivant options -np
 **	lst_browser: fonction de parcourt de liste, suivant option -r
+**	sym: liste des symboles
 **	cpu: cpu[1] = cputype actuel, cpu[2] = cpusubtype actuel
 */
 typedef struct		s_data
@@ -145,18 +144,19 @@ void				default_file(t_list **lst);
 char				*ft_strndup(char *s1, uint32_t n, void *file, off_t size);
 
 /*
-**	Temporaire
-*/
-void				print_elem(t_list *elem);
-
-/*
 **	Otool
 */
-void				ft_otool(t_data *d, unsigned char *file, off_t size, uint32_t arch);
+void				ft_otool(t_data *d, unsigned char *file, off_t size
+										, uint32_t arch);
 void				print_ptr(void const *addr);
-void				print_memory64(uint64_t vmaddr, void *addr, size_t size);
-void				print_memory32(uint32_t vmaddr, void *addr, size_t size, int ppc);
-
+void				print_memory64(uint64_t vmaddr, void *addr
+										, size_t size);
+void				print_memory32(uint32_t vmaddr, void *addr, size_t size
+										, int ppc);
+int					get_text_section64(struct section_64 section,
+							unsigned char *file, off_t size, int is_magic);
+int					get_text_section32(struct section section,
+							unsigned char *file, off_t size, int is_magic);
 /*
 **	Nm
 */

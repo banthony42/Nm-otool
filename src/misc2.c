@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:27:29 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/15 18:20:45 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:44:15 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,18 @@ t_arch g_arch_data[ARCH_DATA_SIZE] =
 **	Parcours de la base de donnee, affichage du nom de l'arch lors d'un match.
 */
 
-void	print_arch(struct fat_arch frh, t_data *d, int mgc)
+static void	display_arch(t_data *d)
+{
+	if (d->token[CMD] == NM)
+		ft_putchar('\n');
+	ft_putstr(d->av);
+	if (d->token[CMD] == NM)
+		ft_putstr(" (for architecture ");
+	if (d->token[CMD] == OTOOL)
+		ft_putstr(" (architecture ");
+}
+
+void		print_arch(struct fat_arch frh, t_data *d, int mgc)
 {
 	int			i;
 	uint32_t	cpu;
@@ -87,13 +98,7 @@ void	print_arch(struct fat_arch frh, t_data *d, int mgc)
 		cpu = ~CPU_ARCH_MASK & ((uint32_t)frh.cputype);
 		cpusub = ~CPU_SUBTYPE_MASK & ((uint32_t)frh.cpusubtype);
 	}
-	if (d->token[CMD] == NM)
-		ft_putchar('\n');
-	ft_putstr(d->av);
-	if (d->token[CMD] == NM)
-		ft_putstr(" (for architecture ");
-	if (d->token[CMD] == OTOOL)
-		ft_putstr(" (architecture ");
+	display_arch(d);
 	while (++i < ARCH_DATA_SIZE)
 	{
 		if (cpu == (uint32_t)g_arch_data[i].cputype &&
@@ -103,7 +108,7 @@ void	print_arch(struct fat_arch frh, t_data *d, int mgc)
 	ft_putendl("):");
 }
 
-int		is_corrup(unsigned char *ptr, void *file, off_t size)
+int			is_corrup(unsigned char *ptr, void *file, off_t size)
 {
 	if (ptr < (unsigned char *)file)
 		return (1);
@@ -116,7 +121,7 @@ int		is_corrup(unsigned char *ptr, void *file, off_t size)
 **	Recursivite pour parcour inverse de la liste.
 */
 
-void	lstiter_reverse(t_list *lst, void (*f)(t_list *elem))
+void		lstiter_reverse(t_list *lst, void (*f)(t_list *elem))
 {
 	if (lst)
 		lstiter_reverse(lst->next, f);
@@ -124,7 +129,7 @@ void	lstiter_reverse(t_list *lst, void (*f)(t_list *elem))
 		f(lst);
 }
 
-void	smb_del(void *content, size_t size)
+void		smb_del(void *content, size_t size)
 {
 	t_smb	*tmp;
 
@@ -134,26 +139,4 @@ void	smb_del(void *content, size_t size)
 	ft_strdel(&tmp->name);
 	ft_strdel(&tmp->value);
 	ft_memdel((void **)&tmp);
-}
-
-t_data	*new_data(char *str, int *wait, char *cmd)
-{
-	t_data *d;
-
-	d = NULL;
-	if (!str)
-		return (NULL);
-	if (!(d = (t_data*)ft_memalloc(sizeof(t_data))))
-		return (NULL);
-	if (!(d->av = ft_strdup(str)))
-		return (NULL);
-	d->token[ELMT] = PATH;
-	d->token[CMD] = OTOOL;
-	if (!ft_strcmp(cmd, FT_NM))
-		d->token[CMD] = NM;
-	if (str[0] == '-' && *wait)
-		d->token[ELMT] = OPTION;
-	if (!(ft_strcmp(str, "--")))
-		*wait = 0;
-	return (d);
 }

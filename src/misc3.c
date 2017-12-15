@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 16:20:42 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 18:42:55 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:40:38 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,24 @@ void	nm_output(t_list *elem)
 	ft_putendl(tmp->name);
 }
 
-/*
-**	Fonction temporaire, Affichage de la liste t_data
-*/
-
-void	print_elem(t_list *elem)
+t_data	*new_data(char *str, int *wait, char *cmd)
 {
-	t_data*h;
+	t_data *d;
 
-	h = (t_data*)elem->content;
-	if (h->token[ELMT] == OPTION)
-		ft_putstr("OPTION\t");
-	if (h->token[ELMT] == PATH)
-		ft_putstr("FILE\t");
-	ft_putstr(h->av);
-	ft_putstr("\tfd ");
-	ft_putnbr(h->fd);
-	ft_putstr("\tdlen: ");
-	ft_putnbr(h->data_len);
-	ft_putchar('\t');
-	ft_putstr("\topt ");
-	ft_print_memory(h->opt, NB_OPT_NM);
+	d = NULL;
+	if (!str)
+		return (NULL);
+	if (!(d = (t_data*)ft_memalloc(sizeof(t_data))))
+		return (NULL);
+	if (!(d->av = ft_strdup(str)))
+		return (NULL);
+	d->token[ELMT] = PATH;
+	d->token[CMD] = OTOOL;
+	if (!ft_strcmp(cmd, FT_NM))
+		d->token[CMD] = NM;
+	if (str[0] == '-' && *wait)
+		d->token[ELMT] = OPTION;
+	if (!(ft_strcmp(str, "--")))
+		*wait = 0;
+	return (d);
 }
