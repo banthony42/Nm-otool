@@ -6,18 +6,19 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/12/14 17:58:31 by banthony         ###   ########.fr         
+     Updated: 2017/12/15 17:53:11 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
-Issue ft_nm:
-	  Penser a mettre a jour les message d'erreur avec FT_NM/FT_OTOOL
-	  fonction de d->token[CMD]
-	  BONUS cat a.out | ft_nm -  (lecture sur entree standard) simon
-	  BONUS "-arch all", trouver un caractere pour le gerer rapidement -z ?
-
 Issue ft_otool:
-	  BONUS -afh ? (Affichage des header, archive, fat, mach-o)
+	  Faire les test avec fsanitize
+	  Resoudre les espaces sur arch ppc
+	  Tester d'autre script
+	  Tester les fichiers corrompus
+	  Tester fichier vicieux (ar: de fat, ar de: archive, ar de: fat macho archive)
+	  Tester ppc seul (extraire de audiodevice)
+	  Tester fat avec frh de l'arch de l'host ailleurs qu'en premier dans le fat
+	  Tester fat dans des fat, faception
 
 $> nm ./test/a.out
 0000000100000000 T __mh_execute_header

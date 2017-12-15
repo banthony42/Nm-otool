@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 13:45:17 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 23:09:30 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 18:26:29 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,15 @@ int		arch_32_handler(uint32_t magic, t_data *d, void *file, off_t size)
 		d->token[TYPE] = MACHO;
 	ncmds = hdr->ncmds;
 	if (magic == MH_MAGIC)
+	{
+		d->cpu[0] = ~CPU_ARCH_MASK & ((uint32_t)hdr->cputype);
+		d->cpu[1] = ~CPU_SUBTYPE_MASK & ((uint32_t)hdr->cpusubtype);
 		error = arch_32_magic(ncmds, d, file, size);
+	}
 	if (magic == MH_CIGAM)
 	{
+		d->cpu[0] = ~CPU_ARCH_MASK & (swap_uint32((uint32_t)hdr->cputype));
+		d->cpu[1] = ~CPU_SUBTYPE_MASK & (swap_uint32((uint32_t)hdr->cpusubtype));
 		ncmds = swap_uint32(ncmds);
 		error = arch_32_cigam(ncmds, d, file, size);
 	}
@@ -69,6 +75,8 @@ int		arch_64_handler(uint32_t magic, t_data *d, void *file, off_t size)
 	if (!d->token[TYPE])
 		d->token[TYPE] = MACHO;
 	ncmds = hdr64->ncmds;
+	d->cpu[0] = 0;
+	d->cpu[1] = 0;
 	if (magic == MH_MAGIC_64)
 		error = arch_64_magic(ncmds, d, file, size);
 	if (magic == MH_CIGAM_64)

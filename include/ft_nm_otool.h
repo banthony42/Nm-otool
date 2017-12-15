@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 22:06:58 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 22:46:19 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:11:14 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct		s_arch
 	cpu_type_t		cpusubtype;
 }					t_arch;
 
+# define PPC 4
 # define ARCH_DATA_SIZE 44
 
 extern t_arch		g_arch_data[ARCH_DATA_SIZE];
@@ -105,6 +106,7 @@ typedef	struct		s_smb
 **	opt: tableau d'options, rempli par la lettre correspondante sinon '-'
 **	lstadd_somewhere: fonction de tri par insertion, suivant options -np
 **	lst_browser: fonction de parcourt de liste, suivant option -r
+**	cpu: cpu[1] = cputype actuel, cpu[2] = cpusubtype actuel
 */
 typedef struct		s_data
 {
@@ -119,6 +121,7 @@ typedef struct		s_data
 	void			(*lstadd_somewhere)(t_list **begin, t_list *new);
 	void			(*lst_browser)(t_list *lst, void (*f)(t_list *elem));
 	t_list			*sym;
+	int				cpu[2];
 }					t_data;
 
 /*
@@ -152,7 +155,7 @@ void				print_elem(t_list *elem);
 void				ft_otool(t_data *d, unsigned char *file, off_t size, uint32_t arch);
 void				print_ptr(void const *addr);
 void				print_memory64(uint64_t vmaddr, void *addr, size_t size);
-void				print_memory32(uint32_t vmaddr, void *addr, size_t size);
+void				print_memory32(uint32_t vmaddr, void *addr, size_t size, int ppc);
 
 /*
 **	Nm

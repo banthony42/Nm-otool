@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 21:33:48 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 23:12:42 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/15 21:22:40 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	get_text_section64(struct section_64 section, unsigned char *file,
 	{
 		sect.size = swap_uint64(sect.size);
 		sect.offset = swap_uint32(sect.offset);
+		sect.addr = swap_uint64(sect.addr);
 	}
 	if (!ft_strncmp(SECT_TEXT, sect.sectname, 16))
 	{
@@ -40,10 +41,11 @@ static int	get_text_section32(struct section section, unsigned char *file,
 	struct section	sect;
 
 	ft_memcpy(&sect, &section, sizeof(struct section));
-	if (!is_magic)
+	if (is_magic < 0)
 	{
 		sect.size = swap_uint32(sect.size);
 		sect.offset = swap_uint32(sect.offset);
+		sect.addr = swap_uint32(sect.addr);
 	}
 	if (!ft_strncmp(SECT_TEXT, sect.sectname, 16))
 	{
@@ -51,7 +53,7 @@ static int	get_text_section32(struct section section, unsigned char *file,
 			return (1);
 		if (is_corrup((void*)(file + sect.offset + sect.size), file, size))
 			return (1);
-		print_memory32(sect.addr, (void*)(file + sect.offset), sect.size);
+		print_memory32(sect.addr, (void*)(file + sect.offset), sect.size, is_magic);
 	}
 	return (0);
 }
@@ -113,7 +115,7 @@ static int	otool_64cigam(unsigned char *file, off_t size,
 }
 
 static int	otool_32cigam(unsigned char *file, off_t size,
-							struct load_command *lc)
+						  struct load_command *lc, int ppc)
 {
 	int						i;
 	struct segment_command	*sgmt;
@@ -134,14 +136,14 @@ static int	otool_32cigam(unsigned char *file, off_t size,
 			return (1);
 		sect = (struct section*)(sgmt + 1);
 		while (++i < (int)swap_uint32(sgmt->nsects))
-			get_text_section32(sect[i], file, size, 0);
+			get_text_section32(sect[i], file, size, -1 * ppc);
 		lc = (void*)((unsigned char*)lc + swap_uint32(lc->cmdsize));
 	}
 	return (0);
 }
 
 static int	otool_32magic(unsigned char *file, off_t size,
-							struct load_command *lc)
+						  struct load_command *lc, int ppc)
 {
 	int						i;
 	struct segment_command	*sgmt;
@@ -162,7 +164,7 @@ static int	otool_32magic(unsigned char *file, off_t size,
 			return (1);
 		sect = (struct section*)(sgmt + 1);
 		while (++i < (int)sgmt->nsects)
-			get_text_section32(sect[i], file, size, 1);
+			get_text_section32(sect[i], file, size, 1 * ppc);
 		lc = (void*)((unsigned char*)lc + lc->cmdsize);
 	}
 	return (0);
@@ -170,19 +172,23 @@ static int	otool_32magic(unsigned char *file, off_t size,
 
 void		ft_otool(t_data *d, unsigned char *file, off_t size, uint32_t arch)
 {
+	int	ppc;
 	int error;
 
 	error = 0;
+	ppc = 0;
 	if (!d || !arch || !d->file)
 		return ;
 	if (d->token[TYPE] == MACHO)
 		cmd_info(0, d->av, NULL);
+	if (g_arch_data[PPC].cputype == d->cpu[0] && g_arch_data[PPC].cpusubtype == d->cpu[1])
+		ppc = 2;
 	if (arch == ARCH32)
-		error = otool_32magic(file, size, (void*)d->first_sectoff);
+		error = otool_32magic(file, size, (void*)d->first_sectoff, ppc);
 	else if (arch == ARCH64)
 		error = otool_64magic(file, size, (void*)d->first_sectoff);
 	else if (arch == swap_uint32(ARCH32))
-		error = otool_32cigam(file, size, (void*)d->first_sectoff);
+		error = otool_32cigam(file, size, (void*)d->first_sectoff, ppc);
 	else if (arch == swap_uint32(ARCH64))
 		error = otool_64cigam(file, size, (void*)d->first_sectoff);
 	if (error)
