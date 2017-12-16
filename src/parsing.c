@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:44:27 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/16 16:45:09 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/16 20:47:21 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ void		default_file(t_list **lst)
 		return ;
 	ft_bzero(d, sizeof(t_data));
 	d->token[ELMT] = PATH;
+	d->token[CMD] = NM;
 	d->av = ft_strdup("a.out");
 	ft_lstaddback(lst, ft_lstnew(d, sizeof(t_data)));
 	ft_memdel((void**)&d);

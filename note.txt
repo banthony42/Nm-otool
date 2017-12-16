@@ -6,12 +6,14 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/12/16 19:13:05 by banthony         ###   ########.fr         
+     Updated: 2017/12/16 22:14:01 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
 nm-otool_v1.0: ('bug' restant)
 	./ft_otool -t ./test/ds_store - ft_otool return(0) otool return(1)
+	leaks dans lstadd_numeric (datant du dernier fix)
+	Tester en renommant un fichier qui leaks par a.out
 
 $> nm ./test/a.out
 0000000100000000 T __mh_execute_header
