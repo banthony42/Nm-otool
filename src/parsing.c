@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:44:27 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 20:40:27 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/16 16:45:09 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,7 @@ void		prepare_files(t_list *elm)
 	error = get_type(d);
 	if (!error && (d->file = mmap(NULL, (size_t)d->stat.st_size,
 					PROT_READ, MAP_PRIVATE, d->fd, 0)) == MAP_FAILED)
-	{
-		cmd_info(d->token[CMD], d->av, MMAP_ERROR);
 		error = 1;
-	}
 	if (d->file == MAP_FAILED)
 		d->file = NULL;
 	error_number(&error);

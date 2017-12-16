@@ -1,4 +1,4 @@
-********************************************************************************
+ ********************************************************************************
 
                                                           :::      ::::::::
      note.txt                                           :+:      :+:    :+:
@@ -6,19 +6,12 @@
      By: banthony <banthony@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/10/07 18:40:03 by banthony          #+#    #+#
-     Updated: 2017/12/15 17:53:11 by banthony         ###   ########.fr         
+     Updated: 2017/12/16 19:13:05 by banthony         ###   ########.fr         
 
 ********************************************************************************
 
-Issue ft_otool:
-	  Faire les test avec fsanitize
-	  Resoudre les espaces sur arch ppc
-	  Tester d'autre script
-	  Tester les fichiers corrompus
-	  Tester fichier vicieux (ar: de fat, ar de: archive, ar de: fat macho archive)
-	  Tester ppc seul (extraire de audiodevice)
-	  Tester fat avec frh de l'arch de l'host ailleurs qu'en premier dans le fat
-	  Tester fat dans des fat, faception
+nm-otool_v1.0: ('bug' restant)
+	./ft_otool -t ./test/ds_store - ft_otool return(0) otool return(1)
 
 $> nm ./test/a.out
 0000000100000000 T __mh_execute_header

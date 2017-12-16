@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 22:42:18 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/14 16:47:19 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/16 16:17:23 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int				arch_64_magic(uint32_t ncmds, t_data *d, unsigned char *file,
 	lc = (void *)(file + sizeof(struct mach_header_64));
 	while (++i < (int)ncmds)
 	{
-		if (is_corrup((void*)(lc + 1), file, size))
+		if (is_corrup((void*)(lc + 1), file, size) || (lc->cmdsize % 8))
 			return (1);
 		if (lc->cmd == LC_SEGMENT_64 && !d->first_sectoff)
 			error = get_first_sectoff(d, (void*)lc, file, size);
