@@ -6,7 +6,7 @@
 #    By: banthony <banthony@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 16:22:07 by banthony          #+#    #+#              #
-#    Updated: 2017/12/16 16:45:31 by banthony         ###   ########.fr        #
+#    Updated: 2017/12/16 19:48:41 by banthony         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -72,7 +72,7 @@ FLAGS = -Wall -Wextra -Werror -g3 -Weverything
 endif
 
 %.o:%.c
-	gcc $(FLAGS) $(HEAD_DIR) -c $(SRC_COMMON) -fsanitize=address
+	gcc $(FLAGS) $(HEAD_DIR) -c $(SRC_COMMON)
 	mv $(OBJ_FILE_COMMON) $(PATH_SRC)
 
 all: $(NAME_NM) $(NAME_OTOOL)
