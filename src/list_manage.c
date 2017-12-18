@@ -6,7 +6,7 @@
 /*   By: banthony <banthony@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 17:29:26 by banthony          #+#    #+#             */
-/*   Updated: 2017/12/16 22:01:41 by banthony         ###   ########.fr       */
+/*   Updated: 2017/12/18 19:39:09 by banthony         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,30 +66,6 @@ static int		add_compare_name(t_smb **e, t_list **begin,
 	return (1);
 }
 
-void			lstadd_alpha(t_list **begin, t_list *new)
-{
-	t_list	*mem[2];
-	t_smb	*e[2];
-
-	mem[0] = *begin;
-	mem[1] = NULL;
-	if (!(e[0] = (t_smb*)new->content)
-		|| !(e[1] = (t_smb*)mem[0]->content))
-		return ;
-	if (!add_compare_name(e, begin, mem, new))
-		return ;
-	while (mem[0])
-	{
-		if (!(e[1] = (t_smb*)mem[0]->content))
-			return ;
-		if (!add_compare_name(e, NULL, mem, new))
-			return ;
-		mem[1] = mem[0];
-		mem[0] = mem[0]->next;
-	}
-	ft_lstaddback(begin, new);
-}
-
 static int		add_compare_value(t_smb **e, t_list **begin,
 								t_list *mem[2], t_list *new)
 {
@@ -113,11 +89,35 @@ static int		add_compare_value(t_smb **e, t_list **begin,
 		}
 		else
 		{
-			if (!add_compare_name(e, NULL, mem, new))
+			if (!add_compare_name(e, begin, mem, new))
 				return (0);
 		}
 	}
 	return (1);
+}
+
+void			lstadd_alpha(t_list **begin, t_list *new)
+{
+	t_list	*mem[2];
+	t_smb	*e[2];
+
+	mem[0] = *begin;
+	mem[1] = NULL;
+	if (!(e[0] = (t_smb*)new->content)
+		|| !(e[1] = (t_smb*)mem[0]->content))
+		return ;
+	if (!add_compare_name(e, begin, mem, new))
+		return ;
+	while (mem[0])
+	{
+		if (!(e[1] = (t_smb*)mem[0]->content))
+			return ;
+		if (!add_compare_name(e, NULL, mem, new))
+			return ;
+		mem[1] = mem[0];
+		mem[0] = mem[0]->next;
+	}
+	ft_lstaddback(begin, new);
 }
 
 void			lstadd_numeric(t_list **begin, t_list *new)
